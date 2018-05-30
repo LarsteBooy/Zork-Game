@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7B977BB7-497F-4351-BBCC-8EA011D2CFFB}</ProjectGuid>
+    <ProjectGuid>{3EA0B777-4380-4CC2-ADA2-CFC1662155A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Zork_BR.Tests</RootNamespace>
@@ -100,7 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zork BR\Zork BR.csproj">
-      <Project>{A92D9D06-2317-4916-8627-5E1EC3E59766}</Project>
+      <Project>{A1924777-C5AD-4B64-9A0C-D5CD87151CA0}</Project>
       <Name>Zork BR</Name>
     </ProjectReference>
   </ItemGroup>
