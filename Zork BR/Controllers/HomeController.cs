@@ -13,9 +13,9 @@ namespace Zork_BR.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Help()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Rules of the game";
 
             return View();
         }
