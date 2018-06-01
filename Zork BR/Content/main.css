@@ -1,0 +1,39 @@
+﻿body {
+    background-color: #000;
+    width: auto;
+    height: 100vh;
+    font-family: monospace;
+}
+
+.textField {
+    color: #00FF00;
+    width: auto;
+    max-height: 89vh;
+    padding-top: 10px;
+}
+
+.textInput {
+    display: flex;
+}
+
+#sendBtn {
+    background-color: #000;
+    color: #00FF00;
+    border-color: #00FF00;
+}
+
+#inputField {
+    flex: 1;
+    background-color: #000;
+    border-color: #00FF00;
+    color: #00FF00;
+}
+
+.navbar-brand {
+    font-size: 24px;
+}
+
+.navbar-nav li a{
+    padding-top: 18px;
+    padding-bottom: 12px;
+}
