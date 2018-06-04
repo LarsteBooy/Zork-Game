@@ -1,11 +1,18 @@
 ﻿@{
     ViewBag.Title = "Nama";
+    var message = "";
+    if (IsPost)
+    {
+        message = Request["input"];
+    }
 }
 
     <div class="textField" id="textField">
-        This is the field where the text is supposed to be
+        @message
     </div>
-    <div class="textInput navbar-fixed-bottom">
-        <button id="sendBtn" class="btn btn-primary">Send</button>
-        <input id="inputField" type="text" class="form-control" autofocus/>
+    <div class="navbar-fixed-bottom">
+        <form action="" method="post" autocomplete="off">
+            <button type="submit" id="sendBtn" class="btn btn-primary">Send</button>
+            <input id="inputField" name="input" type="text" class="form-control" autofocus />
+        </form>
     </div>
