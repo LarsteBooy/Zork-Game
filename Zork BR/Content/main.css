@@ -5,6 +5,12 @@
     font-family: monospace;
 }
 
+form {
+    display: inline-flex;
+    width: 100%;
+    padding-bottom: 1px;
+}
+
 .textField {
     color: #00FF00;
     width: auto;
@@ -12,9 +18,6 @@
     padding-top: 10px;
 }
 
-.textInput {
-    display: flex;
-}
 
 #sendBtn {
     background-color: #000;
@@ -22,8 +25,16 @@
     border-color: #00FF00;
 }
 
+#sendBtn:focus {
+    outline: none;
+}
+
+#sendBtn:hover {
+    background-color: #00FF00;
+    color: #000;
+}
+
 #inputField {
-    flex: 1;
     background-color: #000;
     border-color: #00FF00;
     color: #00FF00;
