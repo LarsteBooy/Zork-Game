@@ -7,8 +7,6 @@ namespace Zork_BR.Models
 {
     public class Story
     {
-        public string theStory { get; set; }
-        public string myStory { get; set; }
-
+        public string MyStory { get; set; }
     }
 }

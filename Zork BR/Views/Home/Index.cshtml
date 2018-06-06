@@ -1,4 +1,5 @@
-﻿@model Zork_BR.Models.Story
+﻿@using Zork_BR.Models
+@model Zork_BR.Models.Story
 
 @{
     ViewBag.Title = "Nama";
@@ -6,7 +7,7 @@
 }
 
     <div class="textField" id="textField">
-      @Model Story.MyStory
+      @Model.MyStory
     </div>
     <div class="navbar-fixed-bottom">
         <form action="/Home/Add" method="post" autocomplete="off">

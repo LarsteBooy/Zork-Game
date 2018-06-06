@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Zork_BR.Models;
 
 namespace Zork_BR.Controllers
 {
@@ -10,7 +11,12 @@ namespace Zork_BR.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            Story theStory = new Story
+            {
+                MyStory = "wallo"
+            };
+
+            return View(theStory);
         }
 
         public ActionResult Help()
@@ -30,13 +36,13 @@ namespace Zork_BR.Controllers
         public ActionResult Add(string input)
         {
             // String komt binnen
+            Story theStory = new Story
+            {
+                MyStory = input
+            };
+     
 
-
-            // Moet worden toegevoegd worden aan story
-            Story.MyStory += input;
-            
-            //
-            return View("Index");
+            return View(theStory);
         }
 
     }
