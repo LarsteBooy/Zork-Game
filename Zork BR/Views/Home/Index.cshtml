@@ -1,17 +1,15 @@
-﻿@{
+﻿@model Zork_BR.Models.Story
+
+@{
     ViewBag.Title = "Nama";
-    var message = "";
-    if (IsPost)
-    {
-        message = Request["input"];
-    }
+
 }
 
     <div class="textField" id="textField">
-        @message
+      @Model Story.MyStory
     </div>
     <div class="navbar-fixed-bottom">
-        <form action="" method="post" autocomplete="off">
+        <form action="/Home/Add" method="post" autocomplete="off">
             <button type="submit" id="sendBtn" class="btn btn-primary">Send</button>
             <input id="inputField" name="input" type="text" class="form-control" autofocus />
         </form>

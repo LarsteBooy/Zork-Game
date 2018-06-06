@@ -26,5 +26,18 @@ namespace Zork_BR.Controllers
 
             return View();
         }
+
+        public ActionResult Add(string input)
+        {
+            // String komt binnen
+
+
+            // Moet worden toegevoegd worden aan story
+            Story.MyStory += input;
+            
+            //
+            return View("Index");
+        }
+
     }
 }
