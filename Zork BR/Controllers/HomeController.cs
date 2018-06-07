@@ -9,12 +9,14 @@ namespace Zork_BR.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        static Story theStory = new Story();
+
+        public ActionResult Index(string input)
         {
-            Story theStory = new Story
-            {
-                MyStory = "wallo"
-            };
+
+            
+            theStory.MyStory += "\n" + input;
+           
 
             return View(theStory);
         }
@@ -26,13 +28,7 @@ namespace Zork_BR.Controllers
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
+        /*
         public ActionResult Add(string input)
         {
             // String komt binnen
@@ -44,6 +40,15 @@ namespace Zork_BR.Controllers
 
             return View(theStory);
         }
+        */
 
+        /*
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+        */
     }
 }
