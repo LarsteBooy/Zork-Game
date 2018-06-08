@@ -15,7 +15,7 @@ namespace Zork_BR.Controllers
         {
 
             
-            theStory.MyStory += "\n" + input;
+            theStory.MyStory += (Environment.NewLine + input);
            
 
             return View(theStory);
@@ -27,20 +27,6 @@ namespace Zork_BR.Controllers
 
             return View();
         }
-
-        /*
-        public ActionResult Add(string input)
-        {
-            // String komt binnen
-            Story theStory = new Story
-            {
-                MyStory = input
-            };
-     
-
-            return View(theStory);
-        }
-        */
 
         /*
         public ActionResult Contact()
