@@ -18,7 +18,8 @@ namespace Zork_BR.Controllers
             {
                 theStory.MyStory += (Environment.NewLine + input);
             }
-           
+
+            //TODO: If input is empty, tell the user to give input/commands
 
             return View(theStory);
         }

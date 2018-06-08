@@ -16,8 +16,7 @@ namespace Zork_BR.Controllers
         {
 
 
-            theStory.MyStory += "\n" + input;
-
+                theStory.MyStory += "\n" + input;
 
             return View(theStory);
         }
