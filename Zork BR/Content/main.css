@@ -18,6 +18,11 @@ form {
     padding-top: 10px;
 }
 
+pre {
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+}
 
 #sendBtn {
     background-color: #000;
@@ -39,6 +44,7 @@ form {
     border-color: #00FF00;
     color: #00FF00;
 }
+
 
 .navbar-brand {
     font-size: 24px;

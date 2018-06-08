@@ -4,11 +4,13 @@
 @{
     ViewBag.Title = "Nama";
 
-}
-
-    <div class="textField" id="textField">
-      @Model.MyStory
-    </div>
+}   
+    <div>
+        <pre class="textField" id="textField">
+            @Model.MyStory
+        </pre>
+    </div> 
+    
     <div class="navbar-fixed-bottom">
         <form action='@Url.Action("Index","Home")' method="post" autocomplete="off">
             <button type="submit" id="sendBtn" class="btn btn-primary">Send</button>

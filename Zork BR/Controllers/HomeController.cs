@@ -14,8 +14,10 @@ namespace Zork_BR.Controllers
         public ActionResult Index(string input)
         {
 
-            
-            theStory.MyStory += (Environment.NewLine + input);
+            if (theStory.MyStory != "")
+            {
+                theStory.MyStory += (Environment.NewLine + input);
+            }
            
 
             return View(theStory);
