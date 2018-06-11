@@ -13,10 +13,12 @@ namespace Zork_BR.Controllers
 
         public ActionResult Index(string input)
         {
+            System.Diagnostics.Debug.WriteLine("Input: " + input);
+            System.Diagnostics.Debug.WriteLine("Story: " + theStory.MyStory);
 
-            if (theStory.MyStory != "")
+            if (input != null)
             {
-                theStory.MyStory += (Environment.NewLine + input);
+                theStory.MyStory += (input + Environment.NewLine);
             }
 
             //TODO: If input is empty, tell the user to give input/commands
