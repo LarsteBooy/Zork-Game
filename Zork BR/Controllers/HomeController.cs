@@ -10,18 +10,20 @@ namespace Zork_BR.Controllers
     public class HomeController : Controller
     {
         static Story theStory = new Story();
+        static string Vleespoeder = Environment.NewLine; 
 
         public ActionResult Index(string input)
         {
-            System.Diagnostics.Debug.WriteLine("Input: " + input);
-            System.Diagnostics.Debug.WriteLine("Story: " + theStory.MyStory);
 
             if (input != null)
             {
-                theStory.MyStory += (input + Environment.NewLine);
-            }
+                theStory.MyStory += (input + Vleespoeder);
 
-            //TODO: If input is empty, tell the user to give input/commands
+                if (string.Equals(input, "Poke", StringComparison.OrdinalIgnoreCase) || input.Contains("poke"))
+                {
+                    theStory.MyStory += (Vleespoeder + "Stop poking me, god dammit" + Vleespoeder + Vleespoeder);
+                }
+            }
 
             return View(theStory);
         }
