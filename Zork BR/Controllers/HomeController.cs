@@ -10,18 +10,17 @@ namespace Zork_BR.Controllers
     public class HomeController : Controller
     {
         static Story theStory = new Story();
-        static string Vleespoeder = Environment.NewLine; 
 
         public ActionResult Index(string input)
         {
 
             if (input != null)
             {
-                theStory.MyStory += (input + Vleespoeder);
+                theStory.MyStory += (input + "\n");
 
                 if (string.Equals(input, "Poke", StringComparison.OrdinalIgnoreCase) || input.Contains("poke"))
                 {
-                    theStory.MyStory += (Vleespoeder + "Stop poking me, god dammit" + Vleespoeder + Vleespoeder);
+                    theStory.MyStory += ("\nStop poking me, god dammit\n\n");
                 }
             }
 
