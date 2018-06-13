@@ -13,14 +13,33 @@ namespace Zork_BR.Controllers
 
         public ActionResult Index(string input)
         {
-
+            //Als input niet leeg is kunnen deze commands worden uitgevoerd
             if (input != null)
             {
                 theStory.MyStory += (input + "\n");
 
-                if (string.Equals(input, "Poke", StringComparison.OrdinalIgnoreCase) || input.Contains("poke"))
+                /*
+                if (string.Equals(input, "Poke", StringComparison.OrdinalIgnoreCase))
                 {
                     theStory.MyStory += ("\nStop poking me, god dammit\n\n");
+                }
+
+                if (string.Equals(input, "Dance", StringComparison.OrdinalIgnoreCase))
+                {
+                    theStory.MyStory += ("\nYou are making a fool of yourself\n\n");
+                }
+                */
+
+                //De action calls
+                switch (true)
+                {
+                    case bool b when input.Equals("Poke", StringComparison.InvariantCultureIgnoreCase):
+                        theStory.MyStory += ("\nStop poking me, god dammit\n\n");
+                        //Hier kan een optionele method call komen
+                        break;
+                    case bool b when input.Equals("Dance", StringComparison.InvariantCultureIgnoreCase):
+                        theStory.MyStory += ("\nYou are making a fool of yourself\n\n");
+                        break;
                 }
             }
 
