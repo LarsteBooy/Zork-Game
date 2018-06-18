@@ -4,62 +4,65 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Zork_BR.Models;
+using Zork_BR.Models.Commands;
 
 namespace Zork_BR.Controllers
 {
     public class HomeController : Controller
     {
+        //Define a Dictionary (List)
+        Dictionary<string, string> Commands = new Dictionary<string, string>();
+
+        //Add Commands to the Dictionary
+        private void FillCommands()
+        {
+            Commands.Add("poke", "Stop poking me, god dammit");
+            Commands.Add("dance", "You are making a fool of yourself");
+            Commands.Add("test", "this is a test");
+        }
+
+        //Return the given line in the dictionary based on input
+        private string GetCommandText(string input)
+        {
+            FillCommands();
+            if (Commands.ContainsKey(input))
+            {
+                var c = Commands[input];
+                return "<" + input + ">" + "\n" + c + "\n\n";
+            }
+            else
+            {
+                return "<" + input + ">" + "\nThis is not a command, for all commands see the Help page\n\n";
+            }
+        }
+
+        //Instantiate the story when starting the application, executes only once
         static Story theStory = new Story();
 
+        //Index Action
         public ActionResult Index(string input)
         {
-            //Als input niet leeg is kunnen deze commands worden uitgevoerd
+            
+            //Append the story with the given storyline based on input
             if (input != null)
             {
-                theStory.MyStory += (input + "\n");
+              //  var command = CommandFactory.Create(input);
+               // theStory.MyStory += command.Text;
+                theStory.MyStory += GetCommandText(input);
 
-                /*
-                if (string.Equals(input, "Poke", StringComparison.OrdinalIgnoreCase))
-                {
-                    theStory.MyStory += ("\nStop poking me, god dammit\n\n");
-                }
+                // command.MyAction();
 
-                if (string.Equals(input, "Dance", StringComparison.OrdinalIgnoreCase))
-                {
-                    theStory.MyStory += ("\nYou are making a fool of yourself\n\n");
-                }
-                */
-
-                //De action calls
-                switch (true)
-                {
-                    case bool b when input.Equals("Poke", StringComparison.InvariantCultureIgnoreCase):
-                        theStory.MyStory += ("\nStop poking me, god dammit\n\n");
-                        //Hier kan een optionele method call komen
-                        break;
-                    case bool b when input.Equals("Dance", StringComparison.InvariantCultureIgnoreCase):
-                        theStory.MyStory += ("\nYou are making a fool of yourself\n\n");
-                        break;
-                }
             }
 
             return View(theStory);
         }
 
+        //Help Action
         public ActionResult Help()
         {
             ViewBag.Message = "Rules of the game";
 
             return View();
         }
-
-        /*
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-        */
     }
 }
