@@ -9,7 +9,7 @@ namespace Zork_BR.Models.Commands
     {
         public override void MyAction()
         {
-            //Do a poke
+            System.Diagnostics.Debug.WriteLine("This is a PokeCommand");
         }
     }
 }

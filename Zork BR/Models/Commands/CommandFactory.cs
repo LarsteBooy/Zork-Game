@@ -12,12 +12,12 @@ namespace Zork_BR.Models.Commands
         public static Command Create(string input)
         {
             Command result = null;
-            if (Enum.TryParse(input, out Inputs commandType))
+            if (Enum.TryParse(input, true, out Inputs commandType))
             {
                 switch (commandType)
                 {
-                 //   case Inputs.Poke: result = new PokeCommand();
-               //         break;
+                    case Inputs.Poke: result = new PokeCommand();
+                        break;
                     case Inputs.Dance: result = new DanceCommand();
                         break;
                         /*

@@ -9,7 +9,7 @@ namespace Zork_BR.Models.Commands
     {
         public override void MyAction()
         {
-            //Do a Dance
+            System.Diagnostics.Debug.WriteLine("This is a DanceCommand");
         }
     }
 }
