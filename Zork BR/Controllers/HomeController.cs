@@ -49,16 +49,19 @@ namespace Zork_BR.Controllers
         public ActionResult Index(string input)
         {
             
-            //Append the story with the given storyline based on input
-            if (input != null)
+            //Append the story with the given storyline based on input (guard statement van maken)
+            if (input == null)
             {
-                var command = CommandFactory.Create(input);
-                if (command != null)
-                {
-                    command.MyAction();
-                }
-                theStory.MyStory += GetCommandText(input);
+                return View(theStory);
             }
+
+            var command = CommandFactory.Create(input);
+            if (command != null)
+            {
+                command.MyAction();
+            }
+
+            theStory.MyStory += GetCommandText(input);
 
             return View(theStory);
         }
