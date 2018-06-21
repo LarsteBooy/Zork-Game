@@ -20,12 +20,15 @@ namespace Zork_BR.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
         public DbSet<Story> Stories { get; set; }
         public DbSet<Map> Maps { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            //Leegt de database als er veranderingen in de models zijn ( de naam zegt het al )
+            Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
 
         public static ApplicationDbContext Create()
