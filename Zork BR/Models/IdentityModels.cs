@@ -20,6 +20,9 @@ namespace Zork_BR.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Story> Stories { get; set; }
+        public DbSet<Map> Maps { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

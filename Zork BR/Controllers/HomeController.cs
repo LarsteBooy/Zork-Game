@@ -20,6 +20,8 @@ namespace Zork_BR.Controllers
             Commands.Add("dance", "You are making a fool of yourself");
             Commands.Add("test", "this is a test");
             Commands.Add("vleespoeder", "ThE bEsT mEaTpOwDeR eVeR");
+            Commands.Add("Petri", "Onderdanig aan Wouter");
+            Commands.Add("Spreadlegs", "I'm ready for your arrival");
         }
 
         //Return the given line in the dictionary based on input
@@ -30,7 +32,7 @@ namespace Zork_BR.Controllers
             //Trim the input so that unnecessary spaces given by the player are left out
             var i = input.Trim();
 
-            //Checkt if the dictionary contains the command the player has given.
+            //Check if the dictionary contains the command the player has given.
             if (Commands.ContainsKey(i))
             {
                 var c = Commands[i];
@@ -42,25 +44,52 @@ namespace Zork_BR.Controllers
             }
         }
 
-        //Instantiate the story when starting the application, executes only once
-        static Story theStory = new Story();
-
-        //Index Action
-        public ActionResult Index(string input)
+        //Index Action. Voor id als parameter moeten we uiteindelijk iets anders verzinnen. Nu is het niet echt secure.
+        public ActionResult Index(string input, int id = 0)
         {
-            
-            //Append the story with the given storyline based on input
-            if (input != null)
+            Story story = null;
+
+            //create een storydatabase als die er nog niet is en voegt een nieuwe storymodel toe 
+            if(id != 0)
             {
-                var command = CommandFactory.Create(input);
-                if (command != null)
+                using (var context = ApplicationDbContext.Create())
                 {
-                    command.MyAction();
+                    story = context.Stories.Find(id);
                 }
-                theStory.MyStory += GetCommandText(input);
+            }
+           else
+            {
+                story = new Story();
+                using (var context = ApplicationDbContext.Create())
+                {
+                    context.Stories.Add(story);
+                    context.SaveChanges();
+                }
             }
 
-            return View(theStory);
+
+            //return the view als er niets in de input staat
+            if (input == null)
+            {
+                return View(story);
+            }
+
+            //Als playerinput een command is, voer command uit
+            var command = CommandFactory.Create(input);
+            if (command != null)
+            {
+                command.MyAction();
+            }
+
+            //Append the story with the given storyline based on input
+            using (var context = ApplicationDbContext.Create())
+            {
+                context.Stories.Attach(story);
+                story.MyStory += GetCommandText(input);
+                context.SaveChanges();
+            }
+
+            return View(story);
         }
 
         //Help Action
