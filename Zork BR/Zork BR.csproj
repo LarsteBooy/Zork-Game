@@ -221,6 +221,7 @@
     <Compile Include="Models\Locations\Field.cs" />
     <Compile Include="Models\Locations\Forest.cs" />
     <Compile Include="Models\Locations\Location.cs" />
+    <Compile Include="Models\Locations\Ocean.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Story.cs" />

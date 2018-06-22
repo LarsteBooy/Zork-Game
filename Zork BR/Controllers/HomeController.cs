@@ -16,7 +16,7 @@ namespace Zork_BR.Controllers
         //Add Commands to the Dictionary
         private void FillCommands()
         {
-           // Commands.Add("poke", "Stop poking me, god dammit");
+            Commands.Add("poke", "Stop poking me, god dammit");
             Commands.Add("dance", "You are making a fool of yourself");
             Commands.Add("test", "this is a test");
             Commands.Add("vleespoeder", "ThE bEsT mEaTpOwDeR eVeR");
