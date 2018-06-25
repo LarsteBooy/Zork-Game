@@ -182,6 +182,7 @@ namespace Zork_BR.Models
                 }
             }
 
+            //Mapcheck
             for(x = 0; x <= 31; x++)
             {
                 for(y=0; y<= 31; y++)
@@ -190,15 +191,6 @@ namespace Zork_BR.Models
                     System.Diagnostics.Debug.WriteLine(map[y, x]);
                 }
             }
-
-
-            System.Diagnostics.Debug.WriteLine(map[1,1]);
-            System.Diagnostics.Debug.WriteLine(map[2, 16]);
-            System.Diagnostics.Debug.WriteLine(map[2, 17]);
-            System.Diagnostics.Debug.WriteLine(map[2, 21]);
-            System.Diagnostics.Debug.WriteLine(map[2, 22]);
-            System.Diagnostics.Debug.WriteLine(map[2, 27]);
-            System.Diagnostics.Debug.WriteLine(map[2, 28]);
         }
     }
 }
