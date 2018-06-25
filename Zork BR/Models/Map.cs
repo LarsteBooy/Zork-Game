@@ -182,6 +182,15 @@ namespace Zork_BR.Models
                 }
             }
 
+            for(x = 0; x <= 31; x++)
+            {
+                for(y=0; y<= 31; y++)
+                {
+                    System.Diagnostics.Debug.Print("[{0},{1}]",y,x ); 
+                    System.Diagnostics.Debug.WriteLine(map[y, x]);
+                }
+            }
+
 
             System.Diagnostics.Debug.WriteLine(map[1,1]);
             System.Diagnostics.Debug.WriteLine(map[2, 16]);
