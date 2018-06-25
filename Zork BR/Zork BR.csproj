@@ -218,7 +218,7 @@
     <Compile Include="Models\Commands\PokeCommand.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Locations\Cabin.cs" />
-    <Compile Include="Models\Locations\Field.cs" />
+    <Compile Include="Models\Locations\Plain.cs" />
     <Compile Include="Models\Locations\Forest.cs" />
     <Compile Include="Models\Locations\Location.cs" />
     <Compile Include="Models\Locations\Ocean.cs" />

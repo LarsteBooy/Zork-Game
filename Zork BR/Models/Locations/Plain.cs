@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Zork_BR.Models.Locations
 {
-    public class Field : Location
+    public class Plain : Location
     {
         //Location name
         public override string LocationName
@@ -23,12 +23,12 @@ namespace Zork_BR.Models.Locations
         }
 
         //Constructors
-        public Field(string locationDescription)
+        public Plain(string locationDescription)
         {
             LocationDescription = locationDescription;
         }
 
-        public Field()
+        public Plain()
         {
         }
     }

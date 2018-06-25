@@ -48,7 +48,11 @@ namespace Zork_BR.Controllers
         public ActionResult Index(string input, int id = 0)
         {
             Story story = null;
-            Map map = null;
+            
+            //TODO add Map to database
+            Map map = new Map();
+
+            map.BuildMap();
 
             //create twee databases als die er nog niet zijn en voegt een nieuwe storymodel en mapmodel toe 
             if(id != 0)
@@ -57,6 +61,7 @@ namespace Zork_BR.Controllers
                 {
                     story = context.Stories.Find(id);
                     map = context.Maps.Find(id);
+                    
                 }
             }
            else
