@@ -48,22 +48,30 @@ namespace Zork_BR.Controllers
         public ActionResult Index(string input, int id = 0)
         {
             Story story = null;
+            
+            Map map = null;
 
-            //create een storydatabase als die er nog niet is en voegt een nieuwe storymodel toe 
+            //create een database als die er nog niet is en voegt een nieuwe storymodel en mapmodel toe 
             if(id != 0)
             {
                 using (var context = ApplicationDbContext.Create())
                 {
                     story = context.Stories.Find(id);
+                    map = context.Maps.Find(id);
+                    
                 }
             }
            else
             {
                 story = new Story();
+                map = new Map();
+
                 using (var context = ApplicationDbContext.Create())
                 {
                     context.Stories.Add(story);
+                    context.Maps.Add(map);
                     context.SaveChanges();
+                    map.BuildMap();
                 }
             }
 
@@ -95,7 +103,7 @@ namespace Zork_BR.Controllers
         //Help Action
         public ActionResult Help()
         {
-            ViewBag.Message = "Rules of the game";
+            ViewBag.Message = "Available Commands";
 
             return View();
         }
