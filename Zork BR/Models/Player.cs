@@ -11,7 +11,7 @@ namespace Zork_BR.Models
         private string PlayerName { get; set; }
         private int CurrentHealth { get; set; }
         private int MaxHealth { get; set; }
-        private List<Item> Inventory { get; set; }
+        private ICollection<Item> Inventory { get; set; }
         private Weapon SelectedWeapon { get; set; }
 
 
