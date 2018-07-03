@@ -20,13 +20,11 @@ namespace Zork_BR.Models.Commands
                         break;
                     case Inputs.Dance: result = new DanceCommand();
                         break;
-                        /*
-                        case Inputs.North:
-                        case Inputs.East:
-                        case Inputs.South:
-                        case Inputs.West:
-                            return new DirectionCommand(input);
-                        */
+                    case Inputs.North:
+                    case Inputs.East:
+                    case Inputs.South:
+                    case Inputs.West:
+                        return new DirectionCommand(input);
                 }
                 return result;
             }
@@ -41,11 +39,9 @@ namespace Zork_BR.Models.Commands
     {
         Poke,
         Dance,
-        /*
-        North,
+        North,  
         East,
         South,
         West,
-        */
     }
 }

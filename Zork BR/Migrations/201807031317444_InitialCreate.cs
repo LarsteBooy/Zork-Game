@@ -8,6 +8,24 @@ namespace Zork_BR.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.Maps",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Players",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        XCoord = c.Int(nullable: false),
+                        YCoord = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
@@ -104,6 +122,8 @@ namespace Zork_BR.Migrations
             DropTable("dbo.Stories");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Players");
+            DropTable("dbo.Maps");
         }
     }
 }

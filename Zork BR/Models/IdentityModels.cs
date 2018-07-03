@@ -23,11 +23,12 @@ namespace Zork_BR.Models
 
         public DbSet<Story> Stories { get; set; }
         public DbSet<Map> Maps { get; set; }
+        public DbSet<Player> Players { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            //Leegt de database als er veranderingen in de models zijn ( de naam zegt het al )
+            //Leegt de database
             Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
 

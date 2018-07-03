@@ -42,19 +42,22 @@ namespace Zork_BR.Controllers
 
         Story story = null;
         Map map = null;
+        Player player = null;
 
         private void CreateDatabase()
         {
             story = new Story();
             map = new Map();
+            player = new Player();
 
             using (var context = ApplicationDbContext.Create())
             {
                 context.Stories.Add(story);
                 context.Maps.Add(map);
-                context.SaveChanges();
-                map.BuildMap2();
+                context.Players.Add(player);
+                map.BuildMap();
                 CreatePlayer();
+                context.SaveChanges();
             }
         }
 
@@ -88,14 +91,11 @@ namespace Zork_BR.Controllers
 
         public void CreatePlayer()
         {
-            Player player = new Player();
             Random random = new Random();
 
             SpawnPlayer();
 
             void SpawnPlayer() {
-                
-
                 player.XCoord = random.Next(0, 32);
                 player.YCoord = random.Next(0, 32);
 
@@ -104,10 +104,9 @@ namespace Zork_BR.Controllers
                 if (Map.map[player.YCoord, player.XCoord].GetType().Name == "Ocean")
                 {
                     Debug.WriteLine("Spawn location was Ocean, initialize respawn");
-                    SpawnPlayer();
+                    SpawnPlayer(); //Recursion
                 }
             }
-
         }
 
         //Index Action

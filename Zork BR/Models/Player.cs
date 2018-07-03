@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Zork_BR.Models.Items;
@@ -8,6 +9,9 @@ namespace Zork_BR.Models
 {
     public class Player
     {
+        [Key]
+        public int Id { get; set; }
+
         private string PlayerName { get; set; }
         private int CurrentHealth { get; set; }
         private int MaxHealth { get; set; }
@@ -16,8 +20,5 @@ namespace Zork_BR.Models
 
         public int XCoord { get; set; }
         public int YCoord { get; set; }
-
-
-
     }
 }

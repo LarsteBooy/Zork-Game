@@ -15,7 +15,7 @@ namespace Zork_BR.Models
 
         //TODO deze method verwijderen, nog even laten staan zodat jurgen kan zien wat er is gebeurd
         /*
-        public void BuildMap()
+        public void BuildMap2()
         {
             var x = 32;
             var y = 32;
@@ -195,7 +195,7 @@ namespace Zork_BR.Models
         public static Location[,] map = new Location[32, 32];
 
 
-        public void BuildMap2()
+        public void BuildMap()
         {
 
             map[0, 0] = new Ocean();

@@ -13,7 +13,7 @@ namespace Zork_BR.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201806201238432_InitialCreate"; }
+            get { return "201807031317444_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
