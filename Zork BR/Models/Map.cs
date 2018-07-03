@@ -13,7 +13,8 @@ namespace Zork_BR.Models
         [Key]
         public int Id { get; set; }
 
-        //TODO deze method vervangen door method 2, nog even laten staan zodat jurgen kan zien wat er is gebeurd
+        //TODO deze method verwijderen, nog even laten staan zodat jurgen kan zien wat er is gebeurd
+        /*
         public void BuildMap()
         {
             var x = 32;
@@ -113,7 +114,7 @@ namespace Zork_BR.Models
                     map[y, x] = new Plain();
                 }
             }
-            //TODO change these ones for beach [15,8] and [20,8]
+
             map[15, 8] = new Plain();
             map[20, 8] = new Plain();
 
@@ -189,13 +190,13 @@ namespace Zork_BR.Models
                 }
             }
         }
+        */
+
+        public static Location[,] map = new Location[32, 32];
+
 
         public void BuildMap2()
         {
-            var x = 32;
-            var y = 32;
-
-            Location[,] map = new Location[y, x];
 
             map[0, 0] = new Ocean();
             map[1, 0] = new Ocean();

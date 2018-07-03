@@ -14,6 +14,9 @@ namespace Zork_BR.Models
         private ICollection<Item> Inventory { get; set; }
         private Weapon SelectedWeapon { get; set; }
 
+        public int XCoord { get; set; }
+        public int YCoord { get; set; }
+
 
 
     }

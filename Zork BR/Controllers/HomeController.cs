@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -52,7 +53,8 @@ namespace Zork_BR.Controllers
                 context.Stories.Add(story);
                 context.Maps.Add(map);
                 context.SaveChanges();
-                map.BuildMap();
+                map.BuildMap2();
+                CreatePlayer();
             }
         }
 
@@ -82,6 +84,30 @@ namespace Zork_BR.Controllers
             {
                 command.MyAction();
             }
+        }
+
+        public void CreatePlayer()
+        {
+            Player player = new Player();
+            Random random = new Random();
+
+            SpawnPlayer();
+
+            void SpawnPlayer() {
+                
+
+                player.XCoord = random.Next(0, 32);
+                player.YCoord = random.Next(0, 32);
+
+                Debug.WriteLine("Spawn location = [{0},{1}] which is a " + Map.map[player.YCoord, player.XCoord].GetType().Name, player.YCoord, player.XCoord);
+
+                if (Map.map[player.YCoord, player.XCoord].GetType().Name == "Ocean")
+                {
+                    Debug.WriteLine("Spawn location was Ocean, initialize respawn");
+                    SpawnPlayer();
+                }
+            }
+
         }
 
         //Index Action
