@@ -21,7 +21,11 @@ namespace Zork_BR.Controllers
             Commands.Add("test", "this is a test");
             Commands.Add("vleespoeder", "ThE bEsT mEaTpOwDeR eVeR");
             Commands.Add("Petri", "Onderdanig aan Wouter");
-            Commands.Add("Spreadlegs", "I'm ready for your arrival");
+            Commands.Add("spreadlegs", "I'm ready for your arrival");
+            Commands.Add("north", "You went north");
+            Commands.Add("east", "You went east");
+            Commands.Add("south", "You went south");
+            Commands.Add("west", "You went west");
         }
 
         private string GetCommandText(string input)
@@ -70,6 +74,7 @@ namespace Zork_BR.Controllers
             {
                 story = context.Stories.Find(id);
                 map = context.Maps.Find(id);
+                player = context.Players.Find(id);
             }
         }
 
@@ -110,9 +115,9 @@ namespace Zork_BR.Controllers
             return nearbyLocations;
         }
 
-        private void ExecuteCommand(string input)
+        private void ExecuteCommand(string input, int id)
         {
-            var command = CommandFactory.Create(input);
+            var command = CommandFactory.Create(input, id);
             if (command != null)
             {
                 command.MyAction();
@@ -158,8 +163,10 @@ namespace Zork_BR.Controllers
                 return View(story);
             }
 
-            ExecuteCommand(input);
+            //TODO de nearbylocations word overwritten in de story? als deze methods omgekeerd staan is dat niet zo maar komen eerst de directions voordat de command komt. Fiks die shit
             AppendStory(input);
+            ExecuteCommand(input, id);
+            
 
             return View(story);
         }

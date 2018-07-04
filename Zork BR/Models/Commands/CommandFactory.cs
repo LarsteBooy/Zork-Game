@@ -9,7 +9,7 @@ namespace Zork_BR.Models.Commands
     {
         
 
-        public static Command Create(string input)
+        public static Command Create(string input, int id)
         {
             Command result = null;
             if (Enum.TryParse(input, true, out Inputs commandType))
@@ -24,7 +24,7 @@ namespace Zork_BR.Models.Commands
                     case Inputs.East:
                     case Inputs.South:
                     case Inputs.West:
-                        return new DirectionCommand(input);
+                        return new DirectionCommand(input, id);
                 }
                 return result;
             }

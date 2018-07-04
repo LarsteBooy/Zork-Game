@@ -21,7 +21,7 @@ namespace Zork_BR.Models
 
         public int XCoord { get; set; } 
         public int YCoord { get; set; } 
-
+        
         public Location PlayerLocation
         {
             get
@@ -29,5 +29,6 @@ namespace Zork_BR.Models
                 return Map.map[YCoord, XCoord];
             }
         }
+        
     }
 }
