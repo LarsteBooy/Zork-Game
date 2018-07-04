@@ -55,8 +55,11 @@ namespace Zork_BR.Controllers
                 context.Stories.Add(story);
                 context.Maps.Add(map);
                 context.Players.Add(player);
+
                 map.BuildMap();
-                CreatePlayer();
+                CreatePlayer(); 
+                story.MyStory += SpawnStory();
+
                 context.SaveChanges();
             }
         }
@@ -75,9 +78,36 @@ namespace Zork_BR.Controllers
             using (var context = ApplicationDbContext.Create())
             {
                 context.Stories.Attach(story);
+
                 story.MyStory += GetCommandText(input);
                 context.SaveChanges();
             }
+        }
+
+        private string SpawnStory()
+        {
+            string spawnStory = "";
+
+            //TODO voeg hier een begin story toe. eventueel met hoe het spel werkt.
+            spawnStory += String.Format("You get dropped at the coordinates [{0},{1}] which is a {2}\n", player.YCoord, player.XCoord, Map.map[player.YCoord,player.XCoord].GetType().Name);
+            spawnStory += "You take a good look arround to get your surroundings\n\n";
+
+            spawnStory += NearbyLocations();
+
+
+            return spawnStory;
+        }
+
+        private string NearbyLocations()
+        {
+            var locationNorth = Map.map[(player.YCoord - 1), player.XCoord].GetType().Name;
+            var locationEast = Map.map[player.YCoord, (player.XCoord + 1)].GetType().Name;
+            var locationSouth = Map.map[(player.YCoord + 1), player.XCoord].GetType().Name;
+            var locationWest = Map.map[player.YCoord, (player.XCoord - 1)].GetType().Name;
+
+            var nearbyLocations = String.Format("To your north you see a {0}\nTo your east you see a {1}\nTo your south you see a {2}\nTo your west you see a {3}\n\n", locationNorth, locationEast, locationSouth, locationWest);
+
+            return nearbyLocations;
         }
 
         private void ExecuteCommand(string input)
@@ -86,6 +116,8 @@ namespace Zork_BR.Controllers
             if (command != null)
             {
                 command.MyAction();
+                //TODO If a Command is a DirectionCommand execute nearbylocations
+                story.MyStory += NearbyLocations();
             }
         }
 
