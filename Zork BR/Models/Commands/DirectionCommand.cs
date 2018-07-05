@@ -19,29 +19,64 @@ namespace Zork_BR.Models.Commands
 
         public override void MyAction()
         {
+
             using (var context = ApplicationDbContext.Create())
-            {
-                var player = context.Players.Find(id);
+            { 
+                Story story = context.Stories.Find(id);
+                Player player = context.Players.Find(id);
+
+                context.Stories.Attach(story);
+
+                string dontGoInOcean = "The ocean is very dangerous, it would not be wise to go here. Also you cant swim\n\n";
+                string currentLocation = String.Format("You are now at [{0},{1}]\n\n", player.YCoord, player.XCoord);
 
                 if (input == "north")
                 {
-                    player.YCoord--;
-                    Debug.WriteLine("You are now at [{0},{1}]", player.YCoord, player.XCoord);
+                    if(Map.map[player.YCoord -1, player.XCoord].GetType().Name == "Ocean")
+                    {
+                        story.MyStory += dontGoInOcean;
+                    }
+                    else
+                    {
+                        player.YCoord--;
+                        story.MyStory += currentLocation;
+                    }
                 }
                 else if(input == "east")
                 {
-                    player.XCoord++;
-                    Debug.WriteLine("You are now at [{0},{1}]", player.YCoord, player.XCoord);
+                    if(Map.map[player.YCoord, player.XCoord + 1].GetType().Name == "Ocean")
+                    {
+                        story.MyStory += dontGoInOcean;
+                    }
+                    else
+                    {
+                        player.XCoord++;
+                        story.MyStory += currentLocation;
+                    }
                 }
                 else if(input == "south")
                 {
-                    player.YCoord++;
-                    Debug.WriteLine("You are now at [{0},{1}]", player.YCoord, player.XCoord);
+                    if(Map.map[player.YCoord + 1, player.XCoord].GetType().Name == "Ocean")
+                    {
+                        story.MyStory += dontGoInOcean;
+                    }
+                    else
+                    {
+                        player.YCoord++;
+                        story.MyStory += currentLocation;
+                    }
                 }
                 else if(input == "west")
                 {
-                    player.XCoord--;
-                    Debug.WriteLine("You are now at [{0},{1}]", player.YCoord, player.XCoord);
+                    if(Map.map[player.YCoord, player.XCoord - 1].GetType().Name == "Ocean")
+                    {
+                        story.MyStory += dontGoInOcean;
+                    }
+                    else
+                    { 
+                        player.XCoord--;
+                        story.MyStory += currentLocation;
+                    }
                 }
 
                 context.SaveChanges();

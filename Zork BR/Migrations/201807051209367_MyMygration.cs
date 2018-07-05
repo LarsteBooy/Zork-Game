@@ -3,7 +3,7 @@ namespace Zork_BR.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class MyMigration : DbMigration
+    public partial class MyMygration : DbMigration
     {
         public override void Up()
         {

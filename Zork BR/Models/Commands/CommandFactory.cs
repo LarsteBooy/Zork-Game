@@ -24,7 +24,8 @@ namespace Zork_BR.Models.Commands
                     case Inputs.East:
                     case Inputs.South:
                     case Inputs.West:
-                        return new DirectionCommand(input, id);
+                        result = new DirectionCommand(input, id);
+                        break;
                 }
                 return result;
             }

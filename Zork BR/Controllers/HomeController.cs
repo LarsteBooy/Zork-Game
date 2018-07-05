@@ -121,8 +121,16 @@ namespace Zork_BR.Controllers
             if (command != null)
             {
                 command.MyAction();
-                //TODO If a Command is a DirectionCommand execute nearbylocations
-                story.MyStory += NearbyLocations();
+                if (command.GetType().Name == "DirectionCommand")
+                {
+                    using(var context = ApplicationDbContext.Create())
+                    {
+                        context.Stories.Attach(story);
+                        story.MyStory += NearbyLocations();
+                        context.SaveChanges();
+                    }
+                    
+                }
             }
         }
 
@@ -146,6 +154,16 @@ namespace Zork_BR.Controllers
             }
         }
 
+        private void EndOfAction()
+        {
+            using(var context = ApplicationDbContext.Create())
+            {
+                context.Stories.Attach(story);
+                story.MyStory += "=============================\n\n";
+                context.SaveChanges();
+            } 
+        }
+
         //Index Action
         public ActionResult Index(string input, int id = 0)
         {
@@ -163,9 +181,12 @@ namespace Zork_BR.Controllers
                 return View(story);
             }
 
-            //TODO de nearbylocations word overwritten in de story? als deze methods omgekeerd staan is dat niet zo maar komen eerst de directions voordat de command komt. Fiks die shit
+
+            //TODO de nearbylocations word niet opgeslagen in de story? als deze methods omgekeerd staan is dat niet zo maar komen eerst de directions voordat de command komt. Fiks die shit
             AppendStory(input);
             ExecuteCommand(input, id);
+            EndOfAction();
+
             
 
             return View(story);
