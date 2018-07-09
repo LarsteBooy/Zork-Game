@@ -17,6 +17,9 @@ namespace Zork_BR.Models.Commands
             this.id = id;
         }
 
+
+
+
         public override void MyAction()
         {
 
@@ -28,7 +31,13 @@ namespace Zork_BR.Models.Commands
                 context.Stories.Attach(story);
 
                 string dontGoInOcean = "The ocean is very dangerous, it would not be wise to go here. Also you cant swim\n\n";
-                string currentLocation = String.Format("You are now at [{0},{1}]\n\n", player.YCoord, player.XCoord);
+                string CurrentLocation()
+                {
+                    string currentLocation = String.Format("You are now at [{0},{1}]\n\n", player.YCoord, player.XCoord);
+
+                    return currentLocation;
+                }
+             
 
                 if (input == "north")
                 {
@@ -39,7 +48,7 @@ namespace Zork_BR.Models.Commands
                     else
                     {
                         player.YCoord--;
-                        story.MyStory += currentLocation;
+                        story.MyStory += CurrentLocation();
                     }
                 }
                 else if(input == "east")
@@ -51,7 +60,7 @@ namespace Zork_BR.Models.Commands
                     else
                     {
                         player.XCoord++;
-                        story.MyStory += currentLocation;
+                        story.MyStory += CurrentLocation();
                     }
                 }
                 else if(input == "south")
@@ -63,7 +72,7 @@ namespace Zork_BR.Models.Commands
                     else
                     {
                         player.YCoord++;
-                        story.MyStory += currentLocation;
+                        story.MyStory += CurrentLocation();
                     }
                 }
                 else if(input == "west")
@@ -75,7 +84,7 @@ namespace Zork_BR.Models.Commands
                     else
                     { 
                         player.XCoord--;
-                        story.MyStory += currentLocation;
+                        story.MyStory += CurrentLocation();
                     }
                 }
 

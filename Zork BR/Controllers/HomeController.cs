@@ -11,6 +11,87 @@ namespace Zork_BR.Controllers
 {
     public class HomeController : Controller
     {
+
+        private string SpawnStory()
+        {
+            string spawnStory = "";
+
+            //TODO voeg hier een begin story toe. eventueel met hoe het spel werkt.
+            spawnStory += String.Format("You get dropped at the coordinates [{0},{1}] which is a {2}\n", player.YCoord, player.XCoord, Map.map[player.YCoord,player.XCoord].GetType().Name);
+            spawnStory += "You take a good look arround to get your surroundings\n\n";
+
+            spawnStory += NearbyLocations();
+
+            return spawnStory;
+        }
+
+        private string NearbyLocations()
+        {
+            
+            var locationNorth = Map.map[(player.YCoord - 1), player.XCoord].GetType().Name;
+            var locationEast = Map.map[player.YCoord, (player.XCoord + 1)].GetType().Name;
+            var locationSouth = Map.map[(player.YCoord + 1), player.XCoord].GetType().Name;
+            var locationWest = Map.map[player.YCoord, (player.XCoord - 1)].GetType().Name;
+
+            var nearbyLocations = String.Format("To your north you see a {0}\nTo your east you see a {1}\nTo your south you see a {2}\nTo your west you see a {3}\n\n", locationNorth, locationEast, locationSouth, locationWest);
+
+            return nearbyLocations;
+        }
+
+        public void CreatePlayer()
+        {
+            Random random = new Random();
+
+            SpawnPlayer();
+
+            void SpawnPlayer() {
+                player.XCoord = random.Next(0, 32);
+                player.YCoord = random.Next(0, 32);
+
+                Debug.WriteLine("Spawn location = [{0},{1}] which is a " + Map.map[player.YCoord, player.XCoord].GetType().Name, player.YCoord, player.XCoord);
+
+                if (Map.map[player.YCoord, player.XCoord].GetType().Name == "Ocean")
+                {
+                    Debug.WriteLine("Spawn location was Ocean, initialize respawn");
+                    SpawnPlayer(); //Recursion
+                }
+            }
+        }
+
+        Story story = null;
+        Map map = null;
+        Player player = null;
+
+        private void FillDatabase()
+        {
+            story = new Story();
+            map = new Map();
+            player = new Player();
+
+            using (var context = ApplicationDbContext.Create())
+            {
+                context.Stories.Add(story);
+                context.Maps.Add(map);
+                context.Players.Add(player);
+
+                map.BuildMap();
+                CreatePlayer(); 
+                story.MyStory += SpawnStory();
+
+                context.SaveChanges();
+            }
+        }
+
+        private void FindDatabase(int id)
+        {
+            using (var context = ApplicationDbContext.Create())
+            {
+                story = context.Stories.Find(id);
+                map = context.Maps.Find(id);
+                player = context.Players.Find(id);
+            }
+        }
+
         Dictionary<string, string> Commands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
 
         //Add Commands to the Dictionary
@@ -44,40 +125,6 @@ namespace Zork_BR.Controllers
             }
         }
 
-        Story story = null;
-        Map map = null;
-        Player player = null;
-
-        private void CreateDatabase()
-        {
-            story = new Story();
-            map = new Map();
-            player = new Player();
-
-            using (var context = ApplicationDbContext.Create())
-            {
-                context.Stories.Add(story);
-                context.Maps.Add(map);
-                context.Players.Add(player);
-
-                map.BuildMap();
-                CreatePlayer(); 
-                story.MyStory += SpawnStory();
-
-                context.SaveChanges();
-            }
-        }
-
-        private void FindDatabase(int id)
-        {
-            using (var context = ApplicationDbContext.Create())
-            {
-                story = context.Stories.Find(id);
-                map = context.Maps.Find(id);
-                player = context.Players.Find(id);
-            }
-        }
-
         private void AppendStory(string input)
         {
             using (var context = ApplicationDbContext.Create())
@@ -87,32 +134,6 @@ namespace Zork_BR.Controllers
                 story.MyStory += GetCommandText(input);
                 context.SaveChanges();
             }
-        }
-
-        private string SpawnStory()
-        {
-            string spawnStory = "";
-
-            //TODO voeg hier een begin story toe. eventueel met hoe het spel werkt.
-            spawnStory += String.Format("You get dropped at the coordinates [{0},{1}] which is a {2}\n", player.YCoord, player.XCoord, Map.map[player.YCoord,player.XCoord].GetType().Name);
-            spawnStory += "You take a good look arround to get your surroundings\n\n";
-
-            spawnStory += NearbyLocations();
-
-
-            return spawnStory;
-        }
-
-        private string NearbyLocations()
-        {
-            var locationNorth = Map.map[(player.YCoord - 1), player.XCoord].GetType().Name;
-            var locationEast = Map.map[player.YCoord, (player.XCoord + 1)].GetType().Name;
-            var locationSouth = Map.map[(player.YCoord + 1), player.XCoord].GetType().Name;
-            var locationWest = Map.map[player.YCoord, (player.XCoord - 1)].GetType().Name;
-
-            var nearbyLocations = String.Format("To your north you see a {0}\nTo your east you see a {1}\nTo your south you see a {2}\nTo your west you see a {3}\n\n", locationNorth, locationEast, locationSouth, locationWest);
-
-            return nearbyLocations;
         }
 
         private void ExecuteCommand(string input, int id)
@@ -125,31 +146,14 @@ namespace Zork_BR.Controllers
                 {
                     using(var context = ApplicationDbContext.Create())
                     {
+                        story = context.Stories.Find(id);
                         context.Stories.Attach(story);
+
                         story.MyStory += NearbyLocations();
+                        
                         context.SaveChanges();
                     }
                     
-                }
-            }
-        }
-
-        public void CreatePlayer()
-        {
-            Random random = new Random();
-
-            SpawnPlayer();
-
-            void SpawnPlayer() {
-                player.XCoord = random.Next(0, 32);
-                player.YCoord = random.Next(0, 32);
-
-                Debug.WriteLine("Spawn location = [{0},{1}] which is a " + Map.map[player.YCoord, player.XCoord].GetType().Name, player.YCoord, player.XCoord);
-
-                if (Map.map[player.YCoord, player.XCoord].GetType().Name == "Ocean")
-                {
-                    Debug.WriteLine("Spawn location was Ocean, initialize respawn");
-                    SpawnPlayer(); //Recursion
                 }
             }
         }
@@ -173,7 +177,7 @@ namespace Zork_BR.Controllers
             }
            else
             {
-                CreateDatabase();
+                FillDatabase();
             }
 
             if (input == null)
@@ -181,13 +185,9 @@ namespace Zork_BR.Controllers
                 return View(story);
             }
 
-
-            //TODO de nearbylocations word niet opgeslagen in de story? als deze methods omgekeerd staan is dat niet zo maar komen eerst de directions voordat de command komt. Fiks die shit
-            AppendStory(input);
-            ExecuteCommand(input, id);
-            EndOfAction();
-
-            
+                AppendStory(input);
+                ExecuteCommand(input, id);
+                EndOfAction();
 
             return View(story);
         }
