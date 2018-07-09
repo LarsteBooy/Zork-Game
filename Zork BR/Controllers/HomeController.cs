@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,7 +11,87 @@ namespace Zork_BR.Controllers
 {
     public class HomeController : Controller
     {
-        //Define a Dictionary (List)
+
+        private string SpawnStory()
+        {
+            string spawnStory = "";
+
+            //TODO voeg hier een begin story toe. eventueel met hoe het spel werkt.
+            spawnStory += String.Format("You get dropped at the coordinates [{0},{1}] which is a {2}\n", player.YCoord, player.XCoord, Map.map[player.YCoord,player.XCoord].GetType().Name);
+            spawnStory += "You take a good look arround to get your surroundings\n\n";
+
+            spawnStory += NearbyLocations();
+
+            return spawnStory;
+        }
+
+        private string NearbyLocations()
+        {
+            
+            var locationNorth = Map.map[(player.YCoord - 1), player.XCoord].GetType().Name;
+            var locationEast = Map.map[player.YCoord, (player.XCoord + 1)].GetType().Name;
+            var locationSouth = Map.map[(player.YCoord + 1), player.XCoord].GetType().Name;
+            var locationWest = Map.map[player.YCoord, (player.XCoord - 1)].GetType().Name;
+
+            var nearbyLocations = String.Format("To your north you see a {0}\nTo your east you see a {1}\nTo your south you see a {2}\nTo your west you see a {3}\n\n", locationNorth, locationEast, locationSouth, locationWest);
+
+            return nearbyLocations;
+        }
+
+        public void CreatePlayer()
+        {
+            Random random = new Random();
+
+            SpawnPlayer();
+
+            void SpawnPlayer() {
+                player.XCoord = random.Next(0, 32);
+                player.YCoord = random.Next(0, 32);
+
+                Debug.WriteLine("Spawn location = [{0},{1}] which is a " + Map.map[player.YCoord, player.XCoord].GetType().Name, player.YCoord, player.XCoord);
+
+                if (Map.map[player.YCoord, player.XCoord].GetType().Name == "Ocean")
+                {
+                    Debug.WriteLine("Spawn location was Ocean, initialize respawn");
+                    SpawnPlayer(); //Recursion
+                }
+            }
+        }
+
+        Story story = null;
+        Map map = null;
+        Player player = null;
+
+        private void FillDatabase()
+        {
+            story = new Story();
+            map = new Map();
+            player = new Player();
+
+            using (var context = ApplicationDbContext.Create())
+            {
+                context.Stories.Add(story);
+                context.Maps.Add(map);
+                context.Players.Add(player);
+
+                map.BuildMap();
+                CreatePlayer(); 
+                story.MyStory += SpawnStory();
+
+                context.SaveChanges();
+            }
+        }
+
+        private void FindDatabase(int id)
+        {
+            using (var context = ApplicationDbContext.Create())
+            {
+                story = context.Stories.Find(id);
+                map = context.Maps.Find(id);
+                player = context.Players.Find(id);
+            }
+        }
+
         Dictionary<string, string> Commands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
 
         //Add Commands to the Dictionary
@@ -21,18 +102,18 @@ namespace Zork_BR.Controllers
             Commands.Add("test", "this is a test");
             Commands.Add("vleespoeder", "ThE bEsT mEaTpOwDeR eVeR");
             Commands.Add("Petri", "Onderdanig aan Wouter");
-            Commands.Add("Spreadlegs", "I'm ready for your arrival");
+            Commands.Add("spreadlegs", "I'm ready for your arrival");
+            Commands.Add("north", "You went north");
+            Commands.Add("east", "You went east");
+            Commands.Add("south", "You went south");
+            Commands.Add("west", "You went west");
         }
 
-        //Return the given line in the dictionary based on input
         private string GetCommandText(string input)
         {
             FillCommands();
 
-            //Trim the input so that unnecessary spaces given by the player are left out
             var i = input.Trim();
-
-            //Check if the dictionary contains the command the player has given.
             if (Commands.ContainsKey(i))
             {
                 var c = Commands[i];
@@ -44,58 +125,69 @@ namespace Zork_BR.Controllers
             }
         }
 
-        //Index Action. Voor id als parameter moeten we uiteindelijk iets anders verzinnen. Nu is het niet echt secure.
-        public ActionResult Index(string input, int id = 0)
+        private void AppendStory(string input)
         {
-            Story story = null;
-            
-            Map map = null;
-
-            //create een database als die er nog niet is en voegt een nieuwe storymodel en mapmodel toe 
-            if(id != 0)
+            using (var context = ApplicationDbContext.Create())
             {
-                using (var context = ApplicationDbContext.Create())
+                context.Stories.Attach(story);
+
+                story.MyStory += GetCommandText(input);
+                context.SaveChanges();
+            }
+        }
+
+        private void ExecuteCommand(string input, int id)
+        {
+            var command = CommandFactory.Create(input, id);
+            if (command != null)
+            {
+                command.MyAction();
+                if (command.GetType().Name == "DirectionCommand")
                 {
-                    story = context.Stories.Find(id);
-                    map = context.Maps.Find(id);
+                    using(var context = ApplicationDbContext.Create())
+                    {
+                        story = context.Stories.Find(id);
+                        context.Stories.Attach(story);
+
+                        story.MyStory += NearbyLocations();
+                        
+                        context.SaveChanges();
+                    }
                     
                 }
             }
+        }
+
+        private void EndOfAction()
+        {
+            using(var context = ApplicationDbContext.Create())
+            {
+                context.Stories.Attach(story);
+                story.MyStory += "=============================\n\n";
+                context.SaveChanges();
+            } 
+        }
+
+        //Index Action
+        public ActionResult Index(string input, int id = 0)
+        {
+            if(id != 0)
+            {
+                FindDatabase(id);
+            }
            else
             {
-                story = new Story();
-                map = new Map();
-
-                using (var context = ApplicationDbContext.Create())
-                {
-                    context.Stories.Add(story);
-                    context.Maps.Add(map);
-                    context.SaveChanges();
-                    map.BuildMap();
-                }
+                FillDatabase();
             }
 
-
-            //return the view als er niets in de input staat
             if (input == null)
             {
                 return View(story);
             }
 
-            //Als playerinput een command is, voer command uit
-            var command = CommandFactory.Create(input);
-            if (command != null)
-            {
-                command.MyAction();
-            }
-
-            //Append the story with the given storyline based on input
-            using (var context = ApplicationDbContext.Create())
-            {
-                context.Stories.Attach(story);
-                story.MyStory += GetCommandText(input);
-                context.SaveChanges();
-            }
+                AppendStory(input);
+                ExecuteCommand(input, id);
+                EndOfAction();
 
             return View(story);
         }

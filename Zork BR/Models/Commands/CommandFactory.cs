@@ -9,7 +9,7 @@ namespace Zork_BR.Models.Commands
     {
         
 
-        public static Command Create(string input)
+        public static Command Create(string input, int id)
         {
             Command result = null;
             if (Enum.TryParse(input, true, out Inputs commandType))
@@ -20,13 +20,12 @@ namespace Zork_BR.Models.Commands
                         break;
                     case Inputs.Dance: result = new DanceCommand();
                         break;
-                        /*
-                        case Inputs.North:
-                        case Inputs.East:
-                        case Inputs.South:
-                        case Inputs.West:
-                            return new DirectionCommand(input);
-                        */
+                    case Inputs.North:
+                    case Inputs.East:
+                    case Inputs.South:
+                    case Inputs.West:
+                        result = new DirectionCommand(input, id);
+                        break;
                 }
                 return result;
             }
@@ -41,11 +40,9 @@ namespace Zork_BR.Models.Commands
     {
         Poke,
         Dance,
-        /*
-        North,
+        North,  
         East,
         South,
         West,
-        */
     }
 }
