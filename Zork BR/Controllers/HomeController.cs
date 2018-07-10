@@ -48,7 +48,7 @@ namespace Zork_BR.Controllers
                 player.XCoord = random.Next(0, 32);
                 player.YCoord = random.Next(0, 32);
 
-                Debug.WriteLine("Spawn location = [{0},{1}] which is a " + Map.map[player.YCoord, player.XCoord].GetType().Name, player.YCoord, player.XCoord);
+                Debug.WriteLine("Spawn location = [{0},{1}] which is a {2}" ,player.YCoord, player.XCoord, Map.map[player.YCoord, player.XCoord].GetType().Name);
 
                 if (Map.map[player.YCoord, player.XCoord].GetType().Name == "Ocean")
                 {
