@@ -7,8 +7,6 @@ namespace Zork_BR.Models.Locations
 {
     public class Ocean : Location
     {
-
-        //Location name
         public override string LocationName
         {
             get
@@ -17,13 +15,11 @@ namespace Zork_BR.Models.Locations
             }
         }
 
-        //Location Description
         public override string LocationDescription
         {
             get; set;
         }
 
-        //Constructors
         public Ocean(string locationDescription)
         {
             LocationDescription = locationDescription;
@@ -32,6 +28,5 @@ namespace Zork_BR.Models.Locations
         public Ocean()
         {
         }
-
     }
 }

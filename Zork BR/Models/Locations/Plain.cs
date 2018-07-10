@@ -7,7 +7,6 @@ namespace Zork_BR.Models.Locations
 {
     public class Plain : Location
     {
-        //Location name
         public override string LocationName
         {
             get
@@ -16,13 +15,11 @@ namespace Zork_BR.Models.Locations
             }
         }
 
-        //Location Description
         public override string LocationDescription
         {
             get; set;
         }
 
-        //Constructors
         public Plain(string locationDescription)
         {
             LocationDescription = locationDescription;

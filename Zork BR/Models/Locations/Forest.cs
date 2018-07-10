@@ -7,8 +7,6 @@ namespace Zork_BR.Models.Locations
 {
     public class Forest : Location
     {
-
-        //Location name
         public override string LocationName
         {
             get
@@ -16,14 +14,12 @@ namespace Zork_BR.Models.Locations
                 return "Forest";
             }
         }
-
-        //Location Description
+        
         public override string LocationDescription
         {
             get; set;
         }
 
-        //Constructors
         public Forest(string locationDescription)
         {
             LocationDescription = locationDescription;

@@ -17,18 +17,12 @@ namespace Zork_BR.Models.Commands
             this.id = id;
         }
 
-
-
-
         public override void MyAction()
         {
-
             using (var context = ApplicationDbContext.Create())
             { 
                 Story story = context.Stories.Find(id);
                 Player player = context.Players.Find(id);
-
-                context.Stories.Attach(story);
 
                 string dontGoInOcean = "The ocean is very dangerous, it would not be wise to go here. Also you cant swim\n\n";
                 string CurrentLocation()
@@ -38,7 +32,6 @@ namespace Zork_BR.Models.Commands
                     return currentLocation;
                 }
              
-
                 if (input == "north")
                 {
                     if(Map.map[player.YCoord -1, player.XCoord].GetType().Name == "Ocean")
@@ -87,13 +80,8 @@ namespace Zork_BR.Models.Commands
                         story.MyStory += CurrentLocation();
                     }
                 }
-
                 context.SaveChanges();
-
             }
-
         }
-
-
     }
 }

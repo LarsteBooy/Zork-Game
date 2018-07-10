@@ -27,7 +27,6 @@ namespace Zork_BR.Controllers
 
         private string NearbyLocations()
         {
-            
             var locationNorth = Map.map[(player.YCoord - 1), player.XCoord].GetType().Name;
             var locationEast = Map.map[player.YCoord, (player.XCoord + 1)].GetType().Name;
             var locationSouth = Map.map[(player.YCoord + 1), player.XCoord].GetType().Name;
@@ -94,7 +93,6 @@ namespace Zork_BR.Controllers
 
         Dictionary<string, string> Commands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
 
-        //Add Commands to the Dictionary
         private void FillCommands()
         {
             Commands.Add("poke", "Stop poking me, god dammit");
@@ -141,7 +139,6 @@ namespace Zork_BR.Controllers
             var command = CommandFactory.Create(input, id);
             if (command != null)
             {
-
                 command.MyAction();
                 if (command.GetType().Name == "DirectionCommand")
                 {
@@ -155,7 +152,6 @@ namespace Zork_BR.Controllers
                         context.SaveChanges();
                     }
                 }
-                
             }
         }
 
@@ -186,9 +182,9 @@ namespace Zork_BR.Controllers
                 return View(story);
             }
 
-                AppendStory(input);
+            AppendStory(input);
             ExecuteCommand(input, id);
-                EndOfAction();
+            EndOfAction();
 
             return View(story);
         }
