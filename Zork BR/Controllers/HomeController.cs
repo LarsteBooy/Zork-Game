@@ -141,20 +141,21 @@ namespace Zork_BR.Controllers
             var command = CommandFactory.Create(input, id);
             if (command != null)
             {
+
                 command.MyAction();
                 if (command.GetType().Name == "DirectionCommand")
                 {
                     using(var context = ApplicationDbContext.Create())
                     {
                         story = context.Stories.Find(id);
-                        context.Stories.Attach(story);
+                        player = context.Players.Find(id);
 
                         story.MyStory += NearbyLocations();
                         
                         context.SaveChanges();
                     }
-                    
                 }
+                
             }
         }
 
@@ -186,7 +187,7 @@ namespace Zork_BR.Controllers
             }
 
                 AppendStory(input);
-                ExecuteCommand(input, id);
+            ExecuteCommand(input, id);
                 EndOfAction();
 
             return View(story);
