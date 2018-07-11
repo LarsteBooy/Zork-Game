@@ -7,13 +7,7 @@ namespace Zork_BR.Models.Locations
 {
     public class Plain : Location
     {
-        public override string LocationName
-        {
-            get
-            {
-                return "Field";
-            }
-        }
+        public override string LocationName => "Plain";
 
         public override bool IsPassable => true;
 

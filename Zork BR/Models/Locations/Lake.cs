@@ -5,24 +5,24 @@ using System.Web;
 
 namespace Zork_BR.Models.Locations
 {
-    public class Ocean : Location
+    public class Lake : Location
     {
-        public override string LocationName => "Ocean";
+        public override string LocationName => "Lake";
 
         public override bool IsPassable => false;
 
         public override string LocationDescription
         {
-            get => "The ocean looks very dangerous, it would not be wise to go there. Also you can't swim";
+            get => "This is Lake, me no go there, me can not swim";
             set => base.LocationDescription = value;
         }
 
-        public Ocean(string locationDescription)
+        public Lake(string locationDescription)
         {
             LocationDescription = locationDescription;
         }
 
-        public Ocean()
+        public Lake()
         {
         }
     }

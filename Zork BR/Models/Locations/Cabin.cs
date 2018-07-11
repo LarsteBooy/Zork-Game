@@ -7,13 +7,7 @@ namespace Zork_BR.Models.Locations
 {
     public class Cabin : Location
     {
-        public override string LocationName
-        {
-            get
-            {
-                return "Cabin";
-            }
-        }
+        public override string LocationName => "Cabin";
 
         public override bool IsPassable => true;
 
