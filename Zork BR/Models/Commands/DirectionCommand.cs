@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using Zork_BR.Models.Locations;
 
 namespace Zork_BR.Models.Commands
 {
@@ -24,7 +25,6 @@ namespace Zork_BR.Models.Commands
                 Story story = context.Stories.Find(id);
                 Player player = context.Players.Find(id);
 
-                string dontGoInOcean = "The ocean is very dangerous, it would not be wise to go here. Also you cant swim\n\n";
                 string CurrentLocation()
                 {
                     string currentLocation = String.Format("You are now at [{0},{1}]\n\n", player.YCoord, player.XCoord);
@@ -34,9 +34,10 @@ namespace Zork_BR.Models.Commands
              
                 if (input == "north")
                 {
-                    if(Map.map[player.YCoord -1, player.XCoord].GetType().Name == "Ocean")
+                    Location locationNorth = Map.map[player.YCoord - 1, player.XCoord];
+                    if (locationNorth.IsPassable == false) 
                     {
-                        story.MyStory += dontGoInOcean;
+                        story.MyStory += locationNorth.LocationDescription;
                     }
                     else
                     {
@@ -46,9 +47,10 @@ namespace Zork_BR.Models.Commands
                 }
                 else if(input == "east")
                 {
-                    if(Map.map[player.YCoord, player.XCoord + 1].GetType().Name == "Ocean")
+                    Location locationEast = Map.map[player.YCoord, player.XCoord + 1];
+                    if (locationEast.IsPassable == false)
                     {
-                        story.MyStory += dontGoInOcean;
+                        story.MyStory += locationEast.LocationDescription;
                     }
                     else
                     {
@@ -58,9 +60,10 @@ namespace Zork_BR.Models.Commands
                 }
                 else if(input == "south")
                 {
-                    if(Map.map[player.YCoord + 1, player.XCoord].GetType().Name == "Ocean")
+                    Location locationSouth = Map.map[player.YCoord + 1, player.XCoord];
+                    if (locationSouth.IsPassable == false)
                     {
-                        story.MyStory += dontGoInOcean;
+                        story.MyStory += locationSouth.LocationDescription;
                     }
                     else
                     {
@@ -70,9 +73,10 @@ namespace Zork_BR.Models.Commands
                 }
                 else if(input == "west")
                 {
-                    if(Map.map[player.YCoord, player.XCoord - 1].GetType().Name == "Ocean")
+                    Location locationWest = Map.map[player.YCoord, player.XCoord - 1];
+                    if (locationWest.IsPassable == false)
                     {
-                        story.MyStory += dontGoInOcean;
+                        story.MyStory += locationWest.LocationDescription;
                     }
                     else
                     { 

@@ -14,7 +14,9 @@ namespace Zork_BR.Models.Locations
                 return "Forest";
             }
         }
-        
+
+        public override bool IsPassable => true;
+
         public override string LocationDescription
         {
             get; set;

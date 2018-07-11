@@ -15,9 +15,16 @@ namespace Zork_BR.Models.Locations
             }
         }
 
+        public override bool IsPassable => false;
+
         public override string LocationDescription
         {
-            get; set;
+            get {
+                return "The ocean is very dangerous, it would not be wise to go here. Also you cant swim\n\n";
+            }
+            set {
+                LocationDescription = value;
+            }
         }
 
         public Ocean(string locationDescription)

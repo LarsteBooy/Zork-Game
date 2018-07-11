@@ -12,9 +12,11 @@ namespace Zork_BR.Models.Locations
         public int Id { get; set; }
 
         public abstract string LocationName { get; }
+        public abstract bool IsPassable { get; }
         public virtual string LocationDescription {
             get {return "Nothing to see here";}
             set { }
         }
+        
     }
 }

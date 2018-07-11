@@ -15,9 +15,17 @@ namespace Zork_BR.Models.Locations
             }
         }
 
+        public override bool IsPassable => true;
+
         public override string LocationDescription
         {
-            get; set;
+            get {
+                return "";
+
+            }
+            set {
+                LocationDescription = value;
+            }
         }
 
         public Cabin(string locationDescription)

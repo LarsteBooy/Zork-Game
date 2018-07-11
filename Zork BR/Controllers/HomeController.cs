@@ -49,9 +49,9 @@ namespace Zork_BR.Controllers
 
                 Debug.WriteLine("Spawn location = [{0},{1}] which is a {2}" ,player.YCoord, player.XCoord, Map.map[player.YCoord, player.XCoord].GetType().Name);
 
-                if (Map.map[player.YCoord, player.XCoord].GetType().Name == "Ocean")
+                if (Map.map[player.YCoord, player.XCoord].IsPassable == false)
                 {
-                    Debug.WriteLine("Spawn location was Ocean, initialize respawn");
+                    Debug.WriteLine("Spawn location was a non-passable type, initialize respawn");
                     SpawnPlayer(); //Recursion
                 }
             }
@@ -181,7 +181,7 @@ namespace Zork_BR.Controllers
             {
                 return View(story);
             }
-
+             
             AppendStory(input);
             ExecuteCommand(input, id);
             EndOfAction();
