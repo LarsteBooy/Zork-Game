@@ -11,11 +11,6 @@ namespace Zork_BR.Models.Locations
 
         public override bool IsPassable => false;
 
-        public override string LocationDescription
-        {
-            get => "This is Lake, me no go there, me can not swim";
-            set => base.LocationDescription = value;
-        }
 
         public Lake(string locationDescription)
         {

@@ -11,10 +11,6 @@ namespace Zork_BR.Models.Locations
 
         public override bool IsPassable => true;
 
-        public override string LocationDescription
-        {
-            get; set;
-        }
 
         public Plain(string locationDescription)
         {

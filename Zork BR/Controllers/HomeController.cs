@@ -44,8 +44,8 @@ namespace Zork_BR.Controllers
             SpawnPlayer();
 
             void SpawnPlayer() {
-                player.XCoord = random.Next(0, 32);
-                player.YCoord = random.Next(0, 32);
+                player.XCoord = 8;//random.Next(0, 32);
+                player.YCoord = 10;//random.Next(0, 32);
 
                 Debug.WriteLine("Spawn location = [{0},{1}] which is a {2}" ,player.YCoord, player.XCoord, Map.map[player.YCoord, player.XCoord].LocationName);
 
