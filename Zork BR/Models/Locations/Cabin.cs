@@ -7,7 +7,6 @@ namespace Zork_BR.Models.Locations
 {
     public class Cabin : Location
     {
-        //Location Name
         public override string LocationName
         {
             get
@@ -16,13 +15,19 @@ namespace Zork_BR.Models.Locations
             }
         }
 
-        //Location Description
+        public override bool IsPassable => true;
+
         public override string LocationDescription
         {
-            get; set;
+            get {
+                return "";
+
+            }
+            set {
+                LocationDescription = value;
+            }
         }
 
-        //Constructors
         public Cabin(string locationDescription)
         {
             LocationDescription = locationDescription;

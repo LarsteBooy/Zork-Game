@@ -7,8 +7,6 @@ namespace Zork_BR.Models.Locations
 {
     public class Ocean : Location
     {
-
-        //Location name
         public override string LocationName
         {
             get
@@ -17,13 +15,18 @@ namespace Zork_BR.Models.Locations
             }
         }
 
-        //Location Description
+        public override bool IsPassable => false;
+
         public override string LocationDescription
         {
-            get; set;
+            get {
+                return "The ocean is very dangerous, it would not be wise to go here. Also you cant swim\n\n";
+            }
+            set {
+                LocationDescription = value;
+            }
         }
 
-        //Constructors
         public Ocean(string locationDescription)
         {
             LocationDescription = locationDescription;
@@ -32,6 +35,5 @@ namespace Zork_BR.Models.Locations
         public Ocean()
         {
         }
-
     }
 }

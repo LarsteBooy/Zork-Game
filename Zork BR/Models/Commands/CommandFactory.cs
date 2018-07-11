@@ -7,8 +7,6 @@ namespace Zork_BR.Models.Commands
 {
     public static class CommandFactory
     {
-        
-
         public static Command Create(string input, int id)
         {
             Command result = null;
