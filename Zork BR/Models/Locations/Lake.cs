@@ -12,13 +12,11 @@ namespace Zork_BR.Models.Locations
         public override bool IsPassable => false;
 
 
-        public Lake(string locationDescription)
+        private const string locationDescriptionDefault = "You cant continue your journey in this direction, you really regret not taking swimming classes.";
+
+        public Lake(string locationDescription = locationDescriptionDefault)
         {
             LocationDescription = locationDescription;
-        }
-
-        public Lake()
-        {
         }
     }
 }

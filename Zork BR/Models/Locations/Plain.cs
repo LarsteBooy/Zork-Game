@@ -11,14 +11,12 @@ namespace Zork_BR.Models.Locations
 
         public override bool IsPassable => true;
 
+        private const string locationDescriptionDefault = "The plain looks very empty, but you see vleespoeder on the ground.";
 
-        public Plain(string locationDescription)
+        public Plain(string locationDescription = locationDescriptionDefault)
         {
             LocationDescription = locationDescription;
         }
-
-        public Plain()
-        {
-        }
+       
     }
 }

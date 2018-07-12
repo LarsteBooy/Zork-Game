@@ -11,13 +11,11 @@ namespace Zork_BR.Models.Locations
 
         public override bool IsPassable => true;
 
-        public Cabin(string locationDescription)
+        private const string locationDescriptionDefault = "You see a cabin filled with epic lewt.";
+
+        public Cabin(string locationDescription = locationDescriptionDefault)
         {
             LocationDescription = locationDescription;
-        }
-
-        public Cabin()
-        {
         }
     }
 }

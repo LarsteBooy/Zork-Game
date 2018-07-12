@@ -202,8 +202,8 @@ namespace Zork_BR.Models
             map[22, 5] = new Plain();
             map[23, 5] = new Plain();
             map[24, 5] = new Plain();
-            map[25, 5] = new Plain();
-            map[26, 5] = new Plain();
+            map[25, 5] = new Cabin();
+            map[26, 5] = new Cabin();
             map[27, 5] = new Plain();
             map[28, 5] = new Plain();
             map[29, 5] = new Ocean();
@@ -233,9 +233,9 @@ namespace Zork_BR.Models
             map[21, 6] = new Plain();
             map[22, 6] = new Plain();
             map[23, 6] = new Plain();
-            map[24, 6] = new Plain();
+            map[24, 6] = new Cabin();
             map[25, 6] = new Plain();
-            map[26, 6] = new Plain();
+            map[26, 6] = new Cabin();
             map[27, 6] = new Plain();
             map[28, 6] = new Plain();
             map[29, 6] = new Ocean();
@@ -308,7 +308,7 @@ namespace Zork_BR.Models
             map[0, 9] = new Ocean();
             map[1, 9] = new Ocean();
             map[2, 9] = new Plain();
-            map[3, 9] = new Plain();
+            map[3, 9] = new Cabin();
             map[4, 9] = new Forest();
             map[5, 9] = new Forest();
             map[6, 9] = new Forest();
@@ -350,7 +350,7 @@ namespace Zork_BR.Models
             map[10, 10] = new Plain();
             map[11, 10] = new Plain();
             map[12, 10] = new Plain();
-            map[13, 10] = new Plain();
+            map[13, 10] = new Cabin("You see a shack, the door seems to be broken");
             map[14, 10] = new Plain();
             map[15, 10] = new Plain();
             map[16, 10] = new Plain();
@@ -376,7 +376,7 @@ namespace Zork_BR.Models
             map[4, 11] = new Plain();
             map[5, 11] = new Forest();
             map[6, 11] = new Forest();
-            map[7, 11] = new Plain();
+            map[7, 11] = new Cabin();
             map[8, 11] = new Plain();
             map[9, 11] = new Plain();
             map[10, 11] = new Plain();
@@ -389,7 +389,7 @@ namespace Zork_BR.Models
             map[17, 11] = new Plain();
             map[18, 11] = new Plain();
             map[19, 11] = new Plain();
-            map[20, 11] = new Plain();
+            map[20, 11] = new Cabin();
             map[21, 11] = new Plain();
             map[22, 11] = new Plain();
             map[23, 11] = new Plain();
@@ -476,7 +476,7 @@ namespace Zork_BR.Models
             map[8, 14] = new Plain();
             map[9, 14] = new Plain();
             map[10, 14] = new Lake();
-            map[11, 14] = new Plain();
+            map[11, 14] = new Cabin("You see a small wooden fishing shack next to the lake.");
             map[12, 14] = new Plain();
             map[13, 14] = new Plain();
             map[14, 14] = new Plain();
@@ -600,7 +600,7 @@ namespace Zork_BR.Models
             map[4, 18] = new Plain();
             map[5, 18] = new Plain();
             map[6, 18] = new Plain();
-            map[7, 18] = new Plain();
+            map[7, 18] = new Cabin("You see a lakeside villa");
             map[8, 18] = new Plain();
             map[9, 18] = new Lake();
             map[10, 18] = new Lake();
@@ -615,7 +615,7 @@ namespace Zork_BR.Models
             map[19, 18] = new Forest();
             map[20, 18] = new Forest();
             map[21, 18] = new Plain();
-            map[22, 18] = new Plain();
+            map[22, 18] = new Cabin("You see a big wooden cottage.");
             map[23, 18] = new Plain();
             map[24, 18] = new Forest();
             map[25, 18] = new Forest();
@@ -768,7 +768,7 @@ namespace Zork_BR.Models
             map[12, 23] = new Plain();
             map[13, 23] = new Plain();
             map[14, 23] = new Plain();
-            map[15, 23] = new Plain();
+            map[15, 23] = new Cabin();
             map[16, 23] = new Plain();
             map[17, 23] = new Plain();
             map[18, 23] = new Plain();
@@ -776,7 +776,7 @@ namespace Zork_BR.Models
             map[20, 23] = new Forest();
             map[21, 23] = new Forest();
             map[22, 23] = new Forest();
-            map[23, 23] = new Forest();
+            map[23, 23] = new Cabin("You see a large treehouse in the middle of the forest".);
             map[24, 23] = new Forest();
             map[25, 23] = new Forest();
             map[26, 23] = new Plain();
@@ -823,7 +823,7 @@ namespace Zork_BR.Models
             map[3, 25] = new Plain();
             map[4, 25] = new Plain();
             map[5, 25] = new Plain();
-            map[6, 25] = new Plain();
+            map[6, 25] = new Cabin();
             map[7, 25] = new Plain();
             map[8, 25] = new Plain();
             map[9, 25] = new Plain();
