@@ -39,6 +39,12 @@ namespace Zork_BR.Models.Commands
                     {
                         story.MyStory += locationNorth.LocationDescription + "\n\n";
                     }
+                    else if (locationNorth.GetType().Name == "Cabin")
+                    {
+                        story.MyStory += locationNorth.LocationDescription + "\n\n";
+                        player.YCoord--;
+                        story.MyStory += CurrentLocation();
+                    }
                     else
                     {
                         player.YCoord--;
@@ -51,6 +57,12 @@ namespace Zork_BR.Models.Commands
                     if (locationEast.IsPassable == false)
                     {
                         story.MyStory += locationEast.LocationDescription + "\n\n";
+                    }
+                    else if (locationEast.GetType().Name == "Cabin")
+                    {
+                        story.MyStory += locationEast.LocationDescription + "\n\n";
+                        player.XCoord++;
+                        story.MyStory += CurrentLocation();
                     }
                     else
                     {
@@ -65,6 +77,12 @@ namespace Zork_BR.Models.Commands
                     {
                         story.MyStory += locationSouth.LocationDescription + "\n\n";
                     }
+                    else if (locationSouth.GetType().Name == "Cabin")
+                    {
+                        story.MyStory += locationSouth.LocationDescription + "\n\n";
+                        player.YCoord++;
+                        story.MyStory += CurrentLocation();
+                    }
                     else
                     {
                         player.YCoord++;
@@ -77,6 +95,12 @@ namespace Zork_BR.Models.Commands
                     if (locationWest.IsPassable == false)
                     {
                         story.MyStory += locationWest.LocationDescription + "\n\n";
+                    }
+                    else if (locationWest.GetType().Name == "Cabin")
+                    {
+                        story.MyStory += locationWest.LocationDescription + "\n\n";
+                        player.XCoord--;
+                        story.MyStory += CurrentLocation();
                     }
                     else
                     { 

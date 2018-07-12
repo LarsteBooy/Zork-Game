@@ -776,7 +776,7 @@ namespace Zork_BR.Models
             map[20, 23] = new Forest();
             map[21, 23] = new Forest();
             map[22, 23] = new Forest();
-            map[23, 23] = new Cabin("You see a large treehouse in the middle of the forest".);
+            map[23, 23] = new Cabin("You see a large treehouse in the middle of the forest.");
             map[24, 23] = new Forest();
             map[25, 23] = new Forest();
             map[26, 23] = new Plain();
