@@ -20,6 +20,8 @@ namespace Zork_BR.Models.Commands
                         break;
                     case Inputs.Help: result = new HelpCommand(id);
                         break;
+                    case Inputs.Alive: result = new AliveCommand(id);
+                        break;
                     case Inputs.North:
                     case Inputs.East:
                     case Inputs.South:
@@ -45,5 +47,6 @@ namespace Zork_BR.Models.Commands
         South,
         West,
         Help,
+        Alive,
     }
 }

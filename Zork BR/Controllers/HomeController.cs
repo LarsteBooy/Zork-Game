@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Zork_BR.Models;
 using Zork_BR.Models.Commands;
+using Zork_BR.Utility;
 
 namespace Zork_BR.Controllers
 {
@@ -39,13 +40,11 @@ namespace Zork_BR.Controllers
 
         public void CreatePlayer()
         {
-            Random random = new Random();
-
             SpawnPlayer();
 
             void SpawnPlayer() {
-                player.XCoord = 8;//random.Next(0, 32);
-                player.YCoord = 10;//random.Next(0, 32);
+                player.XCoord = Rng.Next(0, 32);
+                player.YCoord = Rng.Next(0, 32);
 
                 Debug.WriteLine("Spawn location = [{0},{1}] which is a {2}" ,player.YCoord, player.XCoord, Map.map[player.YCoord, player.XCoord].LocationName);
 
@@ -107,6 +106,7 @@ namespace Zork_BR.Controllers
             Commands.Add("west", "You went west");
             Commands.Add("help", "You need help? Here's a list of commands");
             Commands.Add("1337", "You probably think you're special now huh?");
+            Commands.Add("alive", "Retrieving alive enemies count....");
         }
 
         private string GetCommandText(string input)

@@ -17,7 +17,7 @@ namespace Zork_BR.Models.Commands
 
         public override void MyAction()
         {
-            helpText = "    Commands\n--------------------\n    [Movement]\n--------------------\nNorth - Move North\nWest - Move West\nSouth - Move South\nEast - Move East\n--------------------\n  [Items / Actions]\n--------------------\nEquip\nAttack\n--------------------\n  [Fun commands]\n--------------------\n - Dance\n - Poke\n - More\n====================\n";
+            helpText = "    Commands\n--------------------\n    [Movement]\n--------------------\nNorth - Move North\nWest - Move West\nSouth - Move South\nEast - Move East\n--------------------\n  [Items / Actions]\n--------------------\nEquip\nAttack\nAlive - See how many enemies remain\n--------------------\n  [Fun commands]\n--------------------\n - Dance\n - Poke\n - More\n\n";
             using (var context = ApplicationDbContext.Create())
             {
                 Story story = context.Stories.Find(id);
