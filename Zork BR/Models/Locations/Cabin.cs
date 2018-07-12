@@ -7,34 +7,15 @@ namespace Zork_BR.Models.Locations
 {
     public class Cabin : Location
     {
-        public override string LocationName
-        {
-            get
-            {
-                return "Cabin";
-            }
-        }
+        public override string LocationName => "Cabin";
 
         public override bool IsPassable => true;
 
-        public override string LocationDescription
-        {
-            get {
-                return "";
+        private const string locationDescriptionDefault = "You see a cabin filled with epic lewt.";
 
-            }
-            set {
-                LocationDescription = value;
-            }
-        }
-
-        public Cabin(string locationDescription)
+        public Cabin(string locationDescription = locationDescriptionDefault)
         {
             LocationDescription = locationDescription;
-        }
-
-        public Cabin()
-        {
         }
     }
 }

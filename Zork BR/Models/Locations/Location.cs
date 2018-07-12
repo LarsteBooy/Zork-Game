@@ -13,9 +13,9 @@ namespace Zork_BR.Models.Locations
 
         public abstract string LocationName { get; }
         public abstract bool IsPassable { get; }
-        public virtual string LocationDescription {
-            get {return "Nothing to see here";}
-            set { }
+        public string LocationDescription {
+            get;
+            protected set;
         }
         
     }

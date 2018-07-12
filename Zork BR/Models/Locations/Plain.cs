@@ -7,28 +7,16 @@ namespace Zork_BR.Models.Locations
 {
     public class Plain : Location
     {
-        public override string LocationName
-        {
-            get
-            {
-                return "Field";
-            }
-        }
+        public override string LocationName => "Plain";
 
         public override bool IsPassable => true;
 
-        public override string LocationDescription
-        {
-            get; set;
-        }
+        private const string locationDescriptionDefault = "The plain looks very empty, but you see vleespoeder on the ground.";
 
-        public Plain(string locationDescription)
+        public Plain(string locationDescription = locationDescriptionDefault)
         {
             LocationDescription = locationDescription;
         }
-
-        public Plain()
-        {
-        }
+       
     }
 }

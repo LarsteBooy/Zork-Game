@@ -37,7 +37,7 @@ namespace Zork_BR.Models.Commands
                     Location locationNorth = Map.map[player.YCoord - 1, player.XCoord];
                     if (locationNorth.IsPassable == false) 
                     {
-                        story.MyStory += locationNorth.LocationDescription;
+                        story.MyStory += locationNorth.LocationDescription + "\n\n";
                     }
                     else
                     {
@@ -50,7 +50,7 @@ namespace Zork_BR.Models.Commands
                     Location locationEast = Map.map[player.YCoord, player.XCoord + 1];
                     if (locationEast.IsPassable == false)
                     {
-                        story.MyStory += locationEast.LocationDescription;
+                        story.MyStory += locationEast.LocationDescription + "\n\n";
                     }
                     else
                     {
@@ -63,7 +63,7 @@ namespace Zork_BR.Models.Commands
                     Location locationSouth = Map.map[player.YCoord + 1, player.XCoord];
                     if (locationSouth.IsPassable == false)
                     {
-                        story.MyStory += locationSouth.LocationDescription;
+                        story.MyStory += locationSouth.LocationDescription + "\n\n";
                     }
                     else
                     {
@@ -76,7 +76,7 @@ namespace Zork_BR.Models.Commands
                     Location locationWest = Map.map[player.YCoord, player.XCoord - 1];
                     if (locationWest.IsPassable == false)
                     {
-                        story.MyStory += locationWest.LocationDescription;
+                        story.MyStory += locationWest.LocationDescription + "\n\n";
                     }
                     else
                     { 

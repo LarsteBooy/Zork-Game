@@ -17,7 +17,7 @@ namespace Zork_BR.Controllers
             string spawnStory = "";
 
             //TODO voeg hier een begin story toe. eventueel met hoe het spel werkt.
-            spawnStory += String.Format("You get dropped at the coordinates [{0},{1}] which is a {2}\n", player.YCoord, player.XCoord, Map.map[player.YCoord,player.XCoord].GetType().Name);
+            spawnStory += String.Format("You get dropped at the coordinates [{0},{1}] which is a {2}\n", player.YCoord, player.XCoord, Map.map[player.YCoord,player.XCoord].LocationName);
             spawnStory += "You take a good look arround to get your surroundings\n\n";
 
             spawnStory += NearbyLocations();
@@ -27,10 +27,10 @@ namespace Zork_BR.Controllers
 
         private string NearbyLocations()
         {
-            var locationNorth = Map.map[(player.YCoord - 1), player.XCoord].GetType().Name;
-            var locationEast = Map.map[player.YCoord, (player.XCoord + 1)].GetType().Name;
-            var locationSouth = Map.map[(player.YCoord + 1), player.XCoord].GetType().Name;
-            var locationWest = Map.map[player.YCoord, (player.XCoord - 1)].GetType().Name;
+            var locationNorth = Map.map[(player.YCoord - 1), player.XCoord].LocationName;
+            var locationEast = Map.map[player.YCoord, (player.XCoord + 1)].LocationName;
+            var locationSouth = Map.map[(player.YCoord + 1), player.XCoord].LocationName;
+            var locationWest = Map.map[player.YCoord, (player.XCoord - 1)].LocationName;
 
             var nearbyLocations = String.Format("To your north you see a {0}\nTo your east you see a {1}\nTo your south you see a {2}\nTo your west you see a {3}\n\n", locationNorth, locationEast, locationSouth, locationWest);
 
@@ -44,10 +44,10 @@ namespace Zork_BR.Controllers
             SpawnPlayer();
 
             void SpawnPlayer() {
-                player.XCoord = random.Next(0, 32);
-                player.YCoord = random.Next(0, 32);
+                player.XCoord = 8;//random.Next(0, 32);
+                player.YCoord = 10;//random.Next(0, 32);
 
-                Debug.WriteLine("Spawn location = [{0},{1}] which is a {2}" ,player.YCoord, player.XCoord, Map.map[player.YCoord, player.XCoord].GetType().Name);
+                Debug.WriteLine("Spawn location = [{0},{1}] which is a {2}" ,player.YCoord, player.XCoord, Map.map[player.YCoord, player.XCoord].LocationName);
 
                 if (Map.map[player.YCoord, player.XCoord].IsPassable == false)
                 {
