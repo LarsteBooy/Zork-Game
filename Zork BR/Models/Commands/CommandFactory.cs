@@ -18,6 +18,8 @@ namespace Zork_BR.Models.Commands
                         break;
                     case Inputs.Dance: result = new DanceCommand();
                         break;
+                    case Inputs.Help: result = new HelpCommand(id);
+                        break;
                     case Inputs.North:
                     case Inputs.East:
                     case Inputs.South:
@@ -42,5 +44,6 @@ namespace Zork_BR.Models.Commands
         East,
         South,
         West,
+        Help,
     }
 }

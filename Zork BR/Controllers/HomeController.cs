@@ -100,11 +100,13 @@ namespace Zork_BR.Controllers
             Commands.Add("test", "this is a test");
             Commands.Add("vleespoeder", "ThE bEsT mEaTpOwDeR eVeR");
             Commands.Add("Petri", "Onderdanig aan Wouter");
-            Commands.Add("spreadlegs", "I'm ready for your arrival");
+            Commands.Add("miljaar", "Harses Lars!");
             Commands.Add("north", "You went north");
             Commands.Add("east", "You went east");
             Commands.Add("south", "You went south");
             Commands.Add("west", "You went west");
+            Commands.Add("help", "You need help? Here's a list of commands");
+            Commands.Add("1337", "You probably think you're special now huh?");
         }
 
         private string GetCommandText(string input)
@@ -139,18 +141,17 @@ namespace Zork_BR.Controllers
             var command = CommandFactory.Create(input, id);
             if (command != null)
             {
-                command.MyAction();
-                if (command.GetType().Name == "DirectionCommand")
-                {
-                    using(var context = ApplicationDbContext.Create())
-                    {
-                        story = context.Stories.Find(id);
-                        player = context.Players.Find(id);
+                using (var context = ApplicationDbContext.Create())
+                { 
+                    command.MyAction();
+                    story = context.Stories.Find(id);
+                    player = context.Players.Find(id);
 
+                    if (command.GetType().Name == "DirectionCommand")
+                    {
                         story.MyStory += NearbyLocations();
-                        
-                        context.SaveChanges();
                     }
+                    context.SaveChanges();
                 }
             }
         }

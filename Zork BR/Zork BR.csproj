@@ -215,6 +215,7 @@
     <Compile Include="Models\Commands\CommandFactory.cs" />
     <Compile Include="Models\Commands\DanceCommand.cs" />
     <Compile Include="Models\Commands\DirectionCommand.cs" />
+    <Compile Include="Models\Commands\HelpCommand.cs" />
     <Compile Include="Models\Commands\PokeCommand.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Items\Item.cs" />
