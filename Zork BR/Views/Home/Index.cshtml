@@ -14,18 +14,96 @@
         player = playerr;
     }
 
-    string Location() {
-        var locationwest = Map.map[player.YCoord, player.XCoord - 1].LocationName;
-        var locationEast = Map.map[player.YCoord, player.XCoord + 1].LocationName;
+    string CurrentLocation()
+    {
+        string location = Map.map[player.YCoord, player.XCoord].LocationName;
+        return Location(location);
+    }
 
-        if (locationwest == "Plain")
+    string LocationEast()
+    {
+        string location = Map.map[player.YCoord, player.XCoord + 1].LocationName;
+        return Location(location);
+    }
+
+    string LocationWest()
+    {
+        string location = Map.map[player.YCoord, player.XCoord - 1].LocationName;
+        return Location(location);
+    }
+
+    string LocationNorth()
+    {
+        string location = Map.map[player.YCoord - 1, player.XCoord].LocationName;
+        return Location(location);
+    }
+
+    string LocationSouth()
+    {
+        string location = Map.map[player.YCoord + 1, player.XCoord].LocationName;
+        return Location(location);
+    }
+
+    string LocationNorthWest()
+    {
+        string location = Map.map[player.YCoord - 1, player.XCoord - 1].LocationName;
+        return Location(location);
+    }
+
+    string LocationNorthEast()
+    {
+        string location = Map.map[player.YCoord - 1, player.XCoord + 1].LocationName;
+        return Location(location);
+    }
+
+    string LocationSouthEast()
+    {
+        string location = Map.map[player.YCoord + 1, player.XCoord + 1].LocationName;
+        return Location(location);
+    }
+
+    string LocationSouthWest()
+    {
+        string location = Map.map[player.YCoord + 1, player.XCoord - 1].LocationName;
+        return Location(location);
+    }
+
+    string LocationNorthNorth()
+    {
+        string location = Map.map[player.YCoord - 2, player.XCoord].LocationName;
+        return Location(location);
+    }
+
+    string LocationEastEast()
+    {
+        string location = Map.map[player.YCoord, player.XCoord + 2].LocationName;
+        return Location(location);
+    }
+
+    string LocationSouthSouth()
+    {
+        string location = Map.map[player.YCoord + 2, player.XCoord].LocationName;
+        return Location(location);
+    }
+
+    string LocationWestWest()
+    {
+        string location = Map.map[player.YCoord, player.XCoord - 2].LocationName;
+        return Location(location);
+    }
+
+
+
+    string Location(string location) {
+
+        if (location == "Plain")
         {
             return "<img src = '/Content/images/plain.png' />";
-        } else if(locationwest == "Cabin")
+        } else if(location == "Cabin")
         {
             return "<img src = '/Content/images/cabin.png' />";
         }
-        else if(locationwest == "Forest")
+        else if(location == "Forest")
         {
             return "<img src = '/Content/images/forest.png' />";
         }
@@ -41,90 +119,80 @@
 @Model.MyStory
         </pre>
         <table id="minimap">
+            <!-- Dit omzetten naar een forloop-->
             <tr class="tableRow">
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
+                    @Html.Raw(LocationNorthNorth())
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
                 </td>
             </tr>
             <tr class="tableRow">
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
+                    @Html.Raw(LocationNorthWest())
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
+                    @Html.Raw(LocationNorth())
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
+                    @Html.Raw(LocationNorthEast())
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
                 </td>
             </tr>
             <tr class="tableRow">
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
+                    @Html.Raw(LocationWestWest())
                 </td>
                 <td class="tableCel">
-                    @Html.Raw(Location())
+                    @Html.Raw(LocationWest())
                 </td>
                 <td class="tableCel" id="playerCel">
-                    <img src="~/Content/images/plain.png" />
+                    @Html.Raw(CurrentLocation())
                     <span class="playerLocation">&#10006;</span>
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
+                    @Html.Raw(LocationEast())
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
-                </td>
-            </tr>
-            <tr class="tableRow">
-                <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
-                </td>
-                <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
-                </td>
-                <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
-                </td>
-                <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
-                </td>
-                <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
+                    @Html.Raw(LocationEastEast())
                 </td>
             </tr>
             <tr class="tableRow">
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
+                    @Html.Raw(LocationSouthWest())
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
+                    @Html.Raw(LocationSouth())
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
+                    @Html.Raw(LocationSouthEast())
+
                 </td>
                 <td class="tableCel">
-                    <img src="~/Content/images/plain.png" />
+                </td>
+            </tr>
+            <tr class="tableRow">
+                <td class="tableCel">
+                </td>
+                <td class="tableCel">
+                </td>
+                <td class="tableCel">
+                    @Html.Raw(LocationSouthSouth())
+                </td>
+                <td class="tableCel">
+                </td>
+                <td class="tableCel">
                 </td>
             </tr>
         </table>
