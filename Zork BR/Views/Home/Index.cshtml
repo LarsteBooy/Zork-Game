@@ -4,10 +4,130 @@
 @{
     ViewBag.Title = "Nama";
 }   
-    <div>
+
+@{ 
+    Player player = null;
+
+    using (var context = ApplicationDbContext.Create()) {
+        var lastID = context.Stories.Max(x => x.Id);
+        Player playerr = context.Players.FirstOrDefault(x => x.Id == lastID);
+        player = playerr;
+    }
+
+    string Location() {
+        var locationwest = Map.map[player.YCoord, player.XCoord - 1].LocationName;
+        var locationEast = Map.map[player.YCoord, player.XCoord + 1].LocationName;
+
+        if (locationwest == "Plain")
+        {
+            return "<img src = '/Content/images/plain.png' />";
+        } else if(locationwest == "Cabin")
+        {
+            return "<img src = '/Content/images/cabin.png' />";
+        }
+        else if(locationwest == "Forest")
+        {
+            return "<img src = '/Content/images/forest.png' />";
+        }
+        else
+        {
+            return "<img src = '/Content/images/ocean.png' />";
+        }
+    }
+}
+
+    <div id="gamescreen">
         <pre class="textField" id="textField">
 @Model.MyStory
         </pre>
+        <table id="minimap">
+            <tr class="tableRow">
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+            </tr>
+            <tr class="tableRow">
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+            </tr>
+            <tr class="tableRow">
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    @Html.Raw(Location())
+                </td>
+                <td class="tableCel" id="playerCel">
+                    <img src="~/Content/images/plain.png" />
+                    <span class="playerLocation">&#10006;</span>
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+            </tr>
+            <tr class="tableRow">
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+            </tr>
+            <tr class="tableRow">
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+                <td class="tableCel">
+                    <img src="~/Content/images/plain.png" />
+                </td>
+            </tr>
+        </table>
     </div> 
     
     <div class="navbar-fixed-bottom">

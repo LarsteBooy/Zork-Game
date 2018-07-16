@@ -4,6 +4,25 @@
     padding: 0;
     white-space: pre-wrap;
     word-break: normal;
+    float: left;
+
+}
+
+#playerCel{
+    position: relative;
+    color: red;
+}
+
+span{
+    position: absolute;
+    margin-top: -25px;
+    margin-left: -6px;
+}
+
+#minimap{
+    float: right;
+    margin: auto;
+    padding: 10px;
 }
 
 body {
@@ -21,12 +40,16 @@ form {
 
 .textField {
     color: #00FF00;
-    width: auto;
     max-height: 89vh;
-    padding-top: 10px;
+    width: 85%;
     overflow: auto;
     display: flex;
     flex-direction: column-reverse;
+}
+
+#gamescreen{
+    width: auto;
+    padding-top: 10px;
 }
 
 #sendBtn {
@@ -60,3 +83,10 @@ form {
     padding-bottom: 12px;
 }
 
+.tableCel {
+    border: 2px solid #00FF00;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    color: #00FF00;
+}
