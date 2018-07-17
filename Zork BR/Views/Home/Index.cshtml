@@ -10,8 +10,8 @@
 
     using (var context = ApplicationDbContext.Create()) {
         var lastID = context.Stories.Max(x => x.Id);
-        Player playerr = context.Players.FirstOrDefault(x => x.Id == lastID);
-        player = playerr;
+        Player DbPlayer = context.Players.FirstOrDefault(x => x.Id == lastID);
+        player = DbPlayer;
     }
 
     string CurrentLocation()
@@ -114,11 +114,11 @@
     }
 }
 
-    <div id="gamescreen">
-        <pre class="textField" id="textField">
+    <div id="gamescreen" class="container">
+        <pre class="textField col-xs-10" id="textField">
 @Model.MyStory
         </pre>
-        <table id="minimap">
+        <table id="minimap" class=".col-xs-2">
             <!-- Dit omzetten naar een forloop-->
             <tr class="tableRow">
                 <td class="tableCel">

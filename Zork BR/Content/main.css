@@ -41,7 +41,6 @@ form {
 .textField {
     color: #00FF00;
     max-height: 89vh;
-    width: 85%;
     overflow: auto;
     display: flex;
     flex-direction: column-reverse;
