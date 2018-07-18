@@ -99,15 +99,15 @@
         if (location == "Plain")
         {
             return "<img src = '/Content/images/plain.png' />";
-        } else if(location == "Cabin")
+        } else if (location == "Cabin")
         {
             return "<img src = '/Content/images/cabin.png' />";
         }
-        else if(location == "Forest")
+        else if (location == "Forest")
         {
             return "<img src = '/Content/images/forest.png' />";
         }
-        else if(location == "Lake")
+        else if (location == "Lake")
         {
             return "<img src = '/Content/images/lake.png' />";
         }
@@ -125,11 +125,10 @@
         <table id="minimap" class=".col-xs-2">
             <!-- Dit omzetten naar een forloop-->
             <tr class="tableRow">
+                <td class="tableCel"><img src="FogOfWar" /></td>
+                <td class="tableCel"></td>
                 <td class="tableCel">
-                </td>
-                <td class="tableCel">
-                </td>
-                <td class="tableCel">
+                    <img src='@{Model.ImageEast}' />
                     @Html.Raw(LocationNorthNorth())
                 </td>
                 <td class="tableCel">

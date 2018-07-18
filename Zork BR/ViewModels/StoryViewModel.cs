@@ -13,13 +13,14 @@ namespace Zork_BR.ViewModels
         //public int XCoord { get; set; }
         //public int YCoord { get; set; }
         public string Location { get; set; }
-        public string LocationEast { get; set; }
+        public string ImageEast { get; set; }
         public string LocationWest { get; set; }
 
         public StoryViewModel(Story story, Player player)
         {
             Id = story.Id;
             StoryText = story.MyStory;
+            this.ImageEast = string.Format("<img src = '/Content/images/{0}.png' />", );
             //XCoord = player.XCoord;
             //YCoord = player.YCoord;
         }
