@@ -61,7 +61,7 @@ namespace Zork_BR.Controllers
         Map map = null;
         Player player = null;
 
-        private void FillDatabase()
+        public ActionResult FillDatabase()
         {
             story = new Story();
             map = new Map();
@@ -79,15 +79,19 @@ namespace Zork_BR.Controllers
 
                 context.SaveChanges();
             }
+
+            Session.Add("gameId", story.Id);
+            return RedirectToAction("Index", new { id = story.Id });
         }
 
-        private void FindDatabase(int id)
+        private Story FindDatabase(int id)
         {
             using (var context = ApplicationDbContext.Create())
             {
                 story = context.Stories.Find(id);
                 map = context.Maps.Find(id);
                 player = context.Players.Find(id);
+                return story;
             }
         }
 
@@ -169,20 +173,42 @@ namespace Zork_BR.Controllers
         //Index Action
         public ActionResult Index(string input, int id = 0)
         {
-            if(id != 0)
+            Story story = null;
+            //als nieuw: start game + zet id in session
+            //else: haal id uit session en start op
+
+            if (id == 0)
             {
-                FindDatabase(id);
+                var gameId = Session["gameId"] as int?;
+                if (!gameId.HasValue)
+                {
+                    return RedirectToAction("FillDatabase");
+                }
+                else
+                {
+                    story = FindDatabase(gameId.Value);
+                }
             }
-           else
+            else
             {
-                FillDatabase();
+                story = FindDatabase(id);
             }
+
+
+            //    if(id != 0)
+            //  {
+            //story = FindDatabase(id);
+            // }
+            //  else
+            // {
+            //  /   FillDatabase();
+            //}
 
             if (input == null)
             {
                 return View(story);
             }
-             
+
             AppendStory(input);
             ExecuteCommand(input, id);
             EndOfAction();
