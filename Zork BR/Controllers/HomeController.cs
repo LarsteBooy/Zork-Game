@@ -140,34 +140,25 @@ namespace Zork_BR.Controllers
             }
         }
 
-        private void ExecuteCommand(string input, int id)
+        private string ExecuteCommand(string input, int id)
         {
             var command = CommandFactory.Create(input, id);
             if (command != null)
             {
-                using (var context = ApplicationDbContext.Create())
-                { 
-                    command.MyAction();
-                    story = context.Stories.Find(id);
-                    player = context.Players.Find(id);
-
-                    if (command.GetType().Name == "DirectionCommand")
-                    {
-                        story.MyStory += NearbyLocations();
-                    }
-                    context.SaveChanges();
+                command.MyAction();
+              
+                if (command.GetType().Name == "DirectionCommand")
+                {
+                    return NearbyLocations();
                 }
             }
+            return "";
         }
 
-        private void EndOfAction()
+        private string EndOfAction()
         {
-            using(var context = ApplicationDbContext.Create())
-            {
-                context.Stories.Attach(story);
-                story.MyStory += "=============================\n\n";
-                context.SaveChanges();
-            } 
+            string endText = "=============================\n\n";
+            return endText;
         }
 
         //Index Action
@@ -199,17 +190,19 @@ namespace Zork_BR.Controllers
                 return View(story);
             }
 
-            AppendStory(input);
+            using (var context = ApplicationDbContext.Create())
+            {
+                AppendStory(input);
+                story.MyStory += ExecuteCommand(input, id);
+                story.MyStory += EndOfAction();
+                context.SaveChanges();
+            }
 
             //var commandText = GetCommandText();
-
-            ExecuteCommand(input, id);
-
             //var commandResult = ExecuteCommand(input, id);
             //append mystory
             //save to db
-            EndOfAction();
-
+            
             return View(story);
         }
 
