@@ -194,11 +194,14 @@ namespace Zork_BR.Controllers
 
             using (var context = ApplicationDbContext.Create())
             {
+                context.Stories.Attach(story);
                 AppendStory(input);
                 story.MyStory += ExecuteCommand(input, id);
                 story.MyStory += EndOfAction();
                 context.SaveChanges();
             }
+
+
 
             //var commandText = GetCommandText();
             //var commandResult = ExecuteCommand(input, id);

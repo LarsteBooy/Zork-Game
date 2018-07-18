@@ -18,7 +18,7 @@ namespace Zork_BR.Models.Commands
             this.id = id;
         }
 
-        public override void MyAction()
+        public override string MyAction(Story story, Player player)
         {
             using (var context = ApplicationDbContext.Create())
             {
@@ -78,7 +78,7 @@ namespace Zork_BR.Models.Commands
                     Location locationWest = Map.map[player.YCoord, player.XCoord - 1];
                     if (locationWest.IsPassable == false)
                     {
-                        story.MyStory += locationWest.LocationDescription + "\n\n";
+                        story.MyStory += locationWest.LocationDescription + Environment.NewLine;
                     }
                     else
                     { 
