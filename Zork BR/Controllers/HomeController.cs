@@ -44,8 +44,8 @@ namespace Zork_BR.Controllers
             SpawnPlayer();
 
             void SpawnPlayer() {
-                player.XCoord = 8;//random.Next(0, 32);
-                player.YCoord = 10;//random.Next(0, 32);
+                player.XCoord = random.Next(0, 32);
+                player.YCoord = random.Next(0, 32);
 
                 Debug.WriteLine("Spawn location = [{0},{1}] which is a {2}" ,player.YCoord, player.XCoord, Map.map[player.YCoord, player.XCoord].LocationName);
 
@@ -103,7 +103,7 @@ namespace Zork_BR.Controllers
             Commands.Add("dance", "You are making a fool of yourself");
             Commands.Add("test", "this is a test");
             Commands.Add("vleespoeder", "ThE bEsT mEaTpOwDeR eVeR");
-            Commands.Add("Petri", "Onderdanig aan Wouter");
+            Commands.Add("Petri", "91%");
             Commands.Add("miljaar", "Harses Lars!");
             Commands.Add("north", "You went north");
             Commands.Add("east", "You went east");
@@ -134,7 +134,6 @@ namespace Zork_BR.Controllers
             using (var context = ApplicationDbContext.Create())
             {
                 context.Stories.Attach(story);
-
                 story.MyStory += GetCommandText(input);
                 context.SaveChanges();
             }
@@ -145,11 +144,14 @@ namespace Zork_BR.Controllers
             var command = CommandFactory.Create(input, id);
             if (command != null)
             {
+                // Moet hier alle commands returnen om te laten appenden aan de story
+                // EN dan pas saven in de method AppendStory hierboven.
                 command.MyAction();
               
                 if (command.GetType().Name == "DirectionCommand")
                 {
-                    return NearbyLocations();
+                    var nearbyLocations = NearbyLocations();
+                    return nearbyLocations;
                 }
             }
             return "";

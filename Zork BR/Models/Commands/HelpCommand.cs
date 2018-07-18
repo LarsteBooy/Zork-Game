@@ -22,6 +22,7 @@ namespace Zork_BR.Models.Commands
             {
                 Story story = context.Stories.Find(id);
 
+                //Alleen de bijgevoegde tekst toevoegen i.v.m. saven door appendstory methode
                 story.MyStory += helpText;
 
                 context.SaveChanges();
