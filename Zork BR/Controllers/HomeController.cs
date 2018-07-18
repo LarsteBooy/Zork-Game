@@ -194,23 +194,20 @@ namespace Zork_BR.Controllers
                 story = FindDatabase(id);
             }
 
-
-            //    if(id != 0)
-            //  {
-            //story = FindDatabase(id);
-            // }
-            //  else
-            // {
-            //  /   FillDatabase();
-            //}
-
             if (input == null)
             {
                 return View(story);
             }
 
             AppendStory(input);
+
+            //var commandText = GetCommandText();
+
             ExecuteCommand(input, id);
+
+            //var commandResult = ExecuteCommand(input, id);
+            //append mystory
+            //save to db
             EndOfAction();
 
             return View(story);
