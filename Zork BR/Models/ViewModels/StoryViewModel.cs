@@ -37,19 +37,19 @@ namespace Zork_BR.ViewModels
             this.StoryText = story.MyStory;
             if (player != null && story != null)
             {
-                this.ImageCurrent = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord].GetType().Name.ToLowerInvariant());
-                this.ImageNorth = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 1, player.XCoord].GetType().Name.ToLowerInvariant());
-                this.ImageEast = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord + 1].GetType().Name.ToLowerInvariant());
-                this.ImageSouth = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 1, player.XCoord].GetType().Name.ToLowerInvariant());
-                this.ImageWest = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord - 1].GetType().Name.ToLowerInvariant());
-                this.ImageNorthWest = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 1, player.XCoord - 1].GetType().Name.ToLowerInvariant());
-                this.ImageNorthEast = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 1, player.XCoord + 1].GetType().Name.ToLowerInvariant());
-                this.ImageSouthEast = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 1, player.XCoord + 1].GetType().Name.ToLowerInvariant());
-                this.ImageSouthWest = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 1, player.XCoord - 1].GetType().Name.ToLowerInvariant());
-                this.ImageNorthNorth = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 2, player.XCoord].GetType().Name.ToLowerInvariant());
-                this.ImageEastEast = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord + 2].GetType().Name.ToLowerInvariant());
-                this.ImageSouthSouth = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 2, player.XCoord].GetType().Name.ToLowerInvariant());
-                this.ImageWestWest = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord - 2].GetType().Name.ToLowerInvariant());
+                this.ImageCurrent = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord].ImageName);
+                this.ImageNorth = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 1, player.XCoord].ImageName);
+                this.ImageEast = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord + 1].ImageName);
+                this.ImageSouth = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 1, player.XCoord].ImageName);
+                this.ImageWest = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord - 1].ImageName);
+                this.ImageNorthWest = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 1, player.XCoord - 1].ImageName);
+                this.ImageNorthEast = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 1, player.XCoord + 1].ImageName);
+                this.ImageSouthEast = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 1, player.XCoord + 1].ImageName);
+                this.ImageSouthWest = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 1, player.XCoord - 1].ImageName);
+                this.ImageNorthNorth = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 2, player.XCoord].ImageName);
+                this.ImageEastEast = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord + 2].ImageName);
+                this.ImageSouthSouth = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 2, player.XCoord].ImageName);
+                this.ImageWestWest = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord - 2].ImageName);
             }
         }
     }

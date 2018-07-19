@@ -22,7 +22,7 @@ namespace Zork_BR.Models.Locations
         {
             get
             {
-                return LocationName.ToLower();
+                return GetType().Name.ToLower();
             }
         }
     }

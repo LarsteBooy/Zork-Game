@@ -80,10 +80,9 @@ namespace Zork_BR.Controllers
                 CreatePlayer();
                 story.MyStory += SpawnStory();
 
-                storyViewModel = new StoryViewModel(story, player);
+                
                 context.SaveChanges();
-
-
+               
             }
         
             
@@ -188,12 +187,14 @@ namespace Zork_BR.Controllers
 
             if (input == null)
             {
+                storyViewModel = new StoryViewModel(story, player);
                 return View(storyViewModel);
             }
              
             AppendStory(input);
             ExecuteCommand(input, id);
             EndOfAction();
+            storyViewModel = new StoryViewModel(story, player);
 
             return View(storyViewModel);
         }
