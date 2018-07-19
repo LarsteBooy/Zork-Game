@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Zork_BR.Models;
 using Zork_BR.Models.Commands;
+using Zork_BR.ViewModels;
 
 namespace Zork_BR.Controllers
 {
@@ -56,16 +57,18 @@ namespace Zork_BR.Controllers
                 }
             }
         }
-
+        
         Story story = null;
         Map map = null;
         Player player = null;
+        StoryViewModel storyViewModel = null;
 
         private void FillDatabase()
         {
             story = new Story();
             map = new Map();
             player = new Player();
+
 
             using (var context = ApplicationDbContext.Create())
             {
@@ -74,11 +77,16 @@ namespace Zork_BR.Controllers
                 context.Players.Add(player);
 
                 map.BuildMap();
-                CreatePlayer(); 
+                CreatePlayer();
                 story.MyStory += SpawnStory();
 
+                storyViewModel = new StoryViewModel(story, player);
                 context.SaveChanges();
+
+
             }
+        
+            
         }
 
         private void FindDatabase(int id)
@@ -180,14 +188,14 @@ namespace Zork_BR.Controllers
 
             if (input == null)
             {
-                return View(story);
+                return View(storyViewModel);
             }
              
             AppendStory(input);
             ExecuteCommand(input, id);
             EndOfAction();
 
-            return View(story);
+            return View(storyViewModel);
         }
 
         //Help Action
