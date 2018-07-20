@@ -5,7 +5,10 @@
     white-space: pre-wrap;
     word-break: normal;
     float: left;
+}
 
+#fullMap #fullMapCel {
+    border: 1px solid #000000;
 }
 
 #playerCel{
@@ -83,7 +86,7 @@ form {
 }
 
 .tableCel {
-    border: 2px solid #00FF00;
+    border: 1px solid #00FF00;
     width: 32px;
     height: 32px;
     text-align: center;

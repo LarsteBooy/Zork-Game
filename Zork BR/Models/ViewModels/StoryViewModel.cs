@@ -30,6 +30,26 @@ namespace Zork_BR.ViewModels
             }
             set { }
         }
+        /* Dit en de tabel uit de index.html uitcommenten om de volledige map op te vragen 
+        public string GetMap{
+            get {
+                string updatedMap = "";
+
+                for (int y = 0; y < 32; y++)
+                {
+                    updatedMap += "<tr>";
+                    for(int x = 0; x < 32; x++)
+                    {
+                        updatedMap += string.Format("<td id='fullMapCel'><img src = '/Content/images/{0}.png' /></td>", Map.map[y,x].ImageName);
+                    }
+                    updatedMap += "</tr>";
+                }
+                return updatedMap;
+            }
+            set { }
+        }
+        */
+
 
         public StoryViewModel(Story story, Player player)
         {
