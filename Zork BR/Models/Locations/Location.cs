@@ -17,6 +17,13 @@ namespace Zork_BR.Models.Locations
             get;
             protected set;
         }
-        
+
+        public virtual string ImageName
+        {
+            get
+            {
+                return GetType().Name.ToLower();
+            }
+        }
     }
 }
