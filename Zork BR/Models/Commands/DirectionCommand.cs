@@ -14,6 +14,8 @@ namespace Zork_BR.Models.Commands
         private readonly Story story = null;
         private readonly Player player = null;
 
+
+
         public DirectionCommand(string input, int id, Story story, Player player)
         {
             this.input = input;

@@ -90,14 +90,23 @@ namespace Zork_BR.Controllers
 
         }
 
-        private Story FindDatabase(int id)
+        private Object FindInDatabase(string input, int id)
         {
-            using (var context = ApplicationDbContext.Create())
+            using(var context = ApplicationDbContext.Create())
             {
-                story = context.Stories.Find(id);
-                map = context.Maps.Find(id);
-                player = context.Players.Find(id);
-                return story;
+                switch (input)
+                {
+                    case "story": 
+                        story = context.Stories.Find(id);
+                        return story;
+                    case "player":
+                        player = context.Players.Find(id);
+                        return player;
+                    case "map":
+                        map = context.Maps.Find(id);
+                        return map;
+                    default: return null;
+                }
             }
         }
 
@@ -174,7 +183,6 @@ namespace Zork_BR.Controllers
         //Index Action
         public ActionResult Index(string input, int id = 0)
         {
-            Story story = null;
             //als nieuw: start game + zet id in session
             //else: haal id uit session en start op
 
@@ -187,12 +195,16 @@ namespace Zork_BR.Controllers
                 }
                 else
                 {
-                    story = FindDatabase(gameId.Value);
+                    story = (Story)FindInDatabase("story", gameId.Value);
+                    player = (Player)FindInDatabase("player", gameId.Value);
+                    map = (Map)FindInDatabase("map", gameId.Value);
                 }
             }
             else
             {
-                story = FindDatabase(id);
+                story = (Story)FindInDatabase("story", id);
+                player = (Player)FindInDatabase("player", id);
+                map = (Map)FindInDatabase("map", id);
             }
 
             if (input == null)
@@ -204,18 +216,16 @@ namespace Zork_BR.Controllers
             using (var context = ApplicationDbContext.Create())
             {
                 context.Stories.Attach(story);
+                context.Players.Attach(player);
                 AppendStory(input);
                 story.MyStory += ExecuteCommand(input, id);
                 story.MyStory += EndOfAction();
+                
                 context.SaveChanges();
+
             }
 
-
-
-            //var commandText = GetCommandText();
-            //var commandResult = ExecuteCommand(input, id);
-            //append mystory
-            //save to db
+            
             storyViewModel = new StoryViewModel(story, player);
 
             return View(storyViewModel);
