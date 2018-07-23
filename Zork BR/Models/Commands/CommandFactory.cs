@@ -7,15 +7,7 @@ namespace Zork_BR.Models.Commands
 {
     public class CommandFactory
     {
-        Story story = null;
-        Player player = null;
-
-        public CommandFactory(Story story, Player player)
-        {
-            this.story = story;
-            this.player = player;
-        }
-        public static Command Create(string input, int id)
+        public static Command Create(string input, int id, Story story, Player player)
         {
             Command result = null;
             if (Enum.TryParse(input, true, out Inputs commandType))
@@ -28,7 +20,7 @@ namespace Zork_BR.Models.Commands
                     case Inputs.East:
                     case Inputs.South:
                     case Inputs.West:
-                        result = new DirectionCommand(input, id);
+                        result = new DirectionCommand(input, id, story, player);
                         break;
                 }
                 return result;

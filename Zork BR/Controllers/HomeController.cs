@@ -141,18 +141,20 @@ namespace Zork_BR.Controllers
 
         private string ExecuteCommand(string input, int id)
         {
-            var command = CommandFactory.Create(input, id);
+            var command = CommandFactory.Create(input, id, story, player);
             if (command != null)
             {
                 // Moet hier alle commands returnen om te laten appenden aan de story
                 // EN dan pas saven in de method AppendStory hierboven.
-                command.MyAction();
+                string actionString = command.MyAction();
               
                 if (command.GetType().Name == "DirectionCommand")
                 {
                     var nearbyLocations = NearbyLocations();
-                    return nearbyLocations;
+                    return actionString + nearbyLocations;
                 }
+
+                return actionString;
             }
             return "";
         }

@@ -11,25 +11,22 @@ namespace Zork_BR.Models.Commands
     {
         private readonly string input;
         private readonly int id = 0;
+        private readonly Story story = null;
+        private readonly Player player = null;
 
-        public DirectionCommand(string input, int id)
+        public DirectionCommand(string input, int id, Story story, Player player)
         {
             this.input = input;
             this.id = id;
+            this.story = story;
+            this.player = player;
         }
 
-        public override string MyAction(Story story, Player player)
+        public override string MyAction()
         {
-            using (var context = ApplicationDbContext.Create())
-            {
-                //Twee manieren om laatste id te vinden
-                var lastID = context.Stories.Max(x => x.Id);
-                Story story = context.Stories.FirstOrDefault(x => x.Id == lastID);
-                Player player = context.Players.Find(id);
-
                 string CurrentLocation()
                 {
-                    string currentLocation = String.Format("You are now at [{0},{1}]\n\n", player.YCoord, player.XCoord);
+                    string currentLocation = String.Format("You are now at [{0},{1}]" + Environment.NewLine + Environment.NewLine, player.YCoord, player.XCoord );
 
                     return currentLocation;
                 }
@@ -39,12 +36,12 @@ namespace Zork_BR.Models.Commands
                     Location locationNorth = Map.map[player.YCoord - 1, player.XCoord];
                     if (locationNorth.IsPassable == false) 
                     {
-                        story.MyStory += locationNorth.LocationDescription + "\n\n";
+                        return locationNorth.LocationDescription + Environment.NewLine + Environment.NewLine;
                     }
                     else
                     {
                         player.YCoord--;
-                        story.MyStory += CurrentLocation();
+                        return CurrentLocation();
                     }
                 }
                 else if(input == "east")
@@ -52,12 +49,12 @@ namespace Zork_BR.Models.Commands
                     Location locationEast = Map.map[player.YCoord, player.XCoord + 1];
                     if (locationEast.IsPassable == false)
                     {
-                        story.MyStory += locationEast.LocationDescription + "\n\n";
+                        return locationEast.LocationDescription + Environment.NewLine + Environment.NewLine;
                     }
                     else
                     {
                         player.XCoord++;
-                        story.MyStory += CurrentLocation();
+                        return CurrentLocation();
                     }
                 }
                 else if(input == "south")
@@ -65,12 +62,12 @@ namespace Zork_BR.Models.Commands
                     Location locationSouth = Map.map[player.YCoord + 1, player.XCoord];
                     if (locationSouth.IsPassable == false)
                     {
-                        story.MyStory += locationSouth.LocationDescription + "\n\n";
+                        return locationSouth.LocationDescription + Environment.NewLine + Environment.NewLine;
                     }
                     else
                     {
                         player.YCoord++;
-                        story.MyStory += CurrentLocation();
+                        return CurrentLocation();
                     }
                 }
                 else if(input == "west")
@@ -78,15 +75,17 @@ namespace Zork_BR.Models.Commands
                     Location locationWest = Map.map[player.YCoord, player.XCoord - 1];
                     if (locationWest.IsPassable == false)
                     {
-                        story.MyStory += locationWest.LocationDescription + Environment.NewLine;
+                        return locationWest.LocationDescription + Environment.NewLine + Environment.NewLine;
                     }
                     else
                     { 
                         player.XCoord--;
-                        story.MyStory += CurrentLocation();
+                        return CurrentLocation();
                     }
                 }
-                context.SaveChanges();
+            else
+            {
+                return "This is not a direction you can go to";
             }
         }
     }
