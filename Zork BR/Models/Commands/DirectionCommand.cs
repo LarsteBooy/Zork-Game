@@ -26,68 +26,63 @@ namespace Zork_BR.Models.Commands
 
         public override string MyAction()
         {
-                string CurrentLocation()
-                {
-                    string currentLocation = String.Format("You are now at [{0},{1}]" + Environment.NewLine + Environment.NewLine, player.YCoord, player.XCoord );
 
-                    return currentLocation;
-                }
-             
-                if (input == "north")
-                {
-                    Location locationNorth = Map.map[player.YCoord - 1, player.XCoord];
-                    if (locationNorth.IsPassable == false) 
-                    {
-                        return locationNorth.LocationDescription + Environment.NewLine + Environment.NewLine;
-                    }
-                    else
-                    {
-                        player.YCoord--;
-                        return CurrentLocation();
-                    }
-                }
-                else if(input == "east")
-                {
-                    Location locationEast = Map.map[player.YCoord, player.XCoord + 1];
-                    if (locationEast.IsPassable == false)
-                    {
-                        return locationEast.LocationDescription + Environment.NewLine + Environment.NewLine;
-                    }
-                    else
-                    {
-                        player.XCoord++;
-                        return CurrentLocation();
-                    }
-                }
-                else if(input == "south")
-                {
-                    Location locationSouth = Map.map[player.YCoord + 1, player.XCoord];
-                    if (locationSouth.IsPassable == false)
-                    {
-                        return locationSouth.LocationDescription + Environment.NewLine + Environment.NewLine;
-                    }
-                    else
-                    {
-                        player.YCoord++;
-                        return CurrentLocation();
-                    }
-                }
-                else if(input == "west")
-                {
-                    Location locationWest = Map.map[player.YCoord, player.XCoord - 1];
-                    if (locationWest.IsPassable == false)
-                    {
-                        return locationWest.LocationDescription + Environment.NewLine + Environment.NewLine;
-                    }
-                    else
-                    { 
-                        player.XCoord--;
-                        return CurrentLocation();
-                    }
-                }
+            if (input == "north")
+            {
+                Location locationNorth = Map.map[player.YCoord - 1, player.XCoord];
+                return navigate(locationNorth, input);
+            }
+            else if (input == "east")
+            {
+                Location locationEast = Map.map[player.YCoord, player.XCoord + 1];
+                return navigate(locationEast, input);
+            }
+            else if (input == "south")
+            {
+                Location locationSouth = Map.map[player.YCoord + 1, player.XCoord];
+                return navigate(locationSouth, input);
+            }
+            else if (input == "west")
+            {
+                Location locationWest = Map.map[player.YCoord, player.XCoord - 1];
+                return navigate(locationWest, input);
+            }
             else
             {
                 return "This is not a direction you can go to";
+            }
+
+            string CurrentLocation()
+            {
+                string currentLocation = String.Format("You are now at [{0},{1}]" + Environment.NewLine + Environment.NewLine, player.YCoord, player.XCoord );
+
+                return currentLocation;
+            }
+
+            string navigate(Location location, string input)
+            {
+                if(location.IsPassable == false)
+                {
+                    return location.LocationDescription + Environment.NewLine + Environment.NewLine;
+                }
+                else
+                {
+                    switch (input)
+                    {
+                        case "north": player.YCoord--;
+                            return CurrentLocation();
+                        case "east":
+                            player.XCoord++;
+                            return CurrentLocation();
+                        case "south":
+                            player.YCoord++;
+                            return CurrentLocation();
+                        case "west":
+                            player.XCoord--;
+                            return CurrentLocation();
+                        default: return "Something broke";
+                    }
+                }
             }
         }
     }
