@@ -102,7 +102,7 @@ namespace Zork_BR.Controllers
                 context.Stories.Attach(story);
                 context.Players.Attach(player);
                 story.MyStory += storyRepository.GetCommandText(input);
-                story.MyStory += storyRepository.ExecuteCommand(input, id);
+                story.MyStory += storyRepository.ExecuteCommand(input);
                 story.MyStory += storyRepository.EndOfAction();
                 
                 context.SaveChanges();

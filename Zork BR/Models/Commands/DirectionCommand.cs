@@ -10,16 +10,14 @@ namespace Zork_BR.Models.Commands
     public class DirectionCommand : Command
     {
         private readonly string input;
-        private readonly int id = 0;
         private readonly Story story = null;
         private readonly Player player = null;
 
 
 
-        public DirectionCommand(string input, int id, Story story, Player player)
+        public DirectionCommand(string input, Story story, Player player)
         {
             this.input = input;
-            this.id = id;
             this.story = story;
             this.player = player;
         }

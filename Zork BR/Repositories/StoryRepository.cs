@@ -10,7 +10,7 @@ namespace Zork_BR.Controllers
 {
     public class StoryRepository 
     {
-        Story story = null;
+        readonly Story story = null;
         Player player = null;
 
         Dictionary<string, string> Commands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
@@ -69,6 +69,7 @@ namespace Zork_BR.Controllers
             Commands.Add("west", "You went west");
             Commands.Add("help", "You need help? Here's a list of commands");
             Commands.Add("1337", "You probably think you're special now huh?");
+            Commands.Add("secret", "You are meant to find the fun commands, not just type secret");
         }
 
         public string GetCommandText(string input)
@@ -92,14 +93,18 @@ namespace Zork_BR.Controllers
             var locationSouth = Map.map[(player.YCoord + 1), player.XCoord].LocationName;
             var locationWest = Map.map[player.YCoord, (player.XCoord - 1)].LocationName;
 
-            var nearbyLocations = String.Format("To your north you see a {0}" + Environment.NewLine + "To your east you see a {1}" + Environment.NewLine + "To your south you see a {2}" + Environment.NewLine + "To your west you see a {3}" + Environment.NewLine + Environment.NewLine, locationNorth, locationEast, locationSouth, locationWest);
-
+            var nearbyLocations = String.Format("To your north you see a {0}" + Environment.NewLine + 
+                                                "To your east you see a {1}" + Environment.NewLine + 
+                                                "To your south you see a {2}" + Environment.NewLine + 
+                                                "To your west you see a {3}" + Environment.NewLine + Environment.NewLine, 
+                                                locationNorth, locationEast, locationSouth, locationWest
+                                                );
             return nearbyLocations;
         }
 
-        public string ExecuteCommand(string input, int id)
+        public string ExecuteCommand(string input)
         {
-            var command = CommandFactory.Create(input, id, story, player);
+            var command = CommandFactory.Create(input, story, player);
             if (command != null)
             {
                 string actionString = command.MyAction();
