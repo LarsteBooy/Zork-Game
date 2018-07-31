@@ -5,26 +5,22 @@ using System.Web;
 
 namespace Zork_BR.Models.Commands
 {
-    public static class CommandFactory
+    public class CommandFactory
     {
-        public static Command Create(string input, int id)
+        public static Command Create(string input, Story story, Player player)
         {
             Command result = null;
             if (Enum.TryParse(input, true, out Inputs commandType))
             {
                 switch (commandType)
                 {
-                    case Inputs.Poke: result = new PokeCommand();
-                        break;
-                    case Inputs.Dance: result = new DanceCommand();
-                        break;
-                    case Inputs.Help: result = new HelpCommand(id);
+                    case Inputs.Help: result = new HelpCommand(story);
                         break;
                     case Inputs.North:
                     case Inputs.East:
                     case Inputs.South:
                     case Inputs.West:
-                        result = new DirectionCommand(input, id);
+                        result = new DirectionCommand(input, story, player);
                         break;
                 }
                 return result;
@@ -38,8 +34,6 @@ namespace Zork_BR.Models.Commands
 
     public enum Inputs
     {
-        Poke,
-        Dance,
         North,  
         East,
         South,

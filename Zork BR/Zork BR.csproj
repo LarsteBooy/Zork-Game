@@ -198,6 +198,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Repositories\StoryRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,10 +214,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Commands\Command.cs" />
     <Compile Include="Models\Commands\CommandFactory.cs" />
-    <Compile Include="Models\Commands\DanceCommand.cs" />
     <Compile Include="Models\Commands\DirectionCommand.cs" />
     <Compile Include="Models\Commands\HelpCommand.cs" />
-    <Compile Include="Models\Commands\PokeCommand.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Items\Item.cs" />
     <Compile Include="Models\Items\Knife.cs" />

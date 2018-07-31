@@ -7,25 +7,36 @@ namespace Zork_BR.Models.Commands
 {
     public class HelpCommand : Command
     {
-        private string helpText;
-        private readonly int id = 0;
+        readonly Story story = null;
 
-        public HelpCommand(int id)
+        private string helpText;
+
+        public HelpCommand(Story story)
         {
-            this.id = id;
+            this.story = story;
         }
 
-        public override void MyAction()
+        public override string MyAction()
         {
-            helpText = "    Commands\n--------------------\n    [Movement]\n--------------------\nNorth - Move North\nWest - Move West\nSouth - Move South\nEast - Move East\n--------------------\n  [Items / Actions]\n--------------------\nEquip\nAttack\n--------------------\n  [Fun commands]\n--------------------\n - Dance\n - Poke\n - More\n====================\n";
-            using (var context = ApplicationDbContext.Create())
-            {
-                Story story = context.Stories.Find(id);
+           helpText = "    Commands" + Environment.NewLine + 
+                      "--------------------" + Environment.NewLine +
+                      "    [Movement]"+ Environment.NewLine +
+                      "--------------------" + Environment.NewLine + 
+                      "North - Move North" + Environment.NewLine + 
+                      "West - Move West" + Environment.NewLine + 
+                      "South - Move South" + Environment.NewLine + 
+                      "East - Move East" + Environment.NewLine + 
+                      "--------------------" + Environment.NewLine + 
+                      "  [Items / Actions]" + Environment.NewLine + 
+                      "--------------------" + Environment.NewLine + 
+                      " - Equip" + Environment.NewLine + 
+                      " - Attack" + Environment.NewLine + 
+                      "--------------------" + Environment.NewLine + 
+                      "  [Fun commands]" + Environment.NewLine + 
+                      "--------------------" + Environment.NewLine + 
+                      " - Secret" + Environment.NewLine;
 
-                story.MyStory += helpText;
-
-                context.SaveChanges();
-            }
+           return helpText;
         }
     }
 }

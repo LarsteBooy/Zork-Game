@@ -266,7 +266,7 @@ namespace Zork_BR.Models
             map[22, 7] = new Plain();
             map[23, 7] = new Plain();
             map[24, 7] = new Plain();
-            map[25, 7] = new Plain();
+            map[25, 7] = new Cabin();
             map[26, 7] = new Plain();
             map[27, 7] = new Plain();
             map[28, 7] = new Ocean();
@@ -298,7 +298,7 @@ namespace Zork_BR.Models
             map[22, 8] = new Plain();
             map[23, 8] = new Plain();
             map[24, 8] = new Plain();
-            map[25, 8] = new Cabin();
+            map[25, 8] = new Plain();
             map[26, 8] = new Plain();
             map[27, 8] = new Plain();
             map[28, 8] = new Ocean();
