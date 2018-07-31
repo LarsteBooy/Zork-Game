@@ -16,7 +16,7 @@ namespace Zork_BR.Controllers
         Map map;
         Player player;
         StoryViewModel storyViewModel;
-        StoryRepository storyRepository;
+        CommandRepository commandRepository;
 
         public ActionResult FillDatabase()
         {
@@ -32,9 +32,9 @@ namespace Zork_BR.Controllers
 
                 map.BuildMap();
                 
-                storyRepository = new StoryRepository(story, player);
-                storyRepository.CreatePlayer();
-                story.MyStory += storyRepository.SpawnStory();
+                commandRepository = new CommandRepository(story, player);
+                commandRepository.CreatePlayer();
+                story.MyStory += commandRepository.SpawnStory();
 
                 context.SaveChanges();
             }
@@ -95,15 +95,15 @@ namespace Zork_BR.Controllers
                 return View(storyViewModel);
             }
             
-            storyRepository = new StoryRepository(story, player);
+            commandRepository = new CommandRepository(story, player);
 
             using (var context = ApplicationDbContext.Create())
             {
                 context.Stories.Attach(story);
                 context.Players.Attach(player);
-                story.MyStory += storyRepository.GetCommandText(input);
-                story.MyStory += storyRepository.ExecuteCommand(input);
-                story.MyStory += storyRepository.EndOfAction();
+                story.MyStory += commandRepository.GetCommandText(input);
+                story.MyStory += commandRepository.ExecuteCommand(input);
+                story.MyStory += commandRepository.EndOfAction();
                 
                 context.SaveChanges();
 

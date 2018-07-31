@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Zork_BR.Models;
+using Zork_BR.Models.Commands;
 
 namespace Zork_BR.ViewModels
 {
@@ -10,6 +11,15 @@ namespace Zork_BR.ViewModels
     {
         public int Id { get; set; }
         public string StoryText { get; set; }
+
+        //if true render more locations on the minimap
+        public bool Render {
+            get
+            {
+                return Render = MyStaticVars.RenderMinimap;
+            }
+            set { }
+        }
 
         public string ImageCurrent{ get; set; }
         public string ImageNorth { get; set; }
@@ -24,12 +34,55 @@ namespace Zork_BR.ViewModels
         public string ImageEastEast { get; set; }
         public string ImageSouthSouth { get; set; }
         public string ImageWestWest { get; set; }
+        public string ImageNorth2West2 { get; set; }
+        public string ImageNorth2West1 { get; set; }
+        public string ImageNorth2East1 { get; set; }
+        public string ImageNorth2East2 { get; set; }
+        public string ImageNorth1West2 { get; set; }
+        public string ImageNorth1East2 { get; set; }
+        public string ImageSouth1West2 { get; set; }
+        public string ImageSouth1East2 { get; set; }
+        public string ImageSouth2West2 { get; set; }
+        public string ImageSouth2West1 { get; set; }
+        public string ImageSouth2East1 { get; set; }
+        public string ImageSouth2East2 { get; set; }
+
+
+        public string RenderMinimap(string location)
+        {
+            if (Render == true)
+            {
+                switch (location)
+                {
+                    case "north2west2": return ImageNorth2West2;
+                    case "north2west1": return ImageNorth2West1;
+                    case "north2east1": return ImageNorth2East1;
+                    case "north2east2": return ImageNorth2East2;
+                    case "north1west2": return ImageNorth1West2;
+                    case "north1east2": return ImageNorth1East2;
+                    case "south1west2": return ImageSouth1West2;
+                    case "south1east2": return ImageSouth1East2;
+                    case "south2west2": return ImageSouth2West2;
+                    case "south2west1": return ImageSouth2West1;
+                    case "south2east1": return ImageSouth2East1;
+                    case "south2east2": return ImageSouth2East2;
+                    default: return ImageFogOfWar;
+                }
+            }
+            else
+            {
+                return ImageFogOfWar;
+            }
+        }
+
         public string ImageFogOfWar {
             get {
                 return string.Format("<img src = '/Content/images/fogofwar.png' />");
             }
             set { }
         }
+        
+
         /* Dit en de tabel uit de index.html uitcommenten om de volledige map op te vragen 
         public string GetMap{
             get {
@@ -70,6 +123,18 @@ namespace Zork_BR.ViewModels
                 this.ImageEastEast = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord + 2].ImageName);
                 this.ImageSouthSouth = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 2, player.XCoord].ImageName);
                 this.ImageWestWest = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord - 2].ImageName);
+                this.ImageNorth2West2 = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 2, player.XCoord - 2].ImageName);
+                this.ImageNorth2West1 = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 2, player.XCoord - 1].ImageName);
+                this.ImageNorth2East1 = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 2, player.XCoord + 1].ImageName);
+                this.ImageNorth2East2 = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 2, player.XCoord + 2].ImageName);
+                this.ImageNorth1West2 = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 1, player.XCoord - 2].ImageName);
+                this.ImageNorth1East2 = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 1, player.XCoord + 2].ImageName);
+                this.ImageSouth1West2 = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 1, player.XCoord - 2].ImageName);
+                this.ImageSouth1East2 = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 1, player.XCoord + 2].ImageName);
+                this.ImageSouth2West2 = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 2, player.XCoord - 2].ImageName);
+                this.ImageSouth2West1 = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 2, player.XCoord - 1].ImageName);
+                this.ImageSouth2East1 = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 2, player.XCoord + 1].ImageName);
+                this.ImageSouth2East2 = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 2, player.XCoord + 2].ImageName);
             }
         }
     }

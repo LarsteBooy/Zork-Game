@@ -198,7 +198,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Repositories\StoryRepository.cs" />
+    <Compile Include="Models\Commands\RenderCommand.cs" />
+    <Compile Include="Models\MyStaticVars.cs" />
+    <Compile Include="Models\Utility\Rng.cs" />
+    <Compile Include="Repositories\CommandRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

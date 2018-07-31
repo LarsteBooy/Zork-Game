@@ -16,6 +16,8 @@ namespace Zork_BR.Models.Commands
                 {
                     case Inputs.Help: result = new HelpCommand(story);
                         break;
+                    case Inputs.Render: result = new RenderCommand();
+                        break;
                     case Inputs.North:
                     case Inputs.East:
                     case Inputs.South:
@@ -39,5 +41,6 @@ namespace Zork_BR.Models.Commands
         South,
         West,
         Help,
+        Render,
     }
 }

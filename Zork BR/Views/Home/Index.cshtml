@@ -12,24 +12,24 @@
         <table id="minimap" class=".col-xs-2">
             <tr class="tableRow">
                 <td class="tableCel">
-                    @Html.Raw(@Model.ImageFogOfWar)
+                    @Html.Raw(@Model.RenderMinimap("north2west2"))
                 </td>
                 <td class="tableCel">
-                    @Html.Raw(@Model.ImageFogOfWar)
+                    @Html.Raw(@Model.RenderMinimap("north2west1"))
                 </td>
                 <td class="tableCel">
                     @Html.Raw(@Model.ImageNorthNorth)
                 </td>
                 <td class="tableCel">
-                    @Html.Raw(@Model.ImageFogOfWar)
+                    @Html.Raw(@Model.RenderMinimap("north2east1"))
                 </td>
                 <td class="tableCel">
-                    @Html.Raw(@Model.ImageFogOfWar)
+                    @Html.Raw(@Model.RenderMinimap("north2east2"))
                 </td>
             </tr>
             <tr class="tableRow">
                 <td class="tableCel">
-                    @Html.Raw(@Model.ImageFogOfWar)
+                    @Html.Raw(@Model.RenderMinimap("north1west2"))
                 </td>
                 <td class="tableCel">
                     @Html.Raw(@Model.ImageNorthWest)
@@ -41,7 +41,7 @@
                     @Html.Raw(@Model.ImageNorthEast)
                 </td>
                 <td class="tableCel">
-                    @Html.Raw(@Model.ImageFogOfWar)
+                    @Html.Raw(@Model.RenderMinimap("north1east2"))
                 </td>
             </tr>
             <tr class="tableRow">
@@ -64,7 +64,7 @@
             </tr>
             <tr class="tableRow">
                 <td class="tableCel">
-                    @Html.Raw(@Model.ImageFogOfWar)
+                    @Html.Raw(@Model.RenderMinimap("south1west2"))
                 </td>
                 <td class="tableCel">
                     @Html.Raw(@Model.ImageSouthWest)
@@ -76,24 +76,24 @@
                     @Html.Raw(@Model.ImageSouthEast)
                 </td>
                 <td class="tableCel">
-                    @Html.Raw(@Model.ImageFogOfWar)
+                    @Html.Raw(@Model.RenderMinimap("south1east2"))
                 </td>
             </tr>
             <tr class="tableRow">
                 <td class="tableCel">
-                    @Html.Raw(@Model.ImageFogOfWar)
+                    @Html.Raw(@Model.RenderMinimap("south2west2"))
                 </td>
                 <td class="tableCel">
-                    @Html.Raw(@Model.ImageFogOfWar)
+                    @Html.Raw(@Model.RenderMinimap("south2west1"))
                 </td>
                 <td class="tableCel">
                     @Html.Raw(@Model.ImageSouthSouth)
                 </td>
                 <td class="tableCel">
-                    @Html.Raw(@Model.ImageFogOfWar)
+                    @Html.Raw(@Model.RenderMinimap("south2east1"))
                 </td>
                 <td class="tableCel">
-                    @Html.Raw(@Model.ImageFogOfWar)
+                    @Html.Raw(@Model.RenderMinimap("south2east2"))
                 </td>
             </tr>
         </table>

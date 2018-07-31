@@ -5,17 +5,18 @@ using System.Linq;
 using System.Web;
 using Zork_BR.Models;
 using Zork_BR.Models.Commands;
+using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Controllers
 {
-    public class StoryRepository 
+    public class CommandRepository 
     {
         readonly Story story = null;
         Player player = null;
 
         Dictionary<string, string> Commands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
 
-        public StoryRepository(Story story, Player player) {
+        public CommandRepository(Story story, Player player) {
             this.player = player;
             this.story = story;
             FillCommands();
@@ -23,14 +24,12 @@ namespace Zork_BR.Controllers
 
         public void CreatePlayer()
         {
-            Random random = new Random();
-
             SpawnPlayer();
 
             void SpawnPlayer()
             {
-                player.XCoord = random.Next(0, 32);
-                player.YCoord = random.Next(0, 32);
+                player.XCoord = Rng.Next(0, 32);
+                player.YCoord = Rng.Next(0, 32);
 
                 Debug.WriteLine("Spawn location = [{0},{1}] which is a {2}", player.YCoord, player.XCoord, Map.map[player.YCoord, player.XCoord].LocationName);
 
@@ -70,6 +69,7 @@ namespace Zork_BR.Controllers
             Commands.Add("help", "You need help? Here's a list of commands");
             Commands.Add("1337", "You probably think you're special now huh?");
             Commands.Add("secret", "You are meant to find the fun commands, not just type secret");
+            Commands.Add("render", "Rendering more map...");
         }
 
         public string GetCommandText(string input)
