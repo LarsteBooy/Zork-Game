@@ -3,7 +3,7 @@ namespace Zork_BR.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class MyMigration : DbMigration
     {
         public override void Up()
         {
@@ -20,6 +20,9 @@ namespace Zork_BR.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        CurrentHealth = c.Int(nullable: false),
+                        MaxHealth = c.Int(nullable: false),
+                        PlayerName = c.String(),
                         XCoord = c.Int(nullable: false),
                         YCoord = c.Int(nullable: false),
                     })

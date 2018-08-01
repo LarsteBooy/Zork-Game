@@ -29,7 +29,7 @@ namespace Zork_BR.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
             //Leegt de database
-            Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
+            Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseAlways<ApplicationDbContext>());
         }
 
         public static ApplicationDbContext Create()
