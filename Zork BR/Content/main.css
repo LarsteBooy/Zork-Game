@@ -5,6 +5,18 @@
     white-space: pre-wrap;
     word-break: normal;
     float: left;
+    margin: 0;
+}
+
+@media screen and (max-width: 1200px) {
+    #minimap{
+        display: none;
+    }
+
+    .textField{
+        width: 100%;
+    }
+
 }
 
 #fullMap #fullMapCel {
@@ -43,13 +55,25 @@ form {
 
 .textField {
     color: #00FF00;
-    max-height: 89vh;
-    overflow: auto;
+    max-height: 87vh;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column-reverse;
+    padding: 0;
 }
 
-#gamescreen{
+.textField::-webkit-scrollbar-thumb {
+    background-color: #00FF00;
+    border-radius: 10px;
+}
+
+.textField::-webkit-scrollbar {
+    border: 1px solid #00FF00;
+    border-radius: 10px;
+    color: red;
+}
+
+#gamescreen {
     width: auto;
     padding-top: 10px;
 }

@@ -78,11 +78,11 @@ namespace Zork_BR.Controllers
             if (Commands.ContainsKey(i))
             {
                 var c = Commands[i];
-                return "<" + i + ">" + Environment.NewLine + c + Environment.NewLine + Environment.NewLine;
+                return Environment.NewLine + Environment.NewLine + "<" + i + ">" + Environment.NewLine + c + Environment.NewLine + Environment.NewLine;
             }
             else
             {
-                return "<" + i + ">" + Environment.NewLine + "This is not a command, for all commands see the Help page" + Environment.NewLine + Environment.NewLine;
+                return Environment.NewLine + Environment.NewLine + "<" + i + ">" + Environment.NewLine + "This is not a command, for all commands see the Help page" + Environment.NewLine + Environment.NewLine;
             }
         }
 
@@ -122,7 +122,7 @@ namespace Zork_BR.Controllers
 
         public string EndOfAction()
         {
-            string endText = "=============================" + Environment.NewLine + Environment.NewLine;
+            string endText = "=============================";
             return endText;
         }
 
