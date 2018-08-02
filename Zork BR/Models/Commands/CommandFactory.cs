@@ -18,7 +18,7 @@ namespace Zork_BR.Models.Commands
                         break;
                     case Inputs.Render: result = new RenderCommand();
                         break;
-                    case Inputs.Search: result = new SearchCommand(input, story, player);
+                    case Inputs.Loot: result = new LootCommand(input, story, player);
                         break;
                     case Inputs.North:
                     case Inputs.East:
@@ -44,6 +44,6 @@ namespace Zork_BR.Models.Commands
         West,
         Help,
         Render,
-        Search,
+        Loot,
     }
 }

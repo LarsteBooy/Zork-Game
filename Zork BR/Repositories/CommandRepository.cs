@@ -70,7 +70,7 @@ namespace Zork_BR.Controllers
             Commands.Add("1337", "You probably think you're special now huh?");
             Commands.Add("secret", "You are meant to find the fun commands, not just type secret");
             Commands.Add("render", "Rendering more map...");
-            Commands.Add("search", "Searching...");
+            Commands.Add("loot", "looting...");
         }
 
         public string GetCommandText(string input)

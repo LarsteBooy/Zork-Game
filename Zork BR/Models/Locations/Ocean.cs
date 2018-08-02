@@ -10,6 +10,7 @@ namespace Zork_BR.Models.Locations
         public override string LocationName => "Ocean";
 
         public override bool IsPassable => false;
+        public override bool IsLootable => false;
 
         private const string locationDescriptionDefault = "The ocean looks very dangerous, it would not be wise to go there. Also you can't swim";
 

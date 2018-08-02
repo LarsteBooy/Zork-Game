@@ -111,7 +111,7 @@ namespace Zork_BR.ViewModels
             this.StoryText = story.MyStory;
             if (player != null && story != null)
             {
-                this.ImageCurrent = string.Format("<img src = '/Content/images/{0}.png' />", player.PlayerLocation.ImageName);
+                this.ImageCurrent = string.Format("<img src = '/Content/images/{0}.png' />", player.CurrentLocation.ImageName);
                 this.ImageNorth = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord - 1, player.XCoord].ImageName);
                 this.ImageEast = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord, player.XCoord + 1].ImageName);
                 this.ImageSouth = string.Format("<img src = '/Content/images/{0}.png' />", Map.map[player.YCoord + 1, player.XCoord].ImageName);
