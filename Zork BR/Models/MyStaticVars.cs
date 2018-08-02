@@ -8,5 +8,6 @@ namespace Zork_BR.Models
     public static class MyStaticVars
     {
         public static bool RenderMinimap { get; set; }
+        public static int MaximumSlotsInInventory { get; set; }
     }
 }

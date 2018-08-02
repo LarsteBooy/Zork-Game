@@ -207,8 +207,9 @@
     <Compile Include="Models\Items\Binoculars.cs" />
     <Compile Include="Models\Items\Consumable.cs" />
     <Compile Include="Models\Items\HealthPotion.cs" />
-    <Compile Include="Models\Items\IHasInventory.cs" />
     <Compile Include="Models\Items\BigHealthPotion.cs" />
+    <Compile Include="Models\Items\InventorySlot.cs" />
+    <Compile Include="Models\Items\InventorySystem.cs" />
     <Compile Include="Models\Items\SmallHealthPotion.cs" />
     <Compile Include="Models\MyStaticVars.cs" />
     <Compile Include="Models\Utility\Rng.cs" />
