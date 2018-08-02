@@ -79,11 +79,11 @@ namespace Zork_BR.Controllers
             if (Commands.ContainsKey(i))
             {
                 var c = Commands[i];
-                return Environment.NewLine + Environment.NewLine + "<" + i + ">" + Environment.NewLine + c + Environment.NewLine + Environment.NewLine;
+                return MyStaticVars.WhiteLine() + "<" + i + ">" + Environment.NewLine + c + MyStaticVars.WhiteLine();
             }
             else
             {
-                return Environment.NewLine + Environment.NewLine + "<" + i + ">" + Environment.NewLine + "This is not a command, for all commands see the Help page" + Environment.NewLine + Environment.NewLine;
+                return MyStaticVars.WhiteLine() + "<" + i + ">" + Environment.NewLine + "This is not a command, for all commands see the Help page" + MyStaticVars.WhiteLine();
             }
         }
 
@@ -97,7 +97,7 @@ namespace Zork_BR.Controllers
             var nearbyLocations = String.Format("To your north you see a {0}" + Environment.NewLine + 
                                                 "To your east you see a {1}" + Environment.NewLine + 
                                                 "To your south you see a {2}" + Environment.NewLine + 
-                                                "To your west you see a {3}" + Environment.NewLine + Environment.NewLine, 
+                                                "To your west you see a {3}" + MyStaticVars.WhiteLine(), 
                                                 locationNorth, locationEast, locationSouth, locationWest
                                                 );
             return nearbyLocations;

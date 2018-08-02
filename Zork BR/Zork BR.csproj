@@ -204,6 +204,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Commands\RenderCommand.cs" />
+    <Compile Include="Models\Commands\SearchCommand.cs" />
     <Compile Include="Models\Items\Binoculars.cs" />
     <Compile Include="Models\Items\Consumable.cs" />
     <Compile Include="Models\Items\HealthPotion.cs" />

@@ -34,7 +34,7 @@ namespace Zork_BR.Models.Commands
                       "--------------------" + Environment.NewLine + 
                       "  [Fun commands]" + Environment.NewLine + 
                       "--------------------" + Environment.NewLine + 
-                      " - Secret" + Environment.NewLine;
+                      " - Secret" + MyStaticVars.WhiteLine();
 
            return helpText;
         }
