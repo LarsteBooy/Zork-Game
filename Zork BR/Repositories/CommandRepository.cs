@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using Zork_BR.Models;
 using Zork_BR.Models.Commands;
+using Zork_BR.Models.Locations;
 using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Controllers
@@ -87,6 +88,11 @@ namespace Zork_BR.Controllers
             }
         }
 
+        public string CurrentLocationDescription()
+        {
+            return player.CurrentLocation.LocationDescription + MyStaticVars.WhiteLine();
+        }
+
         public string NearbyLocations()
         {
             var locationNorth = Map.map[(player.YCoord - 1), player.XCoord].LocationName;
@@ -112,8 +118,10 @@ namespace Zork_BR.Controllers
 
                 if (command.GetType().Name == "DirectionCommand")
                 {
-                    var nearbyLocations = NearbyLocations();
-                    return actionString + nearbyLocations;
+                    //string nearbyLocations = NearbyLocations();
+                    string currentLocationDescription = CurrentLocationDescription();
+
+                    return actionString /*+ nearbyLocations*/ + currentLocationDescription;
                 }
 
                 return actionString;
