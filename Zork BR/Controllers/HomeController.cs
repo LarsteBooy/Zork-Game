@@ -119,7 +119,9 @@ namespace Zork_BR.Controllers
         {
             ViewBag.Message = "Available Commands";
 
-            return View();
+            HelpViewModel helpViewModel = new HelpViewModel();
+
+            return View(helpViewModel);
         }
     }
 }

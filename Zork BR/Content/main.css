@@ -6,17 +6,13 @@
     word-break: normal;
     float: left;
     margin: 0;
+    color: #00FF00;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1000px) {
     #minimap{
         display: none;
     }
-
-    .textField{
-        width: 100%;
-    }
-
 }
 
 #fullMap #fullMapCel {
@@ -38,6 +34,9 @@ span{
     float: right;
     margin: auto;
     padding: 10px;
+    position: absolute;
+    right: 70px;
+    top: 15px;
 }
 
 body {
@@ -45,6 +44,7 @@ body {
     width: auto;
     height: 100vh;
     font-family: monospace;
+    color: #00FF00;
 }
 
 form {
@@ -76,6 +76,7 @@ form {
 #gamescreen {
     width: auto;
     padding-top: 10px;
+    position: relative;
 }
 
 #sendBtn {
@@ -115,4 +116,9 @@ form {
     height: 32px;
     text-align: center;
     color: #00FF00;
+}
+
+/*===== HELP PAGE =====*/
+#commands {
+    float: none;
 }

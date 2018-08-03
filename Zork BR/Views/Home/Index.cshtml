@@ -6,10 +6,10 @@
 }   
 
     <div id="gamescreen" class="container">
-        <pre class="textField col-xs-10" id="textField">
+        <pre class="textField col-xs-12" id="textField">
 @Model.StoryText
         </pre>
-        <table id="minimap" class=".col-xs-2">
+        <table id="minimap">
             <tr class="tableRow">
                 <td class="tableCel">
                     @Html.Raw(@Model.RenderMinimap("north2west2"))
