@@ -115,11 +115,27 @@ namespace Zork_BR.Controllers
         }
 
         //Help Action
-        public ActionResult Help()
+        public ActionResult Help(int id = 0)
         {
             ViewBag.Message = "Available Commands";
 
-            HelpViewModel helpViewModel = new HelpViewModel();
+            if (id == 0)
+            {
+                var gameId = Session["gameId"] as int?;
+
+                    story = (Story)FindInDatabase("story", gameId.Value);
+                    player = (Player)FindInDatabase("player", gameId.Value);
+                    map = (Map)FindInDatabase("map", gameId.Value);
+                
+            }
+            else
+            {
+                story = (Story)FindInDatabase("story", id);
+                player = (Player)FindInDatabase("player", id);
+                map = (Map)FindInDatabase("map", id);
+            }
+
+            HelpViewModel helpViewModel = new HelpViewModel(player);
 
             return View(helpViewModel);
         }

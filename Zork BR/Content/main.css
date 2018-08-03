@@ -122,3 +122,9 @@ form {
 #commands {
     float: none;
 }
+
+#fullMapPlayerLocation{
+    margin-top: 7px;
+    margin-left: -22px;
+    color: red;
+}
