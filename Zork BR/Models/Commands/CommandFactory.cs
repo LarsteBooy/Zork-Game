@@ -18,7 +18,7 @@ namespace Zork_BR.Models.Commands
                         break;
                     case Inputs.Render: result = new RenderCommand();
                         break;
-                    case Inputs.Loot: result = new LootCommand(input, story, player);
+                    case Inputs.Loot: result = new LootCommand(story, player);
                         break;
                     case Inputs.North:
                     case Inputs.East:

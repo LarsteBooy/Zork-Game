@@ -212,7 +212,7 @@
     <Compile Include="Models\Items\InventorySlot.cs" />
     <Compile Include="Models\Items\InventorySystem.cs" />
     <Compile Include="Models\Items\SmallHealthPotion.cs" />
-    <Compile Include="Models\MyStaticVars.cs" />
+    <Compile Include="Models\MyStaticClass.cs" />
     <Compile Include="Models\Utility\Rng.cs" />
     <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="Repositories\CommandRepository.cs" />

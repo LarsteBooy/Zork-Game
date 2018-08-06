@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models.Locations
 {
@@ -11,13 +12,25 @@ namespace Zork_BR.Models.Locations
 
         public override bool IsPassable => true;
         public override bool IsLootable => true;
-        public override bool HasLoot { get => base.HasLoot; set => base.HasLoot = value; }
+        
+        public override bool HasLoot{ get; set; }
 
         private const string locationDescriptionDefault = "Son of a beach, there is sand in places you don't want to talk about";
 
         public Beach(string locationDescription = locationDescriptionDefault)
         {
             LocationDescription = locationDescription;
+            int random = Rng.Next(0, 10);
+
+            //10% chance the it contains loot
+            if (random < 1)
+            {
+                HasLoot = true;
+            }
+            else
+            {
+                HasLoot = false;
+            }
         }
     }
 }

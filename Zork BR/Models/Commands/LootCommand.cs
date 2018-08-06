@@ -25,26 +25,27 @@ namespace Zork_BR.Models.Commands
 
             if (player.CurrentLocation.IsLootable == true) {
                 
+                
                 if(player.CurrentLocation.HasLoot == true)
                 {
                     
                     //Code om inventory van location te doorzoeken
 
                     //if Items are found
-                    appendToStory += "I found ..." + MyStaticVars.WhiteLine();
+                    appendToStory += "You found ..." + MyStaticClass.WhiteLine();
 
                     player.CurrentLocation.HasLoot = false;
                 }
                 else
                 {
-                     appendToStory += "This place was already looted" + MyStaticVars.WhiteLine();
+                     appendToStory += "This place was already looted" + MyStaticClass.WhiteLine();
                 }
                 
                 return appendToStory;
             }
             else
             {
-                return "I can't loot here" + MyStaticVars.WhiteLine();
+                return "You can't loot here" + MyStaticClass.WhiteLine();
             }
         }
     }

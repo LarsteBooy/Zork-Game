@@ -10,7 +10,7 @@ namespace Zork_BR.Models.Commands
     {
         public override string MyAction()
         {
-            MyStaticVars.RenderMinimap = true;
+            MyStaticClass.RenderMinimap = true;
             return "";
         }
     }

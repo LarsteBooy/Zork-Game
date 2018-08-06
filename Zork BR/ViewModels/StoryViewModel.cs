@@ -16,7 +16,7 @@ namespace Zork_BR.ViewModels
         public bool Render {
             get
             {
-                return Render = MyStaticVars.RenderMinimap;
+                return Render = MyStaticClass.RenderMinimap;
             }
             set { }
         }

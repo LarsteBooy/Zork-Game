@@ -35,7 +35,7 @@ namespace Zork_BR.Models.Items
                 {
                     // We don't already have an existing inventorySlot for this Item object,
                     // so, add one to the list, if there is room.
-                    if (inventorySlots.Count < MyStaticVars.MaximumSlotsInInventory)
+                    if (inventorySlots.Count < MyStaticClass.MaximumSlotsInInventory)
                     {
                         // Don't set the quantity value here.
                         // The 'while' loop will take us back to the code above, which will add to the quantity.

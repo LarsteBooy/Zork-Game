@@ -50,7 +50,7 @@ namespace Zork_BR.Models.Commands
 
             string CurrentLocation()
             {
-                string currentLocation = String.Format("You are now at [{0},{1}]" + MyStaticVars.WhiteLine(), player.YCoord, player.XCoord );
+                string currentLocation = String.Format("You are now at [{0},{1}]" + MyStaticClass.WhiteLine(), player.YCoord, player.XCoord );
 
                 return currentLocation;
             }
@@ -59,7 +59,7 @@ namespace Zork_BR.Models.Commands
             {
                 if(location.IsPassable == false)
                 {
-                    return location.LocationDescription + MyStaticVars.WhiteLine();
+                    return location.LocationDescription + MyStaticClass.WhiteLine();
                 }
                 else
                 {
