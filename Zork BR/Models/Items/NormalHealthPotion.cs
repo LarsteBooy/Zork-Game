@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Zork_BR.Models.Items
 {
-    public class HealthPotion : Consumable
+    public class NormalHealthPotion : Consumable
     {
         public override string Name => "Health Potion";
 

@@ -14,11 +14,8 @@ namespace Zork_BR.Models.Locations
         public abstract string LocationName { get; }
         public abstract bool IsPassable { get; }
         public abstract bool IsLootable { get; }
-        public virtual bool HasLoot
-        {
-            get;
-            set;
-        }
+        public virtual bool HasLoot{ get; set; }
+        public ICollection<Item> Inventory { get; set; }
 
         public string LocationDescription {
             get;

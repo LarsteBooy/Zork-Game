@@ -207,10 +207,10 @@
     <Compile Include="Models\Commands\LootCommand.cs" />
     <Compile Include="Models\Items\Binoculars.cs" />
     <Compile Include="Models\Items\Consumable.cs" />
-    <Compile Include="Models\Items\HealthPotion.cs" />
+    <Compile Include="Models\Items\NormalHealthPotion.cs" />
     <Compile Include="Models\Items\BigHealthPotion.cs" />
     <Compile Include="Models\Items\InventorySlot.cs" />
-    <Compile Include="Models\Items\InventorySystem.cs" />
+    <Compile Include="Models\Items\InventoryPlayer.cs" />
     <Compile Include="Models\Items\SmallHealthPotion.cs" />
     <Compile Include="Models\MyStaticClass.cs" />
     <Compile Include="Models\Utility\Rng.cs" />

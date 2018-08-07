@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Zork_BR.Models.Items
 {
-    public class InventorySystem
+    public class InventoryPlayer
     {
         public readonly List<InventorySlot> inventorySlots = new List<InventorySlot>();
 

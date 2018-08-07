@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Zork_BR.Models.Items;
 using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models.Locations
@@ -19,9 +20,9 @@ namespace Zork_BR.Models.Locations
         public Cabin(string locationDescription = locationDescriptionDefault)
         {
             LocationDescription = locationDescription;
+            
+            //70% chance it contains loot
             int random = Rng.Next(0, 10);
-
-            //70% chance the it contains loot
             if(random < 7)
             {
                 HasLoot = true;
@@ -29,6 +30,28 @@ namespace Zork_BR.Models.Locations
             else
             {
                 HasLoot = false;
+            }
+
+            //Build inventory
+            if(HasLoot == true)
+            {
+                int chanceForHealth = Rng.Next(0, 100); //75% chance for a healthpotion
+                if(chanceForHealth < 75)
+                {
+                    int whichPotion = Rng.Next(0, 100);
+                    if(whichPotion < 60)    //60% chance for SmallHealthPotion
+                    {
+                        Inventory.Add(new SmallHealthPotion());
+                    }
+                    else if(whichPotion >= 60 && whichPotion < 90) //30% chance for NormalHealthPotion
+                    {
+                        Inventory.Add(new NormalHealthPotion());
+                    }
+                    else
+                    {
+                        Inventory.Add(new BigHealthPotion()); //10% chance for BigHealthPotion
+                    }
+                }
             }
         }
     }

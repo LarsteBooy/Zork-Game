@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Zork_BR.Models.Items;
 using Zork_BR.Models.Locations;
+using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models.Commands
 {
@@ -18,6 +20,29 @@ namespace Zork_BR.Models.Commands
             this.story = story;
             this.player = player;
         }
+        /*
+        //Build inventory
+        private void BuildInventory()
+        {
+            int chanceForHealth = Rng.Next(0, 100); //75% chance for a healthpotion
+            if(chanceForHealth< 75)
+            {
+                int whichPotion = Rng.Next(0, 100);
+                if(whichPotion< 60)    //60% chance for SmallHealthPotion
+                {
+                    player.CurrentLocation.Inventory.Add(new SmallHealthPotion());
+                }
+                else if(whichPotion >= 60 && whichPotion< 90) //30% chance for NormalHealthPotion
+                {
+                    player.CurrentLocation.Inventory.Add(new NormalHealthPotion());
+                }
+                else
+                {
+                    player.CurrentLocation.Inventory.Add(new BigHealthPotion()); //10% chance for BigHealthPotion
+                }
+            }
+        }
+        */
 
         public override string MyAction()
         {
@@ -28,8 +53,10 @@ namespace Zork_BR.Models.Commands
                 
                 if(player.CurrentLocation.HasLoot == true)
                 {
-                    
+
+                    //BuildInventory();
                     //Code om inventory van location te doorzoeken
+                    Console.WriteLine(player.CurrentLocation.Inventory);
 
                     //if Items are found
                     appendToStory += "You found ..." + MyStaticClass.WhiteLine();

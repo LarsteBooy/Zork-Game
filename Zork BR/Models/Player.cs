@@ -13,9 +13,15 @@ namespace Zork_BR.Models
         [Key]
         public int Id { get; set; }
 
+        public InventoryPlayer inventoryPlayer;
         private int currentHealth;
         private int maxHealth = 100;
-        
+        public int XCoord { get; set; }
+        public int YCoord { get; set; }
+        public string PlayerName { get; set; }
+        //private ICollection<Item> Inventory { get; set; }
+        private Weapon SelectedWeapon { get; set; }
+
         public int CurrentHealth
         {
             get { return currentHealth; }
@@ -32,13 +38,6 @@ namespace Zork_BR.Models
             get { return maxHealth; }
             set { maxHealth = value; }
         }
-
-        public string PlayerName { get; set; }
-        private ICollection<Item> Inventory { get; set; }
-        private Weapon SelectedWeapon { get; set; }
-
-        public int XCoord { get; set; } 
-        public int YCoord { get; set; } 
         
         public Location CurrentLocation
         {
@@ -47,6 +46,5 @@ namespace Zork_BR.Models
                 return Map.map[YCoord, XCoord];
             }
         }
-        
     }
 }
