@@ -53,10 +53,13 @@ namespace Zork_BR.Models.Commands
                 
                 if(player.CurrentLocation.HasLoot == true)
                 {
-
                     //BuildInventory();
                     //Code om inventory van location te doorzoeken
-                    Console.WriteLine(player.CurrentLocation.Inventory);
+                    if (player.CurrentLocation is ILocationInventory location)
+                    {
+                        Console.WriteLine(string.Join(";", location.Inventory));
+                    }
+
 
                     //if Items are found
                     appendToStory += "You found ..." + MyStaticClass.WhiteLine();

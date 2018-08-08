@@ -7,7 +7,7 @@ using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models.Locations
 {
-    public class Cabin : Location
+    public class Cabin : Location, ILocationInventory
     {
         public override string LocationName => "Cabin";
 
@@ -15,25 +15,21 @@ namespace Zork_BR.Models.Locations
         public override bool IsLootable => true;
         public override bool HasLoot{ get;set; }
 
+        public ICollection<Item> Inventory { get ; set ; }
+
         private const string locationDescriptionDefault = "You see a cabin filled with epic lewt.";
 
         public Cabin(string locationDescription = locationDescriptionDefault)
         {
             LocationDescription = locationDescription;
-            
+            Inventory = new List<Item>();
+
             //70% chance it contains loot
             int random = Rng.Next(0, 10);
-            if(random < 7)
-            {
-                HasLoot = true;
-            }
-            else
-            {
-                HasLoot = false;
-            }
-
+            HasLoot = random < 7;
+            
             //Build inventory
-            if(HasLoot == true)
+            if(HasLoot)
             {
                 int chanceForHealth = Rng.Next(0, 100); //75% chance for a healthpotion
                 if(chanceForHealth < 75)
