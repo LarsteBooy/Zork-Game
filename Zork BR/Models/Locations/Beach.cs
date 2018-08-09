@@ -17,7 +17,8 @@ namespace Zork_BR.Models.Locations
         public Beach(string locationDescription = locationDescriptionDefault)
         {
             LocationDescription = locationDescription;
-            
+            LootList = new List<Item>();
+
             //10% chance it contains loot
             int random = Rng.Next(0, 10);
             HasLoot = random < 1;
