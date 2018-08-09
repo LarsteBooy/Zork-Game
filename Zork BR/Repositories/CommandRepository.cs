@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Web;
 using Zork_BR.Models;
 using Zork_BR.Models.Commands;
-using Zork_BR.Models.Locations;
 using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Controllers
