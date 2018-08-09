@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Zork_BR.Models.Items
 {
-    interface ILocationInventory
+    interface ILootList
     {
-        ICollection<Item> Inventory { get; set; }
+        ICollection<Item> LootList { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using Zork_BR.Models.Items;
@@ -20,9 +21,9 @@ namespace Zork_BR.Models.Commands
             this.story = story;
             this.player = player;
         }
-        /*
-        //Build inventory
-        private void BuildInventory()
+        
+        //create lootlist
+        private void CreateLootlist(ILootList location)
         {
             int chanceForHealth = Rng.Next(0, 100); //75% chance for a healthpotion
             if(chanceForHealth< 75)
@@ -30,19 +31,18 @@ namespace Zork_BR.Models.Commands
                 int whichPotion = Rng.Next(0, 100);
                 if(whichPotion< 60)    //60% chance for SmallHealthPotion
                 {
-                    player.CurrentLocation.Inventory.Add(new SmallHealthPotion());
+                    location.LootList.Add(new SmallHealthPotion());
                 }
                 else if(whichPotion >= 60 && whichPotion< 90) //30% chance for NormalHealthPotion
                 {
-                    player.CurrentLocation.Inventory.Add(new NormalHealthPotion());
+                    location.LootList.Add(new NormalHealthPotion());
                 }
                 else
                 {
-                    player.CurrentLocation.Inventory.Add(new BigHealthPotion()); //10% chance for BigHealthPotion
+                    location.LootList.Add(new BigHealthPotion()); //10% chance for BigHealthPotion
                 }
             }
         }
-        */
 
         public override string MyAction()
         {
@@ -53,11 +53,12 @@ namespace Zork_BR.Models.Commands
                 
                 if(player.CurrentLocation.HasLoot == true)
                 {
-                    //BuildInventory();
+                    
                     //Code om inventory van location te doorzoeken
-                    if (player.CurrentLocation is ILocationInventory location)
+                    if (player.CurrentLocation is ILootList location)
                     {
-                        Console.WriteLine(string.Join(";", location.Inventory));
+                        CreateLootlist(location);
+                        Debug.WriteLine(string.Join(";", location.LootList));
                     }
 
 
