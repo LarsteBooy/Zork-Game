@@ -2,7 +2,7 @@
 {
     public class NormalHealthPotion : Consumable
     {
-        public override string Name => "Health Potion";
+        public override string Name => "Normal Health Potion";
 
         public override int MaximumStackableQuantity => 5;
 

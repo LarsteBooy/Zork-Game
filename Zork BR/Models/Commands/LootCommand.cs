@@ -44,21 +44,25 @@ namespace Zork_BR.Models.Commands
             string appendToStory = "";
 
             if (player.CurrentLocation.IsLootable == true) {
-                
-                
                 if(player.CurrentLocation.HasLoot == true)
                 {
-                    
                     //Code om inventory van location te doorzoeken
                     if (player.CurrentLocation is ILootList location)
                     {
                         CreateLootlist(location);
+
+                        foreach(Item i in location.LootList)
+                        {
+                            player.inventoryPlayer.AddItem(i, 1);
+                            appendToStory += string.Format("You found a {0}" + MyStaticClass.WhiteLine(), i.Name);
+                        }
+
                         Debug.WriteLine(string.Join(";", location.LootList));
                     }
-
-
-                    //if Items are found
-                    appendToStory += "You found ..." + MyStaticClass.WhiteLine();
+                    else
+                    {
+                        appendToStory += "everything you saw was useless";
+                    }
 
                     player.CurrentLocation.HasLoot = false;
                 }
