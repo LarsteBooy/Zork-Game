@@ -9,13 +9,7 @@ namespace Zork_BR.Models
         [Key]
         public int Id { get; set; }
 
-        //TODO Wordt 2 keer aangeroepen? (De finddatabase method maakt blijkbaar ook gebruik van de player constructor)
-        public Player()
-        {
-            inventoryPlayer = new InventoryPlayer();
-        }
-
-        public InventoryPlayer inventoryPlayer;
+        public static InventoryPlayer inventoryPlayer = new InventoryPlayer();
         private int currentHealth;
         private int maxHealth = 100;
         public int XCoord { get; set; }

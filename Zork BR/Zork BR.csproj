@@ -210,7 +210,6 @@
     <Compile Include="Models\Items\ILocationInventory.cs" />
     <Compile Include="Models\Items\NormalHealthPotion.cs" />
     <Compile Include="Models\Items\BigHealthPotion.cs" />
-    <Compile Include="Models\Items\InventorySlot.cs" />
     <Compile Include="Models\Items\InventoryPlayer.cs" />
     <Compile Include="Models\Items\SmallHealthPotion.cs" />
     <Compile Include="Models\MyStaticClass.cs" />

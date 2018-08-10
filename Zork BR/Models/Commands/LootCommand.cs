@@ -53,17 +53,16 @@ namespace Zork_BR.Models.Commands
 
                         foreach(Item i in location.LootList)
                         {
-                            player.inventoryPlayer.AddItem(i, 1);
-                            appendToStory += string.Format("You found a {0}" + MyStaticClass.WhiteLine(), i.Name);
+                            appendToStory += Player.inventoryPlayer.AddItem(i);
                         }
 
-                        Debug.WriteLine(string.Join(";", location.LootList));
-                    }
-                    else
-                    {
-                        appendToStory += "everything you saw was useless";
-                    }
+                        if (location.LootList.Count == 0)
+                        {
+                            appendToStory += "everything you saw was useless" + MyStaticClass.WhiteLine(); ;
+                        }
 
+                            Debug.WriteLine(string.Join(";", location.LootList));
+                    }
                     player.CurrentLocation.HasLoot = false;
                 }
                 else

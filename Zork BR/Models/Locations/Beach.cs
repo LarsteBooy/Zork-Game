@@ -21,7 +21,7 @@ namespace Zork_BR.Models.Locations
 
             //10% chance it contains loot
             int random = Rng.Next(0, 10);
-            HasLoot = random < 1;
+            HasLoot = random < 9;
         }
     }
 }
