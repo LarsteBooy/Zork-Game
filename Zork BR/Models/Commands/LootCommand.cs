@@ -60,8 +60,6 @@ namespace Zork_BR.Models.Commands
                         {
                             appendToStory += "everything you saw was useless" + MyStaticClass.WhiteLine(); ;
                         }
-
-                            Debug.WriteLine(string.Join(";", location.LootList));
                     }
                     player.CurrentLocation.HasLoot = false;
                 }

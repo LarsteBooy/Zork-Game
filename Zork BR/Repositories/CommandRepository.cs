@@ -69,6 +69,7 @@ namespace Zork_BR.Controllers
             Commands.Add("secret", "You are meant to find the fun commands, not just type secret");
             Commands.Add("render", "Rendering more map...");
             Commands.Add("loot", "looting...");
+            Commands.Add("inventory", "searching through inventory...");
         }
 
         public string GetCommandText(string input)

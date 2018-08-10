@@ -20,6 +20,8 @@ namespace Zork_BR.Models.Commands
                         break;
                     case Inputs.Loot: result = new LootCommand(input, story, player);
                         break;
+                    case Inputs.Inventory: result = new GetInventoryCommand();
+                        break;
                     case Inputs.North:
                     case Inputs.East:
                     case Inputs.South:
@@ -45,5 +47,6 @@ namespace Zork_BR.Models.Commands
         Help,
         Render,
         Loot,
+        Inventory,
     }
 }
