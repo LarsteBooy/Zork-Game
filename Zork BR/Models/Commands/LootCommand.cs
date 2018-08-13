@@ -26,15 +26,15 @@ namespace Zork_BR.Models.Commands
                 int whichPotion = Rng.Next(0, 100);
                 if(whichPotion< 60)    //60% chance for SmallHealthPotion
                 {
-                    location.LootList.Add(new SmallHealthPotion());
+                    location.LootList.Add(new HealthPotion("Small Health Potion", 30));
                 }
                 else if(whichPotion >= 60 && whichPotion< 90) //30% chance for NormalHealthPotion
                 {
-                    location.LootList.Add(new NormalHealthPotion());
+                    location.LootList.Add(new HealthPotion("Normal Health Potion", 50));
                 }
                 else
                 {
-                    location.LootList.Add(new BigHealthPotion()); //10% chance for BigHealthPotion
+                    location.LootList.Add(new HealthPotion("Big Health Potion", 70)); //10% chance for BigHealthPotion
                 }
             }
         }

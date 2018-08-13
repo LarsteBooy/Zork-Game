@@ -2,6 +2,6 @@
 {
     public abstract class Consumable : Item
     {
-        public virtual int HealthRegain { get;}
+        public virtual int HealthRegain { get; set; }
     }
 }

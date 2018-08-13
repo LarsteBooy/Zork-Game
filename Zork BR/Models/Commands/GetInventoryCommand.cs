@@ -9,18 +9,16 @@ namespace Zork_BR.Models.Commands
     {
         public override string MyAction()
         {
-            string appendToStory = "You have:" + MyStaticClass.WhiteLine();
+            string appendToStory = "You have:" + Environment.NewLine;
 
             if(Player.inventoryPlayer.Inventory.Count == 0)
             {
-                appendToStory += "Nothing... it's good practice to have some items before looking through your inventory";
+                appendToStory += Environment.NewLine + "Nothing... it's good practice to have some items before looking through your inventory";
             }
-
-            //Player.inventoryPlayer.Inventory.OrderBy(i => i.Name);
 
             foreach (Item i in Player.inventoryPlayer.Inventory)
             {
-                appendToStory += i.Name + Environment.NewLine;
+                appendToStory += Environment.NewLine + i.Name;
             }
 
             appendToStory += MyStaticClass.WhiteLine();
