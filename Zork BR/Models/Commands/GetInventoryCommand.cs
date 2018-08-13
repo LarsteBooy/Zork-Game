@@ -9,7 +9,8 @@ namespace Zork_BR.Models.Commands
     {
         public override string MyAction()
         {
-            string appendToStory = "You have:" + Environment.NewLine;
+            string appendToStory = string.Format("You can have a maximum number of {0} inventory slots. {1}You've got:{1}", MyStaticClass.MaximumItemsInInventory, Environment.NewLine);
+            int ocupiedInventorySpaces = 1;
 
             if(Player.inventoryPlayer.Inventory.Count == 0)
             {
@@ -18,7 +19,8 @@ namespace Zork_BR.Models.Commands
 
             foreach (Item i in Player.inventoryPlayer.Inventory)
             {
-                appendToStory += Environment.NewLine + i.Name;
+                appendToStory += Environment.NewLine + ocupiedInventorySpaces + ". " + i.Name;
+                ocupiedInventorySpaces++;
             }
 
             appendToStory += MyStaticClass.WhiteLine();

@@ -33,6 +33,7 @@ namespace Zork_BR.Models.Commands
                         if(location is Cabin)
                         {
                             LootTables.HealthTable(location);
+                            LootTables.RareItemTable(location);
                         }
 
                         if (location is Beach)

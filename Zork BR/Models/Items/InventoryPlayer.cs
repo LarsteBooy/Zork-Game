@@ -19,8 +19,15 @@ namespace Zork_BR.Models.Items
         {
             if(NumberOfItems < MyStaticClass.MaximumItemsInInventory)
             {
-                //TODO If item == Binoculars MyStaticClass.Render = true
-                //TODO if item == Backpack MyStaticClass.MaximumItemsInInventory += 5
+                if(item is Binoculars)
+                {
+                    MyStaticClass.RenderMinimap = true;
+                } 
+                if(item is Backpack)
+                {
+                    MyStaticClass.MaximumItemsInInventory = 15;
+                }
+
                 Inventory.Add(item);
                 NumberOfItems++;
                 return String.Format("You found a {0}" + MyStaticClass.WhiteLine(), item.Name);

@@ -206,6 +206,7 @@
     <Compile Include="Models\Commands\GetInventoryCommand.cs" />
     <Compile Include="Models\Commands\RenderCommand.cs" />
     <Compile Include="Models\Commands\LootCommand.cs" />
+    <Compile Include="Models\Items\Backpack.cs" />
     <Compile Include="Models\Items\Binoculars.cs" />
     <Compile Include="Models\Items\Consumable.cs" />
     <Compile Include="Models\Items\HealthPotion.cs" />
