@@ -2,7 +2,7 @@
 
 namespace Zork_BR.Models.Items
 {
-    interface ILootList
+    public interface ILootList
     {
         ICollection<Item> LootList { get; set; }
     }

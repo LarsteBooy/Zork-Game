@@ -212,6 +212,7 @@
     <Compile Include="Models\Items\IHealthRegain.cs" />
     <Compile Include="Models\Items\ILocationInventory.cs" />
     <Compile Include="Models\Items\InventoryPlayer.cs" />
+    <Compile Include="Models\LootTables.cs" />
     <Compile Include="Models\MyStaticClass.cs" />
     <Compile Include="Models\Utility\Rng.cs" />
     <Compile Include="ViewModels\HelpViewModel.cs" />

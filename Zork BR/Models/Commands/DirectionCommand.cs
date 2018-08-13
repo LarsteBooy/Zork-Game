@@ -45,7 +45,7 @@ namespace Zork_BR.Models.Commands
             }
             else
             {
-                return "This is not a direction you can go to";
+                return "This is not a direction you can go to"; //unreachable
             }
 
             string CurrentLocation()
