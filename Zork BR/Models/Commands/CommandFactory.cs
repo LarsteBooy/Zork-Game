@@ -16,6 +16,12 @@ namespace Zork_BR.Models.Commands
                 {
                     case Inputs.Help: result = new HelpCommand(story);
                         break;
+                    case Inputs.Render: result = new RenderCommand();
+                        break;
+                    case Inputs.Loot: result = new LootCommand(input, story, player);
+                        break;
+                    case Inputs.Inventory: result = new GetInventoryCommand();
+                        break;
                     case Inputs.North:
                     case Inputs.East:
                     case Inputs.South:
@@ -39,5 +45,8 @@ namespace Zork_BR.Models.Commands
         South,
         West,
         Help,
+        Render,
+        Loot,
+        Inventory,
     }
 }

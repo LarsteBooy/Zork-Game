@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 using Zork_BR.Models.Locations;
 
 namespace Zork_BR.Models
@@ -350,7 +345,7 @@ namespace Zork_BR.Models
             map[10, 10] = new Plain();
             map[11, 10] = new Plain();
             map[12, 10] = new Plain();
-            map[13, 10] = new Cabin("You see a shack, the door seems to be broken");
+            map[13, 10] = new Cabin("You are at a shack, the door seems to be broken");
             map[14, 10] = new Plain();
             map[15, 10] = new Plain();
             map[16, 10] = new Plain();
@@ -476,7 +471,7 @@ namespace Zork_BR.Models
             map[8, 14] = new Plain();
             map[9, 14] = new Plain();
             map[10, 14] = new Lake();
-            map[11, 14] = new Cabin("You see a small wooden fishing shack next to the lake.");
+            map[11, 14] = new Cabin("You are at a small wooden fishing shack next to the lake.");
             map[12, 14] = new Plain();
             map[13, 14] = new Plain();
             map[14, 14] = new Plain();
@@ -600,7 +595,7 @@ namespace Zork_BR.Models
             map[4, 18] = new Plain();
             map[5, 18] = new Plain();
             map[6, 18] = new Plain();
-            map[7, 18] = new Cabin("You see a lakeside villa");
+            map[7, 18] = new Cabin("You arrived at a lakeside villa");
             map[8, 18] = new Plain();
             map[9, 18] = new Lake();
             map[10, 18] = new Lake();
@@ -615,7 +610,7 @@ namespace Zork_BR.Models
             map[19, 18] = new Forest();
             map[20, 18] = new Forest();
             map[21, 18] = new Plain();
-            map[22, 18] = new Cabin("You see a big wooden cottage.");
+            map[22, 18] = new Cabin("You are at a big wooden cottage.");
             map[23, 18] = new Plain();
             map[24, 18] = new Forest();
             map[25, 18] = new Forest();
@@ -776,7 +771,7 @@ namespace Zork_BR.Models
             map[20, 23] = new Forest();
             map[21, 23] = new Forest();
             map[22, 23] = new Forest();
-            map[23, 23] = new Cabin("You see a large treehouse in the middle of the forest.");
+            map[23, 23] = new Cabin("You found a large treehouse in the middle of the forest.");
             map[24, 23] = new Forest();
             map[25, 23] = new Forest();
             map[26, 23] = new Plain();

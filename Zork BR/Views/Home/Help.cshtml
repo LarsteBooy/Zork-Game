@@ -1,13 +1,21 @@
-﻿@{
+﻿@using Zork_BR.Models
+@model Zork_BR.ViewModels.HelpViewModel
+
+@{
     ViewBag.Title = "Help";
 }
-
-
 <div>
     <h2>@ViewBag.Title.</h2>
     <h3>@ViewBag.Message</h3>
 
-    <pre>Commands:
+    <pre id="commands">Commands:
 poke
 Dance</pre>
+</div>
+
+<div>
+    <h3>Full map</h3>
+    <table id="fullMap">
+        @Html.Raw(Model.GetMap)
+    </table>
 </div>

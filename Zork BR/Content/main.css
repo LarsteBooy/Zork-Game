@@ -5,6 +5,14 @@
     white-space: pre-wrap;
     word-break: normal;
     float: left;
+    margin: 0;
+    color: #00FF00;
+}
+
+@media screen and (max-width: 1000px) {
+    #minimap{
+        display: none;
+    }
 }
 
 #fullMap #fullMapCel {
@@ -16,7 +24,7 @@
     color: red;
 }
 
-span{
+span.playerLocation{
     position: absolute;
     margin-top: -25px;
     margin-left: -6px;
@@ -26,6 +34,9 @@ span{
     float: right;
     margin: auto;
     padding: 10px;
+    position: absolute;
+    right: 70px;
+    top: 15px;
 }
 
 body {
@@ -33,6 +44,7 @@ body {
     width: auto;
     height: 100vh;
     font-family: monospace;
+    color: #00FF00;
 }
 
 form {
@@ -43,15 +55,28 @@ form {
 
 .textField {
     color: #00FF00;
-    max-height: 89vh;
-    overflow: auto;
+    max-height: 87vh;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column-reverse;
+    padding: 0;
 }
 
-#gamescreen{
+.textField::-webkit-scrollbar-thumb {
+    background-color: #00FF00;
+    border-radius: 10px;
+}
+
+.textField::-webkit-scrollbar {
+    border: 1px solid #00FF00;
+    border-radius: 10px;
+    color: red;
+}
+
+#gamescreen {
     width: auto;
     padding-top: 10px;
+    position: relative;
 }
 
 #sendBtn {
@@ -91,4 +116,15 @@ form {
     height: 32px;
     text-align: center;
     color: #00FF00;
+}
+
+/*===== HELP PAGE =====*/
+#commands {
+    float: none;
+}
+
+#fullMapPlayerLocation{
+    margin-top: 7px;
+    margin-left: -22px;
+    color: red;
 }

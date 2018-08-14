@@ -10,7 +10,6 @@ namespace Zork_BR.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Zork_BR.Models.ApplicationDbContext";
         }
 
         protected override void Seed(Zork_BR.Models.ApplicationDbContext context)

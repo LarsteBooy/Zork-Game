@@ -2,7 +2,9 @@
 {
     public abstract class Item
     {
+        public int Id { get; set; }
+
         public abstract string Name { get; set; }
-        public virtual int Amount { get; set; }
+        
     }
 }

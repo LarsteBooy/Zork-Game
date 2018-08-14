@@ -12,9 +12,7 @@ namespace Zork_BR.Models.Commands
         private readonly string input;
         private readonly Story story = null;
         private readonly Player player = null;
-
-
-
+        
         public DirectionCommand(string input, Story story, Player player)
         {
             this.input = input;
@@ -47,12 +45,12 @@ namespace Zork_BR.Models.Commands
             }
             else
             {
-                return "This is not a direction you can go to";
+                return "This is not a direction you can go to"; //unreachable
             }
 
             string CurrentLocation()
             {
-                string currentLocation = String.Format("You are now at [{0},{1}]" + Environment.NewLine + Environment.NewLine, player.YCoord, player.XCoord );
+                string currentLocation = String.Format("You are now at [{0},{1}]" + MyStaticClass.WhiteLine(), player.YCoord, player.XCoord );
 
                 return currentLocation;
             }
@@ -61,7 +59,7 @@ namespace Zork_BR.Models.Commands
             {
                 if(location.IsPassable == false)
                 {
-                    return location.LocationDescription + Environment.NewLine + Environment.NewLine;
+                    return location.LocationDescription + MyStaticClass.WhiteLine();
                 }
                 else
                 {

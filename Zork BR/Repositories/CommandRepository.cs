@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Web;
 using Zork_BR.Models;
 using Zork_BR.Models.Commands;
+using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Controllers
 {
-    public class StoryRepository 
+    public class CommandRepository 
     {
         readonly Story story = null;
         Player player = null;
 
         Dictionary<string, string> Commands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
 
-        public StoryRepository(Story story, Player player) {
+        public CommandRepository(Story story, Player player) {
             this.player = player;
             this.story = story;
             FillCommands();
@@ -23,14 +22,12 @@ namespace Zork_BR.Controllers
 
         public void CreatePlayer()
         {
-            Random random = new Random();
-
             SpawnPlayer();
 
             void SpawnPlayer()
             {
-                player.XCoord = random.Next(0, 32);
-                player.YCoord = random.Next(0, 32);
+                player.XCoord = Rng.Next(0, 32);
+                player.YCoord = Rng.Next(0, 32);
 
                 Debug.WriteLine("Spawn location = [{0},{1}] which is a {2}", player.YCoord, player.XCoord, Map.map[player.YCoord, player.XCoord].LocationName);
 
@@ -70,6 +67,9 @@ namespace Zork_BR.Controllers
             Commands.Add("help", "You need help? Here's a list of commands");
             Commands.Add("1337", "You probably think you're special now huh?");
             Commands.Add("secret", "You are meant to find the fun commands, not just type secret");
+            Commands.Add("render", "Rendering more map...");
+            Commands.Add("loot", "looting...");
+            Commands.Add("inventory", "searching through inventory...");
         }
 
         public string GetCommandText(string input)
@@ -78,12 +78,17 @@ namespace Zork_BR.Controllers
             if (Commands.ContainsKey(i))
             {
                 var c = Commands[i];
-                return "<" + i + ">" + Environment.NewLine + c + Environment.NewLine + Environment.NewLine;
+                return MyStaticClass.WhiteLine() + "<" + i + ">" + Environment.NewLine + c + MyStaticClass.WhiteLine();
             }
             else
             {
-                return "<" + i + ">" + Environment.NewLine + "This is not a command, for all commands see the Help page" + Environment.NewLine + Environment.NewLine;
+                return MyStaticClass.WhiteLine() + "<" + i + ">" + Environment.NewLine + "This is not a command, for all commands see the Help page" + MyStaticClass.WhiteLine();
             }
+        }
+
+        public string CurrentLocationDescription()
+        {
+            return player.CurrentLocation.LocationDescription + MyStaticClass.WhiteLine();
         }
 
         public string NearbyLocations()
@@ -96,7 +101,7 @@ namespace Zork_BR.Controllers
             var nearbyLocations = String.Format("To your north you see a {0}" + Environment.NewLine + 
                                                 "To your east you see a {1}" + Environment.NewLine + 
                                                 "To your south you see a {2}" + Environment.NewLine + 
-                                                "To your west you see a {3}" + Environment.NewLine + Environment.NewLine, 
+                                                "To your west you see a {3}" + MyStaticClass.WhiteLine(), 
                                                 locationNorth, locationEast, locationSouth, locationWest
                                                 );
             return nearbyLocations;
@@ -111,8 +116,10 @@ namespace Zork_BR.Controllers
 
                 if (command.GetType().Name == "DirectionCommand")
                 {
-                    var nearbyLocations = NearbyLocations();
-                    return actionString + nearbyLocations;
+                    //string nearbyLocations = NearbyLocations();
+                    string currentLocationDescription = CurrentLocationDescription();
+
+                    return actionString /*+ nearbyLocations*/ + currentLocationDescription;
                 }
 
                 return actionString;
@@ -122,7 +129,7 @@ namespace Zork_BR.Controllers
 
         public string EndOfAction()
         {
-            string endText = "=============================" + Environment.NewLine + Environment.NewLine;
+            string endText = "=============================";
             return endText;
         }
 
