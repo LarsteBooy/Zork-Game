@@ -20,32 +20,32 @@ namespace Zork_BR.Models.Commands
             this.player = player;
         }
 
-        public override string MyAction()
+        public override string MyAction() //TODO Haal de input == cijfer weg en zorg ervoor dat de speler dit niet kan invoegen als input (de cijfer staat voor de plek van de command in de enum van CommandFactory). Hetzelfde geldt voor de navigate method
         {
 
-            if (input == "north")
+            if (input == "north" || input == "0")
             {
                 Location locationNorth = Map.map[player.YCoord - 1, player.XCoord];
-                return navigate(locationNorth, input);
+                return Navigate(locationNorth, input);
             }
-            else if (input == "east")
+            else if (input == "east" || input == "1")
             {
                 Location locationEast = Map.map[player.YCoord, player.XCoord + 1];
-                return navigate(locationEast, input);
+                return Navigate(locationEast, input);
             }
-            else if (input == "south")
+            else if (input == "south" || input == "2")
             {
                 Location locationSouth = Map.map[player.YCoord + 1, player.XCoord];
-                return navigate(locationSouth, input);
+                return Navigate(locationSouth, input);
             }
-            else if (input == "west")
+            else if (input == "west" || input == "3")
             {
                 Location locationWest = Map.map[player.YCoord, player.XCoord - 1];
-                return navigate(locationWest, input);
+                return Navigate(locationWest, input);
             }
             else
             {
-                return "This is not a direction you can go to"; //unreachable
+                return "This is not a direction you can go to" + Environment.NewLine;
             }
 
             string CurrentLocation()
@@ -55,7 +55,7 @@ namespace Zork_BR.Models.Commands
                 return currentLocation;
             }
 
-            string navigate(Location location, string input)
+            string Navigate(Location location, string input)
             {
                 if(location.IsPassable == false)
                 {
@@ -65,18 +65,23 @@ namespace Zork_BR.Models.Commands
                 {
                     switch (input)
                     {
-                        case "north": player.YCoord--;
+                        case "north":
+                        case "0":
+                            player.YCoord--;
                             return CurrentLocation();
                         case "east":
+                        case "1":
                             player.XCoord++;
                             return CurrentLocation();
                         case "south":
+                        case "2":
                             player.YCoord++;
                             return CurrentLocation();
                         case "west":
+                        case "3":
                             player.XCoord--;
                             return CurrentLocation();
-                        default: return "Something broke";
+                        default: return "Something broke" + Environment.NewLine;
                     }
                 }
             }

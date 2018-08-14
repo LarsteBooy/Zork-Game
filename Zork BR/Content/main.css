@@ -24,7 +24,7 @@
     color: red;
 }
 
-span.playerLocation{
+.playerLocation{
     position: absolute;
     margin-top: -25px;
     margin-left: -6px;
