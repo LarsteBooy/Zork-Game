@@ -35,7 +35,5 @@ namespace Zork_BR.Models.Items
         {
             Inventory.Remove(item);
         }
-
-
     }
 }

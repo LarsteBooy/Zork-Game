@@ -9,7 +9,7 @@ namespace Zork_BR.Models.Commands
         private readonly string input;
         private readonly Story story = null;
         private readonly Player player = null;
-        
+
         public LootCommand(string input, Story story, Player player)
         {
             this.input = input;
@@ -40,27 +40,38 @@ namespace Zork_BR.Models.Commands
             }
 
             //TODO Aparte methode voor looten 
-           
             var pickedUp = new List<Item>();
-                foreach (Item i in location.LootList)
+            foreach (Item i in location.LootList)
+            {
+                if (Player.inventoryPlayer.NumberOfItems < MyStaticClass.MaximumItemsInInventory)
                 {
-                    if (Player.inventoryPlayer.NumberOfItems < MyStaticClass.MaximumItemsInInventory)
-                    {
-                        Player.inventoryPlayer.AddItem(i);
-                        pickedUp.Add(i);
+                    Player.inventoryPlayer.AddItem(i);
+                    pickedUp.Add(i);
 
-                        appendToStory+= String.Format("You found a {0}" + MyStaticClass.WhiteLine(), i.Name);
-                    }
+                    appendToStory += String.Format("You found a {0}" + MyStaticClass.WhiteLine(), i.Name);
                 }
-                
-            //RemoveFromLootList(pickedUp);
-            //   if (ItemList.HasAnyLeft)
-            //{
-            //    appendToStory += "Your inventory is full" + MyStaticClass.WhiteLine();
-            //}
-                
+            }
+
+            RemoveFromLootList(location.LootList, pickedUp);
+            
+            if (location.LootList.Count > 0)
+            {
+                appendToStory += "Your inventory is full" + MyStaticClass.WhiteLine();
+            }
+            if (location.LootList.Count == 0)
+            {
+                player.CurrentLocation.HasLoot = false;
+            }
+
             return appendToStory;
         }
-        
+
+        private void RemoveFromLootList(ICollection<Item> lootlist, List<Item> pickedUp)
+        {
+            foreach (var item in pickedUp)
+            {
+                lootlist.Remove(item);
+            }
+        }
     }
 }

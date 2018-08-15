@@ -11,11 +11,10 @@ namespace Zork_BR.Models
 
         public static InventoryPlayer inventoryPlayer = new InventoryPlayer();
         private int currentHealth;
-        private int maxHealth = 100;
+
         public int XCoord { get; set; }
         public int YCoord { get; set; }
         public string PlayerName { get; set; }
-        //private ICollection<Item> Inventory { get; set; }
         private Weapon SelectedWeapon { get; set; }
 
         public int CurrentHealth
@@ -24,17 +23,13 @@ namespace Zork_BR.Models
             set
             {
                 if (value < 0) currentHealth = 0;
-                else if (value > maxHealth) currentHealth = MaxHealth;
+                else if (value > MaxHealth) currentHealth = MaxHealth;
                 else { currentHealth = value; }
             }
         }
 
-        public int MaxHealth
-        {
-            get { return maxHealth; }
-            set { maxHealth = value; }
-        }
-        
+        public int MaxHealth { get; set; } = 100;
+
         public Location CurrentLocation
         {
             get
