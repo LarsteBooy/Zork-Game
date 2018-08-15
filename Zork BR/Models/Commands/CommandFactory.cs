@@ -18,6 +18,9 @@ namespace Zork_BR.Models.Commands
                         break;
                     case Inputs.Render: result = new RenderCommand();
                         break;
+                    case Inputs.Bagspace:
+                        result = new AddBagspace();
+                        break;
                     case Inputs.Loot: result = new LootCommand(input, story, player);
                         break;
                     case Inputs.Inventory: result = new GetInventoryCommand();
@@ -48,5 +51,6 @@ namespace Zork_BR.Models.Commands
         Render,
         Loot,
         Inventory,
+        Bagspace,
     }
 }

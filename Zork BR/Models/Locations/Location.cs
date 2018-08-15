@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Zork_BR.Models.Items;
 
 namespace Zork_BR.Models.Locations
 {
@@ -9,7 +10,7 @@ namespace Zork_BR.Models.Locations
 
         public abstract string LocationName { get; }
         public abstract bool IsPassable { get; }
-        public abstract bool IsLootable { get; }
+        public bool IsLootable { get { return this is ILootList; } }
         public virtual bool HasLoot{ get; set; }
 
         public string LocationDescription {

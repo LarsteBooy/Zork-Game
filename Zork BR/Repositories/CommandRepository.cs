@@ -58,7 +58,7 @@ namespace Zork_BR.Controllers
             Commands.Add("dance", "You are making a fool of yourself");
             Commands.Add("test", "this is a test");
             Commands.Add("vleespoeder", "ThE bEsT mEaTpOwDeR eVeR");
-            Commands.Add("Petri", "91%");
+            Commands.Add("petri", "91%");
             Commands.Add("miljaar", "Harses Lars!");
             Commands.Add("north", "You went north");
             Commands.Add("east", "You went east");
@@ -70,6 +70,7 @@ namespace Zork_BR.Controllers
             Commands.Add("render", "Rendering more map...");
             Commands.Add("loot", "looting...");
             Commands.Add("inventory", "searching through inventory...");
+            Commands.Add("bagspace", "Ultimate hax0r activated; MOAR BAGSPACE !11!!" );
         }
 
         public string GetCommandText(string input)

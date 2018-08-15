@@ -1,7 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
 using Zork_BR.Models.Items;
-using Zork_BR.Models.Locations;
-using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models.Commands
 {
@@ -17,54 +16,51 @@ namespace Zork_BR.Models.Commands
             this.story = story;
             this.player = player;
         }
-        
-
 
         public override string MyAction()
         {
             string appendToStory = "";
 
-            if (player.CurrentLocation.IsLootable == true) {
-                if(player.CurrentLocation.HasLoot == true)
-                {
-                    //Code om inventory van location te doorzoeken
-                    if (player.CurrentLocation is ILootList location)
-                    {
-                        if(location is Cabin)
-                        {
-                            LootTables.HealthTable(location);
-                            LootTables.RareItemTable(location);
-                        }
-
-                        if (location is Beach)
-                        {
-                            LootTables.HealthTable(location);
-                        }
-
-
-                        foreach (Item i in location.LootList)
-                        {
-                            appendToStory += Player.inventoryPlayer.AddItem(i);
-                        }
-
-                        if (location.LootList.Count == 0)
-                        {
-                            appendToStory += "everything you saw was useless" + MyStaticClass.WhiteLine(); ;
-                        }
-                    }
-                    player.CurrentLocation.HasLoot = false;
-                }
-                else
-                {
-                     appendToStory += "This place was already looted" + MyStaticClass.WhiteLine();
-                }
-                
-                return appendToStory;
-            }
-            else
+            if (!player.CurrentLocation.IsLootable)
             {
                 return "You can't loot here" + MyStaticClass.WhiteLine();
             }
+
+            if (!player.CurrentLocation.HasLoot)
+            {
+                return "This place was already looted" + MyStaticClass.WhiteLine();
+            }
+
+            ILootList location = player.CurrentLocation as ILootList;
+            location.CreateLootTables();
+
+            if (location.LootList.Count == 0)
+            {
+                return "You searched the entire place, but everything you found was useless" + MyStaticClass.WhiteLine();
+            }
+
+            //TODO Aparte methode voor looten 
+           
+            var pickedUp = new List<Item>();
+                foreach (Item i in location.LootList)
+                {
+                    if (Player.inventoryPlayer.NumberOfItems < MyStaticClass.MaximumItemsInInventory)
+                    {
+                        Player.inventoryPlayer.AddItem(i);
+                        pickedUp.Add(i);
+
+                        appendToStory+= String.Format("You found a {0}" + MyStaticClass.WhiteLine(), i.Name);
+                    }
+                }
+                
+            //RemoveFromLootList(pickedUp);
+            //   if (ItemList.HasAnyLeft)
+            //{
+            //    appendToStory += "Your inventory is full" + MyStaticClass.WhiteLine();
+            //}
+                
+            return appendToStory;
         }
+        
     }
 }

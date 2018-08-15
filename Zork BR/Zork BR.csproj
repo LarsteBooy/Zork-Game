@@ -203,6 +203,7 @@
       <DependentUpon>201808011216131_MyMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Commands\AddBagspace.cs" />
     <Compile Include="Models\Commands\GetInventoryCommand.cs" />
     <Compile Include="Models\Commands\RenderCommand.cs" />
     <Compile Include="Models\Commands\LootCommand.cs" />
