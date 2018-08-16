@@ -4,9 +4,14 @@ namespace Zork_BR.Models
 {
     public static class MyStaticClass
     {
+        //if true renders more minimap
         public static bool RenderMinimap { get; set; }
 
-        public static int MaximumItemsInInventory { get; set; } = 1; 
+        //How much inventoryslots does the player have
+        public static int MaximumItemsInInventory { get; set; } = 1;
+
+        //How many enemies are remaining
+        public static int EnemiesRemaining { get; set; } = 99;
 
         public static string WhiteLine()
         {
