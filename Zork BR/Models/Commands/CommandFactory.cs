@@ -16,10 +16,10 @@ namespace Zork_BR.Models.Commands
                 {
                     case Inputs.Help: result = new HelpCommand(story);
                         break;
-                    case Inputs.Render: result = new RenderCommand();
+                    case Inputs.Render: result = new AdminCommand(input);
                         break;
                     case Inputs.Bagspace:
-                        result = new AddBagspace();
+                        result = new AdminCommand(input);
                         break;
                     case Inputs.Loot: result = new LootCommand(input, story, player);
                         break;
