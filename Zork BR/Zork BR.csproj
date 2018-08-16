@@ -202,10 +202,20 @@
     <Compile Include="Migrations\201808011216131_MyMigration.Designer.cs">
       <DependentUpon>201808011216131_MyMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808161429145_secondMigration.cs" />
+    <Compile Include="Migrations\201808161429145_secondMigration.Designer.cs">
+      <DependentUpon>201808161429145_secondMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808161445572_thirdMigration.cs" />
+    <Compile Include="Migrations\201808161445572_thirdMigration.Designer.cs">
+      <DependentUpon>201808161445572_thirdMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Commands\AdminCommand.cs" />
+    <Compile Include="Models\Commands\BattleCommands\BattleCommandFactory.cs" />
     <Compile Include="Models\Commands\GetInventoryCommand.cs" />
     <Compile Include="Models\Commands\LootCommand.cs" />
+    <Compile Include="Models\Commands\BattleCommands\RunCommand.cs" />
     <Compile Include="Models\Enemies\CommonEnemy.cs" />
     <Compile Include="Models\Enemies\Enemy.cs" />
     <Compile Include="Models\Items\Backpack.cs" />
@@ -336,6 +346,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808011216131_MyMigration.resx">
       <DependentUpon>201808011216131_MyMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161429145_secondMigration.resx">
+      <DependentUpon>201808161429145_secondMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161445572_thirdMigration.resx">
+      <DependentUpon>201808161445572_thirdMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

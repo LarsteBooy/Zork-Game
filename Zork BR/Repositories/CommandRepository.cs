@@ -13,11 +13,13 @@ namespace Zork_BR.Controllers
         Player player = null;
 
         Dictionary<string, string> Commands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+        Dictionary<string, string> BattleCommands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
 
         public CommandRepository(Story story, Player player) {
             this.player = player;
             this.story = story;
             FillCommands();
+            FillBattleCommands();
         }
 
         public void CreatePlayer()
@@ -73,6 +75,11 @@ namespace Zork_BR.Controllers
             Commands.Add("bagspace", "Ultimate hax0r activated; MOAR BAGSPACE !11!!" );
         }
 
+        public void FillBattleCommands()
+        {
+            BattleCommands.Add("Run", "You try to run away, you pu$$y");
+        }
+
         public string GetCommandText(string input)
         {
             var i = input.Trim();
@@ -84,6 +91,20 @@ namespace Zork_BR.Controllers
             else
             {
                 return MyStaticClass.WhiteLine() + "<" + i + ">" + Environment.NewLine + "This is not a command, for all commands see the Help page" + MyStaticClass.WhiteLine();
+            }
+        }
+
+        public string GetBattleCommandText(string input)
+        {
+            var i = input.Trim();
+            if (BattleCommands.ContainsKey(i))
+            {
+                var c = BattleCommands[i];
+                return MyStaticClass.WhiteLine() + "<" + i + ">" + Environment.NewLine + c + MyStaticClass.WhiteLine();
+            }
+            else
+            {
+                return MyStaticClass.WhiteLine() + "<" + i + ">" + Environment.NewLine + "This is not a battlecommand, for all battlecommands see the Help page" + MyStaticClass.WhiteLine();
             }
         }
 
@@ -110,22 +131,37 @@ namespace Zork_BR.Controllers
 
         public string ExecuteCommand(string input)
         {
-            var command = CommandFactory.Create(input, story, player);
-            if (command != null)
+            if (!MyStaticClass.InBattle)
             {
-                string actionString = command.MyAction();
-
-                if (command.GetType().Name == "DirectionCommand")
+                var command = CommandFactory.Create(input, story, player);
+                if (command != null)
                 {
-                    //string nearbyLocations = NearbyLocations();
-                    string currentLocationDescription = CurrentLocationDescription();
+                    string actionString = command.MyAction();
 
-                    return actionString /*+ nearbyLocations*/ + currentLocationDescription;
+                    if (command.GetType().Name == "DirectionCommand")
+                    {
+                        //string nearbyLocations = NearbyLocations();
+                        string currentLocationDescription = CurrentLocationDescription();
+
+                        return actionString /*+ nearbyLocations*/ + currentLocationDescription;
+                    }
+
+                    return actionString;
                 }
-
-                return actionString;
+                return "";
             }
-            return "";
+            else
+            {
+                var command = BattleCommandFactory.Create(input, story, player);
+                if(command != null)
+                {
+                    string actionString = command.MyAction();
+
+                    return actionString;
+                }
+                return "";
+            }
+
         }
 
         public string EndOfAction()

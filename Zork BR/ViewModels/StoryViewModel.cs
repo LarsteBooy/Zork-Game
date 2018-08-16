@@ -21,6 +21,15 @@ namespace Zork_BR.ViewModels
             set { }
         }
 
+        public bool InBattle
+        {
+            get
+            {
+                return InBattle = MyStaticClass.InBattle; 
+            }
+            set { }
+        }
+
         //minimap images
         public string ImageCurrent{ get; set; }
         public string ImageNorth { get; set; }

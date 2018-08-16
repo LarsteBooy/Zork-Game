@@ -18,5 +18,7 @@ namespace Zork_BR.Models
             return Environment.NewLine + Environment.NewLine;
         }
 
+        public static bool InBattle { get; set; } = true;
+
     }
 }
