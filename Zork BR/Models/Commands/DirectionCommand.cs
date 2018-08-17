@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using Zork_BR.Models.Locations;
+using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models.Commands
 {
@@ -48,42 +49,62 @@ namespace Zork_BR.Models.Commands
                 return "This is not a direction you can go to" + Environment.NewLine;
             }
 
+
+
+            string Navigate(Location location, string input)
+            {
+                if(!location.IsPassable)
+                {
+                    return location.LocationDescription + MyStaticClass.WhiteLine();
+                }
+
+                switch (input)
+                {
+                    case "north":
+                    case "0":
+                        player.YCoord--;
+                        return CurrentLocationDescription() + CurrentLocation() + SpawnEnemy();
+                    case "east":
+                    case "1":
+                        player.XCoord++;
+                        return CurrentLocationDescription() + CurrentLocation() + SpawnEnemy();
+                    case "south":
+                    case "2":
+                        player.YCoord++;
+                        return CurrentLocationDescription() + CurrentLocation() + SpawnEnemy();
+                    case "west":
+                    case "3":
+                        player.XCoord--;
+                        return CurrentLocationDescription() + CurrentLocation() + SpawnEnemy();
+                    default: return "Something broke" + Environment.NewLine;
+                }
+            }
+
             string CurrentLocation()
             {
-                string currentLocation = String.Format("You are now at [{0},{1}]" + MyStaticClass.WhiteLine(), player.YCoord, player.XCoord );
+                string currentLocation = String.Format("You are now at [{0},{1}]" + MyStaticClass.WhiteLine(), player.YCoord, player.XCoord);
 
                 return currentLocation;
             }
 
-            string Navigate(Location location, string input)
+            string CurrentLocationDescription()
             {
-                if(location.IsPassable == false)
+                return player.CurrentLocation.LocationDescription + MyStaticClass.WhiteLine();
+            }
+
+            string SpawnEnemy()
+            {
+                Location location = player.CurrentLocation;
+
+                int chanceToSpawnEnemy = Rng.Next(0, 100);
+                if(chanceToSpawnEnemy < 50)
                 {
-                    return location.LocationDescription + MyStaticClass.WhiteLine();
+                    //TODO spawn hier enemy
+                    MyStaticClass.InBattle = true;
+                    return "A Enemy has spawned, kill it or die" + MyStaticClass.WhiteLine();
                 }
-                else
-                {
-                    switch (input)
-                    {
-                        case "north":
-                        case "0":
-                            player.YCoord--;
-                            return CurrentLocation();
-                        case "east":
-                        case "1":
-                            player.XCoord++;
-                            return CurrentLocation();
-                        case "south":
-                        case "2":
-                            player.YCoord++;
-                            return CurrentLocation();
-                        case "west":
-                        case "3":
-                            player.XCoord--;
-                            return CurrentLocation();
-                        default: return "Something broke" + Environment.NewLine;
-                    }
-                }
+
+                return "";
             }
         }
     }

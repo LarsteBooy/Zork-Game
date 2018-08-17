@@ -49,7 +49,7 @@ namespace Zork_BR.Controllers
             spawnStory += String.Format("You get dropped at the coordinates [{0},{1}] which is a {2}" + Environment.NewLine, player.YCoord, player.XCoord, Map.map[player.YCoord, player.XCoord].LocationName);
             spawnStory += "You take a good look arround to get your surroundings" + Environment.NewLine + Environment.NewLine;
 
-            spawnStory += NearbyLocations() + EndOfAction();
+            spawnStory += /*NearbyLocations() +*/ EndOfAction();
 
             return spawnStory;
         }
@@ -108,11 +108,7 @@ namespace Zork_BR.Controllers
             }
         }
 
-        public string CurrentLocationDescription()
-        {
-            return player.CurrentLocation.LocationDescription + MyStaticClass.WhiteLine();
-        }
-
+        /*
         public string NearbyLocations()
         {
             var locationNorth = Map.map[(player.YCoord - 1), player.XCoord].LocationName;
@@ -128,6 +124,7 @@ namespace Zork_BR.Controllers
                                                 );
             return nearbyLocations;
         }
+        */
 
         public string ExecuteCommand(string input)
         {
@@ -138,13 +135,7 @@ namespace Zork_BR.Controllers
                 {
                     string actionString = command.MyAction();
 
-                    if (command.GetType().Name == "DirectionCommand")
-                    {
-                        //string nearbyLocations = NearbyLocations();
-                        string currentLocationDescription = CurrentLocationDescription();
 
-                        return actionString /*+ nearbyLocations*/ + currentLocationDescription;
-                    }
 
                     return actionString;
                 }
