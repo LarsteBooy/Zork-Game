@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using Zork_BR.Models.Enemies;
 using Zork_BR.Models.Locations;
 using Zork_BR.Models.Utility;
 
@@ -100,8 +101,17 @@ namespace Zork_BR.Models.Commands
                 if(chanceToSpawnEnemy < 50)
                 {
                     //TODO spawn hier enemy
+
+                    using(var context = ApplicationDbContext.Create())
+                    {
+                        CommonEnemy commonEnemy = new CommonEnemy();
+                        context.Enemies.Add(commonEnemy);
+
+                        context.SaveChanges();
+                    }
+
                     MyStaticClass.InBattle = true;
-                    return "A Enemy has spawned, kill it or die" + MyStaticClass.WhiteLine();
+                    return "You see someone and ask for help. Than you remember you are in a game and these are your enemies so you engage in combat." + MyStaticClass.WhiteLine();
                 }
 
                 return "";

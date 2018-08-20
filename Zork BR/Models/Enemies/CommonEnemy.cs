@@ -1,4 +1,7 @@
-﻿namespace Zork_BR.Models.Enemies
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Zork_BR.Models.Enemies
 {
     public class CommonEnemy : Enemy
     {
