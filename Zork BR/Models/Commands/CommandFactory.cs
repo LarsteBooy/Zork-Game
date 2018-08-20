@@ -18,6 +18,8 @@ namespace Zork_BR.Models.Commands
                         break;
                     case Inputs.Render: result = new AdminCommand(input);
                         break;
+                    case Inputs.Status: result = new StatusCommand(player);
+                        break;
                     case Inputs.Bagspace:
                         result = new AdminCommand(input);
                         break;
@@ -52,5 +54,6 @@ namespace Zork_BR.Models.Commands
         Loot,
         Inventory,
         Bagspace,
+        Status
     }
 }

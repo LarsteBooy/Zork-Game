@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Zork_BR.Models;
 using Zork_BR.Models.Commands;
 using Zork_BR.Models.Utility;
+using Zork_BR.Repositories;
 
 namespace Zork_BR.Controllers
 {
@@ -11,6 +12,7 @@ namespace Zork_BR.Controllers
     {
         readonly Story story = null;
         Player player = null;
+        
 
         Dictionary<string, string> Commands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
         Dictionary<string, string> BattleCommands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
@@ -73,6 +75,7 @@ namespace Zork_BR.Controllers
             Commands.Add("loot", "looting...");
             Commands.Add("inventory", "searching through inventory...");
             Commands.Add("bagspace", "Ultimate hax0r activated; MOAR BAGSPACE !11!!" );
+            Commands.Add("status", "Beep Boop. Physic Powers activated");
         }
 
         public void FillBattleCommands()
@@ -128,6 +131,8 @@ namespace Zork_BR.Controllers
 
         public string ExecuteCommand(string input)
         {
+            EnemyRepository enemyRepository = new EnemyRepository(player);
+
             if (!MyStaticClass.InBattle)
             {
                 var command = CommandFactory.Create(input, story, player);
@@ -135,7 +140,12 @@ namespace Zork_BR.Controllers
                 {
                     string actionString = command.MyAction();
 
-
+                    //TODO dit zetten in de homecontroller voor cleaner code.
+                    if(command is DirectionCommand)
+                    {
+                        actionString += enemyRepository.SpawnEnemy();
+                        enemyRepository.RandomEnemyDeath();
+                    }
 
                     return actionString;
                 }

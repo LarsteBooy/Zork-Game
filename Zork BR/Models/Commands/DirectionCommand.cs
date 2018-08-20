@@ -64,19 +64,19 @@ namespace Zork_BR.Models.Commands
                     case "north":
                     case "0":
                         player.YCoord--;
-                        return CurrentLocationDescription() + CurrentLocation() + SpawnEnemy();
+                        return CurrentLocationDescription() + CurrentLocation();
                     case "east":
                     case "1":
                         player.XCoord++;
-                        return CurrentLocationDescription() + CurrentLocation() + SpawnEnemy();
+                        return CurrentLocationDescription() + CurrentLocation();
                     case "south":
                     case "2":
                         player.YCoord++;
-                        return CurrentLocationDescription() + CurrentLocation() + SpawnEnemy();
+                        return CurrentLocationDescription() + CurrentLocation();
                     case "west":
                     case "3":
                         player.XCoord--;
-                        return CurrentLocationDescription() + CurrentLocation() + SpawnEnemy();
+                        return CurrentLocationDescription() + CurrentLocation();
                     default: return "Something broke" + Environment.NewLine;
                 }
             }
@@ -92,30 +92,7 @@ namespace Zork_BR.Models.Commands
             {
                 return player.CurrentLocation.LocationDescription + MyStaticClass.WhiteLine();
             }
-
-            string SpawnEnemy()
-            {
-                Location location = player.CurrentLocation;
-
-                int chanceToSpawnEnemy = Rng.Next(0, 100);
-                if(chanceToSpawnEnemy < 50)
-                {
-                    //TODO spawn hier enemy
-
-                    using(var context = ApplicationDbContext.Create())
-                    {
-                        CommonEnemy commonEnemy = new CommonEnemy();
-                        context.Enemies.Add(commonEnemy);
-
-                        context.SaveChanges();
-                    }
-
-                    MyStaticClass.InBattle = true;
-                    return "You see someone and ask for help. Than you remember you are in a game and these are your enemies so you engage in combat." + MyStaticClass.WhiteLine();
-                }
-
-                return "";
-            }
+            
         }
     }
 }

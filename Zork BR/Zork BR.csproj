@@ -220,6 +220,7 @@
     <Compile Include="Models\Commands\GetInventoryCommand.cs" />
     <Compile Include="Models\Commands\LootCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\RunCommand.cs" />
+    <Compile Include="Models\Commands\StatusCommand.cs" />
     <Compile Include="Models\Enemies\CommonEnemy.cs" />
     <Compile Include="Models\Enemies\Enemy.cs" />
     <Compile Include="Models\Items\Backpack.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Models\LootTables.cs" />
     <Compile Include="Models\MyStaticClass.cs" />
     <Compile Include="Models\Utility\Rng.cs" />
+    <Compile Include="Repositories\EnemyRepository.cs" />
     <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="Repositories\CommandRepository.cs" />
     <Compile Include="Global.asax.cs">

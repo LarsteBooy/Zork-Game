@@ -10,7 +10,7 @@ namespace Zork_BR.Models
         public int Id { get; set; }
 
         public static InventoryPlayer inventoryPlayer = new InventoryPlayer();
-        private int currentHealth;
+        private int currentHealth = 100;
 
         public int XCoord { get; set; }
         public int YCoord { get; set; }
