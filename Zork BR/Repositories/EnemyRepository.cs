@@ -23,7 +23,7 @@ namespace Zork_BR.Repositories
             Location location = player.CurrentLocation;
 
             int chanceToSpawnEnemy = Rng.Next(0, 100);
-            if (chanceToSpawnEnemy < 50)
+            if (chanceToSpawnEnemy < 40)//40% to spawn a Enemy
             {
                 //TODO spawn hier enemy
 
