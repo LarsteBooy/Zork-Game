@@ -29,7 +29,7 @@ namespace Zork_BR.Repositories
 
             MyStaticClass.InBattle = true;
 
-            return "You see someone and ask for help. Than you remember you are in a game and these are your enemies so you engage in combat." + MyStaticClass.WhiteLine();
+            return string.Format("You see {0} and ask for help. Than you remember you are in a game and these are your enemies so you engage in combat." + MyStaticClass.WhiteLine(), player.CurrentLocation.Enemy.Name);
         }
 
         //TODO Juiste random enemy death calculator maken hier. Bijvoorbeeld dat er meer enemies tegelijk kunnen dood gaan en hoe minder enemies er zijn hoe minder kans dat er één dood gaat.

@@ -15,7 +15,7 @@ namespace Zork_BR.Models
         public int XCoord { get; set; }
         public int YCoord { get; set; }
         public string PlayerName { get; set; }
-        private Weapon SelectedWeapon { get; set; }
+        public Weapon SelectedWeapon { get; set; } = new Fists();
         
 
         public int CurrentHealth

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using Zork_BR.Models.Commands.BattleCommands;
 
 namespace Zork_BR.Models.Commands
 {
@@ -16,6 +14,8 @@ namespace Zork_BR.Models.Commands
                 {
                     case BattleInputs.Run: result = new RunCommand();
                         break;
+                    case BattleInputs.Attack: result = new AttackCommand(player);
+                        break;
                 }
                 return result;
             }
@@ -29,5 +29,6 @@ namespace Zork_BR.Models.Commands
     public enum BattleInputs
     {
         Run,
+        Attack
     }
 }

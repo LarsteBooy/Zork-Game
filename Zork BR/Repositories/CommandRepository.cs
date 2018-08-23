@@ -81,6 +81,7 @@ namespace Zork_BR.Controllers
         public void FillBattleCommands()
         {
             BattleCommands.Add("Run", "You try to run away, you pu$$y");
+            BattleCommands.Add("Attack", String.Format("Attacking with {0}", player.SelectedWeapon.Name));
         }
 
         public string GetCommandText(string input)

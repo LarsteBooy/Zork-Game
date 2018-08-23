@@ -7,7 +7,7 @@ namespace Zork_BR.Models.Items
 {
     public class HealthPotion : Item, IHealthRegain
     {
-        public override string Name { get ; set ; }
+        public override string Name { get ; }
         public int HealthRegain { get; set; }
 
         public HealthPotion(string name, int healthRegain)

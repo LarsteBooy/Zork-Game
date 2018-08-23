@@ -20,6 +20,8 @@ namespace Zork_BR.Models.Commands
             appendToStory += string.Format("Kills: {0}", "To be implemented");
             appendToStory += Environment.NewLine;
             appendToStory += string.Format("Enemies remaining: {0}", MyStaticClass.EnemiesRemaining);
+            appendToStory += Environment.NewLine;
+            appendToStory += string.Format("Weapon Equiped: {0}", player.SelectedWeapon.Name);
             appendToStory += MyStaticClass.WhiteLine();
 
             return appendToStory;
