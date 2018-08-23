@@ -102,7 +102,7 @@ namespace Zork_BR.Controllers
                 context.Stories.Attach(story);
                 context.Players.Attach(player);
 
-                if (!MyStaticClass.InBattle)
+                if (!player.InBattle)
                 {
                     story.MyStory += commandRepository.GetCommandText(input);
                 }

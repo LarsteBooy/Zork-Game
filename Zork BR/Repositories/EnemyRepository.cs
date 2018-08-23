@@ -27,7 +27,7 @@ namespace Zork_BR.Repositories
 
             player.CurrentLocation.Enemy = new CommonEnemy();
 
-            MyStaticClass.InBattle = true;
+            player.InBattle = true;
 
             return string.Format("You see {0} and ask for help. Than you remember you are in a game and these are your enemies so you engage in combat." + MyStaticClass.WhiteLine(), player.CurrentLocation.Enemy.Name);
         }

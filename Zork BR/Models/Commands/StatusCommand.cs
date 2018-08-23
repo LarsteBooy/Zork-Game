@@ -17,7 +17,7 @@ namespace Zork_BR.Models.Commands
 
             appendToStory += string.Format("Health: {0}", player.CurrentHealth);
             appendToStory += Environment.NewLine;
-            appendToStory += string.Format("Kills: {0}", "To be implemented");
+            appendToStory += string.Format("Kills: {0}", player.Kills);
             appendToStory += Environment.NewLine;
             appendToStory += string.Format("Enemies remaining: {0}", MyStaticClass.EnemiesRemaining);
             appendToStory += Environment.NewLine;

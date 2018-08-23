@@ -230,6 +230,10 @@
     <Compile Include="Migrations\201808231112162_Migration_7_Or_Something.Designer.cs">
       <DependentUpon>201808231112162_Migration_7_Or_Something.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808231230579_Migrationnnn.cs" />
+    <Compile Include="Migrations\201808231230579_Migrationnnn.Designer.cs">
+      <DependentUpon>201808231230579_Migrationnnn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Commands\AdminCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\AttackCommand.cs" />
@@ -391,6 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808231112162_Migration_7_Or_Something.resx">
       <DependentUpon>201808231112162_Migration_7_Or_Something.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808231230579_Migrationnnn.resx">
+      <DependentUpon>201808231230579_Migrationnnn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

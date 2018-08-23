@@ -82,6 +82,7 @@ namespace Zork_BR.Controllers
         {
             BattleCommands.Add("Run", "You try to run away, you pu$$y");
             BattleCommands.Add("Attack", String.Format("Attacking with {0}", player.SelectedWeapon.Name));
+            BattleCommands.Add("status", "Beep Boop. Physic Powers activated");
         }
 
         public string GetCommandText(string input)
@@ -135,7 +136,7 @@ namespace Zork_BR.Controllers
             EnemyRepository enemyRepository = new EnemyRepository(player);
 
             //If the player is in battle create a BattleCommandFactory
-            if (MyStaticClass.InBattle)
+            if (player.InBattle)
             {
                 var battleCommand = BattleCommandFactory.Create(input, story, player);
                 if(battleCommand != null)

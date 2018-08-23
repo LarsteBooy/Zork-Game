@@ -16,7 +16,8 @@ namespace Zork_BR.Models
         public int YCoord { get; set; }
         public string PlayerName { get; set; }
         public Weapon SelectedWeapon { get; set; } = new Fists();
-        
+        public bool InBattle { get; set; }
+        public int Kills { get; set; }
 
         public int CurrentHealth
         {
