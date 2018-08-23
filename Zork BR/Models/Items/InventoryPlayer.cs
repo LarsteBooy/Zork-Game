@@ -34,6 +34,16 @@ namespace Zork_BR.Models.Items
         public void RemoveItem(Item item)
         {
             Inventory.Remove(item);
+
+            if (!Inventory.Any(x => x is Binoculars))
+            {
+                MyStaticClass.RenderMinimap = false;
+            }
+
+            if (!Inventory.Any(x => x is Backpack))
+            {
+                MyStaticClass.MaximumItemsInInventory = 10;
+            }
         }
     }
 }
