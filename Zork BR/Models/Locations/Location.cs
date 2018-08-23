@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Zork_BR.Models.Enemies;
 using Zork_BR.Models.Items;
 
 namespace Zork_BR.Models.Locations
@@ -12,6 +13,7 @@ namespace Zork_BR.Models.Locations
         public abstract bool IsPassable { get; }
         public bool IsLootable { get { return this is ILootList; } }
         public virtual bool HasLoot{ get; set; }
+        public Enemy Enemy { get; set; } 
 
         public string LocationDescription {
             get;

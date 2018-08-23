@@ -133,35 +133,36 @@ namespace Zork_BR.Controllers
         {
             EnemyRepository enemyRepository = new EnemyRepository(player);
 
-            if (!MyStaticClass.InBattle)
+            //If the player is in battle create a BattleCommandFactory
+            if (MyStaticClass.InBattle)
             {
-                var command = CommandFactory.Create(input, story, player);
-                if (command != null)
+                var battleCommand = BattleCommandFactory.Create(input, story, player);
+                if(battleCommand != null)
                 {
-                    string actionString = command.MyAction();
-
-                    //TODO dit zetten in de homecontroller voor cleaner code.
-                    if(command is DirectionCommand)
-                    {
-                        actionString += enemyRepository.SpawnEnemy();
-                        enemyRepository.RandomEnemyDeath();
-                    }
+                    string actionString = battleCommand.MyAction();
 
                     return actionString;
                 }
                 return "";
             }
-            else
-            {
-                var command = BattleCommandFactory.Create(input, story, player);
-                if(command != null)
-                {
-                    string actionString = command.MyAction();
 
-                    return actionString;
+            //If there is no battle going on create a CommandFactory
+            var command = CommandFactory.Create(input, story, player);
+            if (command != null)
+            {
+                string actionString = command.MyAction();
+
+                //TODO dit zetten in de homecontroller voor cleaner code.
+                if(command is DirectionCommand && MyStaticClass.EnemiesRemaining > 0)
+                {
+                    actionString += enemyRepository.SpawnEnemy();
+                    enemyRepository.RandomEnemyDeath();
                 }
-                return "";
+
+                return actionString;
             }
+            return "";
+            
 
         }
 

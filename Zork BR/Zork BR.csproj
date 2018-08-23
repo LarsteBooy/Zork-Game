@@ -214,6 +214,14 @@
     <Compile Include="Migrations\201808200933380_fourthmigration.Designer.cs">
       <DependentUpon>201808200933380_fourthmigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808231007410_nog_een_migration.cs" />
+    <Compile Include="Migrations\201808231007410_nog_een_migration.Designer.cs">
+      <DependentUpon>201808231007410_nog_een_migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808231023062_Yet_Another_Migration.cs" />
+    <Compile Include="Migrations\201808231023062_Yet_Another_Migration.Designer.cs">
+      <DependentUpon>201808231023062_Yet_Another_Migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Commands\AdminCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\BattleCommandFactory.cs" />
@@ -361,6 +369,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808200933380_fourthmigration.resx">
       <DependentUpon>201808200933380_fourthmigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808231007410_nog_een_migration.resx">
+      <DependentUpon>201808231007410_nog_een_migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808231023062_Yet_Another_Migration.resx">
+      <DependentUpon>201808231023062_Yet_Another_Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
