@@ -239,6 +239,7 @@
     <Compile Include="Models\Commands\BattleCommands\AttackCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\BattleCommandFactory.cs" />
     <Compile Include="Models\Commands\GetInventoryCommand.cs" />
+    <Compile Include="Models\Commands\HealCommand.cs" />
     <Compile Include="Models\Commands\LootCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\RunCommand.cs" />
     <Compile Include="Models\Commands\StatusCommand.cs" />

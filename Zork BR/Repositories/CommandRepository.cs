@@ -76,6 +76,7 @@ namespace Zork_BR.Controllers
             Commands.Add("inventory", "searching through inventory...");
             Commands.Add("bagspace", "Ultimate hax0r activated; MOAR BAGSPACE !11!!" );
             Commands.Add("status", "Beep Boop. Physic Powers activated");
+            Commands.Add("heal", "Drinking best suitable healing potion");
         }
 
         public void FillBattleCommands()
@@ -83,6 +84,7 @@ namespace Zork_BR.Controllers
             BattleCommands.Add("Run", "You try to run away, you pu$$y");
             BattleCommands.Add("Attack", String.Format("Attacking with {0}", player.SelectedWeapon.Name));
             BattleCommands.Add("status", "Beep Boop. Physic Powers activated");
+            BattleCommands.Add("heal", "You can't heal during battle. This isn't Skyrim");
         }
 
         public string GetCommandText(string input)

@@ -28,16 +28,15 @@ namespace Zork_BR.Models.Commands.BattleCommands
 
             enemy.Hp -= weaponDamage;
             appendToStory += string.Format("You hit the {0} with {1} and did {2} damage. The {0} has {3} hp remaining" + Environment.NewLine, enemy.Name, weapon.Name, weaponDamage, enemy.Hp);
-
-            if(enemy.Hp > 0)
+            
+            if (enemy.Hp > 0)
             {
                 int damageToPlayer = enemy.DamageToPlayer;
 
                 player.CurrentHealth -= damageToPlayer;
                 appendToStory += string.Format("The {0} hit you and did {1} damage" + MyStaticClass.WhiteLine(), enemy.Name, damageToPlayer);
             }
-            
-            if (enemy.Hp <= 0)
+            else
             {
                 enemy.IsDead = true;
                 appendToStory += string.Format("You deaded the {0}", enemy.Name + MyStaticClass.WhiteLine());
@@ -45,8 +44,9 @@ namespace Zork_BR.Models.Commands.BattleCommands
                 MyStaticClass.EnemiesRemaining--;
                 player.Kills++;
                 player.InBattle = false;
+                player.CurrentLocation.Enemy = null; //Remove Enemy from location
             }
-            
+
             return appendToStory;
         }
     }
