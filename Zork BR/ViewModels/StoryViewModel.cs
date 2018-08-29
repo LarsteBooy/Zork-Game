@@ -12,11 +12,22 @@ namespace Zork_BR.ViewModels
         public int Id { get; set; }
         public string StoryText { get; set; }
 
+        Player player = null;
+
         //if true render more locations on the minimap
         public bool Render {
             get
             {
                 return Render = MyStaticClass.RenderMinimap;
+            }
+            set { }
+        }
+
+        public bool InBattle
+        {
+            get
+            {
+                return InBattle = player.InBattle; 
             }
             set { }
         }
@@ -91,6 +102,8 @@ namespace Zork_BR.ViewModels
         {
             this.Id = story.Id;
             this.StoryText = story.MyStory;
+            this.player = player;
+
             if (player != null && story != null)
             {
                 this.ImageCurrent = string.Format("<img src = '/Content/images/{0}.png' />", player.CurrentLocation.ImageName);

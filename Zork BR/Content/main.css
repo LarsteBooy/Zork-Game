@@ -24,7 +24,7 @@
     color: red;
 }
 
-span.playerLocation{
+.playerLocation{
     position: absolute;
     margin-top: -25px;
     margin-left: -6px;
@@ -79,27 +79,53 @@ form {
     position: relative;
 }
 
-#sendBtn {
+/* SendButton */
+.sendBtn {
     background-color: #000;
     color: #00FF00;
     border-color: #00FF00;
 }
 
-#sendBtn:focus {
+.sendBtn:focus {
     outline: none;
 }
 
-#sendBtn:hover {
+.sendBtn:hover {
     background-color: #00FF00;
+    border-color: green;
     color: #000;
 }
 
-#inputField {
+.sendBtn:active:hover{
+    background: green;
+    outline: none;
+    border-color: green;
+}
+
+.sendBtn:active:focus{
+    background-color: green;
+    outline: none;
+    border-color: green;
+}
+
+.sendBtn:focus {
+    background-color: green;
+    border-color: green;
+}
+
+
+
+.inputField {
     background-color: #000;
     border-color: #00FF00;
     color: #00FF00;
 }
 
+.inputField:focus {
+    -moz-box-shadow: inset 0 1px 1px green, 0 0 8px rgba(102, 175, 233, .6);
+    -webkit-box-shadow: inset 0 1px 1px green, 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px green, 0 0 8px rgba(102, 175, 233, .6);
+}
 
 .navbar-brand {
     font-size: 24px;
@@ -116,6 +142,47 @@ form {
     height: 32px;
     text-align: center;
     color: #00FF00;
+}
+
+/*WHEN PLAYER IS IN BATTLE*/
+.inBattle{
+    color: red;
+    border-color: red;
+}
+
+.inBattle::-webkit-scrollbar-thumb {
+    background-color: red;
+}
+
+.inBattle::-webkit-scrollbar{
+    border-color: red;
+}
+
+button.inBattle:hover{
+    background-color: red;
+    border-color: red;
+}
+
+.inputField.inBattle:focus {
+    -moz-box-shadow: inset 0 1px 1px red, 0 0 8px rgba(102, 175, 233, .6);
+    -webkit-box-shadow: inset 0 1px 1px red, 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px red, 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.sendBtn.inBattle:active:hover {
+    background: red;
+    border-color: red;
+}
+
+.sendBtn.inBattle:active:focus {
+    background: red;
+    outline: none;
+    border-color: red;
+}
+
+.sendBtn.inBattle:focus {
+    background: red;
+    border-color: red;
 }
 
 /*===== HELP PAGE =====*/

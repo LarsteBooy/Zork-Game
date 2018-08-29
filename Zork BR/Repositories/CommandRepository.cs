@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Zork_BR.Models;
 using Zork_BR.Models.Commands;
 using Zork_BR.Models.Utility;
+using Zork_BR.Repositories;
 
 namespace Zork_BR.Controllers
 {
@@ -11,13 +12,16 @@ namespace Zork_BR.Controllers
     {
         readonly Story story = null;
         Player player = null;
+        
 
         Dictionary<string, string> Commands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+        Dictionary<string, string> BattleCommands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
 
         public CommandRepository(Story story, Player player) {
             this.player = player;
             this.story = story;
             FillCommands();
+            FillBattleCommands();
         }
 
         public void CreatePlayer()
@@ -47,7 +51,7 @@ namespace Zork_BR.Controllers
             spawnStory += String.Format("You get dropped at the coordinates [{0},{1}] which is a {2}" + Environment.NewLine, player.YCoord, player.XCoord, Map.map[player.YCoord, player.XCoord].LocationName);
             spawnStory += "You take a good look arround to get your surroundings" + Environment.NewLine + Environment.NewLine;
 
-            spawnStory += NearbyLocations() + EndOfAction();
+            spawnStory += /*NearbyLocations() +*/ EndOfAction();
 
             return spawnStory;
         }
@@ -58,7 +62,7 @@ namespace Zork_BR.Controllers
             Commands.Add("dance", "You are making a fool of yourself");
             Commands.Add("test", "this is a test");
             Commands.Add("vleespoeder", "ThE bEsT mEaTpOwDeR eVeR");
-            Commands.Add("Petri", "91%");
+            Commands.Add("petri", "91%");
             Commands.Add("miljaar", "Harses Lars!");
             Commands.Add("north", "You went north");
             Commands.Add("east", "You went east");
@@ -70,6 +74,15 @@ namespace Zork_BR.Controllers
             Commands.Add("render", "Rendering more map...");
             Commands.Add("loot", "looting...");
             Commands.Add("inventory", "searching through inventory...");
+            Commands.Add("bagspace", "Ultimate hax0r activated; MOAR BAGSPACE !11!!" );
+            Commands.Add("status", "Beep Boop. Physic Powers activated");
+        }
+
+        public void FillBattleCommands()
+        {
+            BattleCommands.Add("Run", "You try to run away, you pu$$y");
+            BattleCommands.Add("Attack", String.Format("Attacking with {0}", player.SelectedWeapon.Name));
+            BattleCommands.Add("status", "Beep Boop. Physic Powers activated");
         }
 
         public string GetCommandText(string input)
@@ -86,11 +99,21 @@ namespace Zork_BR.Controllers
             }
         }
 
-        public string CurrentLocationDescription()
+        public string GetBattleCommandText(string input)
         {
-            return player.CurrentLocation.LocationDescription + MyStaticClass.WhiteLine();
+            var i = input.Trim();
+            if (BattleCommands.ContainsKey(i))
+            {
+                var c = BattleCommands[i];
+                return MyStaticClass.WhiteLine() + "<" + i + ">" + Environment.NewLine + c + MyStaticClass.WhiteLine();
+            }
+            else
+            {
+                return MyStaticClass.WhiteLine() + "<" + i + ">" + Environment.NewLine + "This is not a battlecommand, for all battlecommands see the Help page" + MyStaticClass.WhiteLine();
+            }
         }
 
+        /*
         public string NearbyLocations()
         {
             var locationNorth = Map.map[(player.YCoord - 1), player.XCoord].LocationName;
@@ -106,25 +129,43 @@ namespace Zork_BR.Controllers
                                                 );
             return nearbyLocations;
         }
+        */
 
         public string ExecuteCommand(string input)
         {
+            EnemyRepository enemyRepository = new EnemyRepository(player);
+
+            //If the player is in battle create a BattleCommandFactory
+            if (player.InBattle)
+            {
+                var battleCommand = BattleCommandFactory.Create(input, story, player);
+                if(battleCommand != null)
+                {
+                    string actionString = battleCommand.MyAction();
+
+                    return actionString;
+                }
+                return "";
+            }
+
+            //If there is no battle going on create a CommandFactory
             var command = CommandFactory.Create(input, story, player);
             if (command != null)
             {
                 string actionString = command.MyAction();
 
-                if (command.GetType().Name == "DirectionCommand")
+                //TODO dit zetten in de homecontroller voor cleaner code.
+                if(command is DirectionCommand && MyStaticClass.EnemiesRemaining > 0)
                 {
-                    //string nearbyLocations = NearbyLocations();
-                    string currentLocationDescription = CurrentLocationDescription();
-
-                    return actionString /*+ nearbyLocations*/ + currentLocationDescription;
+                    actionString += enemyRepository.SpawnEnemy();
+                    enemyRepository.RandomEnemyDeath();
                 }
 
                 return actionString;
             }
             return "";
+            
+
         }
 
         public string EndOfAction()

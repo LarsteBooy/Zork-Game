@@ -202,20 +202,60 @@
     <Compile Include="Migrations\201808011216131_MyMigration.Designer.cs">
       <DependentUpon>201808011216131_MyMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808161429145_secondMigration.cs" />
+    <Compile Include="Migrations\201808161429145_secondMigration.Designer.cs">
+      <DependentUpon>201808161429145_secondMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808161445572_thirdMigration.cs" />
+    <Compile Include="Migrations\201808161445572_thirdMigration.Designer.cs">
+      <DependentUpon>201808161445572_thirdMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808200933380_fourthmigration.cs" />
+    <Compile Include="Migrations\201808200933380_fourthmigration.Designer.cs">
+      <DependentUpon>201808200933380_fourthmigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808231007410_nog_een_migration.cs" />
+    <Compile Include="Migrations\201808231007410_nog_een_migration.Designer.cs">
+      <DependentUpon>201808231007410_nog_een_migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808231023062_Yet_Another_Migration.cs" />
+    <Compile Include="Migrations\201808231023062_Yet_Another_Migration.Designer.cs">
+      <DependentUpon>201808231023062_Yet_Another_Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808231050120_I_Hate_Migrations.cs" />
+    <Compile Include="Migrations\201808231050120_I_Hate_Migrations.Designer.cs">
+      <DependentUpon>201808231050120_I_Hate_Migrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808231112162_Migration_7_Or_Something.cs" />
+    <Compile Include="Migrations\201808231112162_Migration_7_Or_Something.Designer.cs">
+      <DependentUpon>201808231112162_Migration_7_Or_Something.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808231230579_Migrationnnn.cs" />
+    <Compile Include="Migrations\201808231230579_Migrationnnn.Designer.cs">
+      <DependentUpon>201808231230579_Migrationnnn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Commands\AdminCommand.cs" />
+    <Compile Include="Models\Commands\BattleCommands\AttackCommand.cs" />
+    <Compile Include="Models\Commands\BattleCommands\BattleCommandFactory.cs" />
     <Compile Include="Models\Commands\GetInventoryCommand.cs" />
-    <Compile Include="Models\Commands\RenderCommand.cs" />
     <Compile Include="Models\Commands\LootCommand.cs" />
-    <Compile Include="Models\Items\Backpack.cs" />
-    <Compile Include="Models\Items\Binoculars.cs" />
-    <Compile Include="Models\Items\Consumable.cs" />
-    <Compile Include="Models\Items\HealthPotion.cs" />
-    <Compile Include="Models\Items\IHealthRegain.cs" />
+    <Compile Include="Models\Commands\BattleCommands\RunCommand.cs" />
+    <Compile Include="Models\Commands\StatusCommand.cs" />
+    <Compile Include="Models\Enemies\CommonEnemy.cs" />
+    <Compile Include="Models\Enemies\Enemy.cs" />
+    <Compile Include="Models\Items\Rare Items\Backpack.cs" />
+    <Compile Include="Models\Items\Rare Items\Binoculars.cs" />
+    <Compile Include="Models\Items\Consumables\Consumable.cs" />
+    <Compile Include="Models\Items\Weapons\Fists.cs" />
+    <Compile Include="Models\Items\Consumables\HealthPotion.cs" />
+    <Compile Include="Models\Items\Consumables\IHealthRegain.cs" />
     <Compile Include="Models\Items\ILocationInventory.cs" />
     <Compile Include="Models\Items\InventoryPlayer.cs" />
     <Compile Include="Models\LootTables.cs" />
     <Compile Include="Models\MyStaticClass.cs" />
     <Compile Include="Models\Utility\Rng.cs" />
+    <Compile Include="Repositories\EnemyRepository.cs" />
     <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="Repositories\CommandRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -228,8 +268,8 @@
     <Compile Include="Models\Commands\HelpCommand.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Items\Item.cs" />
-    <Compile Include="Models\Items\Knife.cs" />
-    <Compile Include="Models\Items\Weapon.cs" />
+    <Compile Include="Models\Items\Weapons\Knife.cs" />
+    <Compile Include="Models\Items\Weapons\Weapon.cs" />
     <Compile Include="Models\Locations\Beach.cs" />
     <Compile Include="Models\Locations\Cabin.cs" />
     <Compile Include="Models\Locations\Lake.cs" />
@@ -334,6 +374,30 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808011216131_MyMigration.resx">
       <DependentUpon>201808011216131_MyMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161429145_secondMigration.resx">
+      <DependentUpon>201808161429145_secondMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161445572_thirdMigration.resx">
+      <DependentUpon>201808161445572_thirdMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808200933380_fourthmigration.resx">
+      <DependentUpon>201808200933380_fourthmigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808231007410_nog_een_migration.resx">
+      <DependentUpon>201808231007410_nog_een_migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808231023062_Yet_Another_Migration.resx">
+      <DependentUpon>201808231023062_Yet_Another_Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808231050120_I_Hate_Migrations.resx">
+      <DependentUpon>201808231050120_I_Hate_Migrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808231112162_Migration_7_Or_Something.resx">
+      <DependentUpon>201808231112162_Migration_7_Or_Something.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808231230579_Migrationnnn.resx">
+      <DependentUpon>201808231230579_Migrationnnn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

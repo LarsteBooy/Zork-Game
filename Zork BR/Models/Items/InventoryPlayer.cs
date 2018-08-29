@@ -15,10 +15,8 @@ namespace Zork_BR.Models.Items
         }
         
 
-        public string AddItem(Item item)
+        public void AddItem(Item item)
         {
-            if(NumberOfItems < MyStaticClass.MaximumItemsInInventory)
-            {
                 if(item is Binoculars)
                 {
                     MyStaticClass.RenderMinimap = true;
@@ -30,19 +28,22 @@ namespace Zork_BR.Models.Items
 
                 Inventory.Add(item);
                 NumberOfItems++;
-                return String.Format("You found a {0}" + MyStaticClass.WhiteLine(), item.Name);
+                
             }
-            else
-            {
-                return "Your inventory is full. To take this item remove something from your inventory" + MyStaticClass.WhiteLine();
-            }
-        }
-
+            
         public void RemoveItem(Item item)
         {
             Inventory.Remove(item);
+
+            if (!Inventory.Any(x => x is Binoculars))
+            {
+                MyStaticClass.RenderMinimap = false;
+            }
+
+            if (!Inventory.Any(x => x is Backpack))
+            {
+                MyStaticClass.MaximumItemsInInventory = 10;
+            }
         }
-
-
     }
 }

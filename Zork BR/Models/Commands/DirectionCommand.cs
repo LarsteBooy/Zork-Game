@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using Zork_BR.Models.Enemies;
 using Zork_BR.Models.Locations;
+using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models.Commands
 {
@@ -20,66 +22,77 @@ namespace Zork_BR.Models.Commands
             this.player = player;
         }
 
-        public override string MyAction()
+        public override string MyAction() //TODO Haal de input == cijfer weg en zorg ervoor dat de speler dit niet kan invoegen als input (de cijfer staat voor de plek van de command in de enum van CommandFactory). Hetzelfde geldt voor de navigate method
         {
 
-            if (input == "north")
+            if (input == "north" || input == "0")
             {
                 Location locationNorth = Map.map[player.YCoord - 1, player.XCoord];
-                return navigate(locationNorth, input);
+                return Navigate(locationNorth, input);
             }
-            else if (input == "east")
+            else if (input == "east" || input == "1")
             {
                 Location locationEast = Map.map[player.YCoord, player.XCoord + 1];
-                return navigate(locationEast, input);
+                return Navigate(locationEast, input);
             }
-            else if (input == "south")
+            else if (input == "south" || input == "2")
             {
                 Location locationSouth = Map.map[player.YCoord + 1, player.XCoord];
-                return navigate(locationSouth, input);
+                return Navigate(locationSouth, input);
             }
-            else if (input == "west")
+            else if (input == "west" || input == "3")
             {
                 Location locationWest = Map.map[player.YCoord, player.XCoord - 1];
-                return navigate(locationWest, input);
+                return Navigate(locationWest, input);
             }
             else
             {
-                return "This is not a direction you can go to"; //unreachable
+                return "This is not a direction you can go to" + Environment.NewLine;
+            }
+
+
+
+            string Navigate(Location location, string input)
+            {
+                if(!location.IsPassable)
+                {
+                    return location.LocationDescription + MyStaticClass.WhiteLine();
+                }
+
+                switch (input)
+                {
+                    case "north":
+                    case "0":
+                        player.YCoord--;
+                        return CurrentLocationDescription() + CurrentLocation();
+                    case "east":
+                    case "1":
+                        player.XCoord++;
+                        return CurrentLocationDescription() + CurrentLocation();
+                    case "south":
+                    case "2":
+                        player.YCoord++;
+                        return CurrentLocationDescription() + CurrentLocation();
+                    case "west":
+                    case "3":
+                        player.XCoord--;
+                        return CurrentLocationDescription() + CurrentLocation();
+                    default: return "Something broke" + Environment.NewLine;
+                }
             }
 
             string CurrentLocation()
             {
-                string currentLocation = String.Format("You are now at [{0},{1}]" + MyStaticClass.WhiteLine(), player.YCoord, player.XCoord );
+                string currentLocation = String.Format("You are now at [{0},{1}]" + MyStaticClass.WhiteLine(), player.YCoord, player.XCoord);
 
                 return currentLocation;
             }
 
-            string navigate(Location location, string input)
+            string CurrentLocationDescription()
             {
-                if(location.IsPassable == false)
-                {
-                    return location.LocationDescription + MyStaticClass.WhiteLine();
-                }
-                else
-                {
-                    switch (input)
-                    {
-                        case "north": player.YCoord--;
-                            return CurrentLocation();
-                        case "east":
-                            player.XCoord++;
-                            return CurrentLocation();
-                        case "south":
-                            player.YCoord++;
-                            return CurrentLocation();
-                        case "west":
-                            player.XCoord--;
-                            return CurrentLocation();
-                        default: return "Something broke";
-                    }
-                }
+                return player.CurrentLocation.LocationDescription + MyStaticClass.WhiteLine();
             }
+            
         }
     }
 }

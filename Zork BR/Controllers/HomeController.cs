@@ -101,7 +101,16 @@ namespace Zork_BR.Controllers
             {
                 context.Stories.Attach(story);
                 context.Players.Attach(player);
-                story.MyStory += commandRepository.GetCommandText(input);
+
+                if (!player.InBattle)
+                {
+                    story.MyStory += commandRepository.GetCommandText(input);
+                }
+                else
+                {
+                    story.MyStory += commandRepository.GetBattleCommandText(input);
+                }
+                
                 story.MyStory += commandRepository.ExecuteCommand(input);
                 story.MyStory += commandRepository.EndOfAction();
                 

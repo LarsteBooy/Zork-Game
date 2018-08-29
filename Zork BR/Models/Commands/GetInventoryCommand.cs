@@ -17,7 +17,9 @@ namespace Zork_BR.Models.Commands
                 appendToStory += Environment.NewLine + "Nothing... it's good practice to have some items before looking through your inventory";
             }
 
-            foreach (Item i in Player.inventoryPlayer.Inventory)
+            var sortedList = Player.inventoryPlayer.Inventory.OrderBy(x => x.Name);
+
+            foreach (Item i in sortedList)
             {
                 appendToStory += Environment.NewLine + ocupiedInventorySpaces + ". " + i.Name;
                 ocupiedInventorySpaces++;

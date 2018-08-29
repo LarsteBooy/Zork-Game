@@ -6,108 +6,102 @@
 }   
 
     <div id="gamescreen" class="container">
-        <pre class="textField col-xs-12" id="textField">
+        <pre class="textField col-xs-12 @(Model.InBattle == false ? "" : "inBattle")" id="textField">
 @Model.StoryText
         </pre>
         <table id="minimap">
             <tr class="tableRow">
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.RenderMinimap("north2west2"))
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.RenderMinimap("north2west1"))
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.ImageNorthNorth)
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.RenderMinimap("north2east1"))
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.RenderMinimap("north2east2"))
                 </td>
             </tr>
             <tr class="tableRow">
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.RenderMinimap("north1west2"))
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.ImageNorthWest)
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.ImageNorth)
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.ImageNorthEast)
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.RenderMinimap("north1east2"))
                 </td>
             </tr>
             <tr class="tableRow">
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.ImageWestWest)
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.ImageWest)
                 </td>
-                <td class="tableCel" id="playerCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")" id="playerCel">
                     @Html.Raw(@Model.ImageCurrent)
                     <span class="playerLocation">&#10006;</span>
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.ImageEast)
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.ImageEastEast)
                 </td>
             </tr>
             <tr class="tableRow">
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.RenderMinimap("south1west2"))
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.ImageSouthWest)
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.ImageSouth)
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.ImageSouthEast)
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.RenderMinimap("south1east2"))
                 </td>
             </tr>
             <tr class="tableRow">
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.RenderMinimap("south2west2"))
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.RenderMinimap("south2west1"))
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.ImageSouthSouth)
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.RenderMinimap("south2east1"))
                 </td>
-                <td class="tableCel">
+                <td class="tableCel @(Model.InBattle == false ? "" : "inBattle")">
                     @Html.Raw(@Model.RenderMinimap("south2east2"))
                 </td>
             </tr>
         </table>
     </div> 
-<!--
-    <table id="fullMap">
-        @*Html.Raw(Model.GetMap)*@
-    </table>
--->
     
     <div class="navbar-fixed-bottom">
         <form action='@Url.Action("Index","Home")' method="post" autocomplete="off">
-            <button type="submit" id="sendBtn" class="btn btn-primary">Send</button>
-            <input id="inputField" name="input" type="text" class="form-control" autofocus />
-            @*Html.Hidden("id", Model.Id)*@
+            <button type="submit" class="btn btn-primary sendBtn @(Model.InBattle == false ? "" : "inBattle")">Send</button>
+            <input name="input" type="text" class="form-control inputField @(Model.InBattle == false ? "" : "inBattle")" autofocus />
         </form>
     </div>

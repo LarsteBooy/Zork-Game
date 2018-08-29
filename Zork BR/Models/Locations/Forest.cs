@@ -5,7 +5,6 @@
         public override string LocationName => "Forest";
 
         public override bool IsPassable => true;
-        public override bool IsLootable => false;
 
         private const string locationDescriptionDefault = "You see a ton of trees, you're probably in a forest.";
 
