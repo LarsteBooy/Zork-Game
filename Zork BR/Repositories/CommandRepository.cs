@@ -76,7 +76,7 @@ namespace Zork_BR.Controllers
             Commands.Add("inventory", "searching through inventory...");
             Commands.Add("bagspace", "Ultimate hax0r activated; MOAR BAGSPACE !11!!" );
             Commands.Add("status", "Beep Boop. Physic Powers activated");
-            Commands.Add("heal", "Drinking best suitable healing potion");
+            Commands.Add("heal", "Ayy lmao, you think you injured, lets drink a potion");
         }
 
         public void FillBattleCommands()
