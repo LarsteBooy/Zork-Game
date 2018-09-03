@@ -18,6 +18,7 @@ namespace Zork_BR.Models
         public string PlayerName { get; set; }
         public Weapon SelectedWeapon { get; set; } = new Fists();
         public bool InBattle { get; set; }
+        public bool InEquipState { get; set; }
         public int Kills { get; set; }
 
         public int CurrentHealth
@@ -30,8 +31,6 @@ namespace Zork_BR.Models
                 else { currentHealth = value; }
             }
         }
-
-        
 
         public Location CurrentLocation
         {

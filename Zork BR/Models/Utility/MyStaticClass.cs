@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Zork_BR.Models
 {
@@ -18,6 +19,11 @@ namespace Zork_BR.Models
             return Environment.NewLine + Environment.NewLine;
         }
 
+        public static string ToTitleCase(this string input)
+        {
+            string updatedInput = input.Trim().ToLower();
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(updatedInput);
+        }
         
 
     }

@@ -21,6 +21,8 @@ namespace Zork_BR.Models.Commands
         {
             string appendToStory = "";
 
+            Player.inventoryPlayer.Inventory.Add(new Knife());
+
             if (!player.CurrentLocation.IsLootable)
             {
                 return "You can't loot here" + MyStaticClass.WhiteLine();

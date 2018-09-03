@@ -234,10 +234,19 @@
     <Compile Include="Migrations\201808231230579_Migrationnnn.Designer.cs">
       <DependentUpon>201808231230579_Migrationnnn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809031419190_hoi.cs" />
+    <Compile Include="Migrations\201809031419190_hoi.Designer.cs">
+      <DependentUpon>201809031419190_hoi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809031448551_hoi2.cs" />
+    <Compile Include="Migrations\201809031448551_hoi2.Designer.cs">
+      <DependentUpon>201809031448551_hoi2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Commands\AdminCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\AttackCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\BattleCommandFactory.cs" />
+    <Compile Include="Models\Commands\EquipCommand.cs" />
     <Compile Include="Models\Commands\GetInventoryCommand.cs" />
     <Compile Include="Models\Commands\HealCommand.cs" />
     <Compile Include="Models\Commands\LootCommand.cs" />
@@ -254,7 +263,7 @@
     <Compile Include="Models\Items\ILocationInventory.cs" />
     <Compile Include="Models\Items\InventoryPlayer.cs" />
     <Compile Include="Models\LootTables.cs" />
-    <Compile Include="Models\MyStaticClass.cs" />
+    <Compile Include="Models\Utility\MyStaticClass.cs" />
     <Compile Include="Models\Utility\Rng.cs" />
     <Compile Include="Repositories\EnemyRepository.cs" />
     <Compile Include="ViewModels\HelpViewModel.cs" />
@@ -399,6 +408,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808231230579_Migrationnnn.resx">
       <DependentUpon>201808231230579_Migrationnnn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809031419190_hoi.resx">
+      <DependentUpon>201809031419190_hoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809031448551_hoi2.resx">
+      <DependentUpon>201809031448551_hoi2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

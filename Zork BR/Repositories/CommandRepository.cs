@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Zork_BR.Models;
 using Zork_BR.Models.Commands;
+using Zork_BR.Models.Items;
 using Zork_BR.Models.Utility;
 using Zork_BR.Repositories;
 
@@ -77,6 +78,7 @@ namespace Zork_BR.Controllers
             Commands.Add("bagspace", "Ultimate hax0r activated; MOAR BAGSPACE !11!!" );
             Commands.Add("status", "Beep Boop. Physic Powers activated");
             Commands.Add("heal", "Ayy lmao, you think you injured, lets drink a potion");
+            Commands.Add("equip", "You search your own body for weapons...");
         }
 
         public void FillBattleCommands()
@@ -150,6 +152,18 @@ namespace Zork_BR.Controllers
                 return "";
             }
 
+            //if the player want to equip a weapon
+            if (player.InEquipState)
+            {
+                var equipcommand = new EquipCommand(player, input);
+
+                equipcommand.MyAction();
+
+                player.InEquipState = false;
+
+                return "";
+            }
+
             //If there is no battle going on create a CommandFactory
             var command = CommandFactory.Create(input, story, player);
             if (command != null)
@@ -166,8 +180,6 @@ namespace Zork_BR.Controllers
                 return actionString;
             }
             return "";
-            
-
         }
 
         public string EndOfAction()

@@ -1,4 +1,5 @@
 ﻿using System;
+using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models.Items
 {
@@ -6,6 +7,6 @@ namespace Zork_BR.Models.Items
     {
         public override string Name { get => "Knife"; }
 
-        public override int Damage => 20;
+        public override int Damage => Rng.Next(15,25);
     }
 }

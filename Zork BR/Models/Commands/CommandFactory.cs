@@ -29,6 +29,8 @@ namespace Zork_BR.Models.Commands
                         break;
                     case Inputs.Heal: result = new HealCommand(player);
                         break;
+                    case Inputs.Equip: result = new EquipCommand(player, input);
+                        break;
                     case Inputs.North:
                     case Inputs.East:
                     case Inputs.South:
@@ -57,6 +59,7 @@ namespace Zork_BR.Models.Commands
         Inventory,
         Bagspace,
         Status,
-        Heal
+        Heal,
+        Equip
     }
 }
