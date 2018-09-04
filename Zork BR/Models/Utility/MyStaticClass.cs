@@ -19,6 +19,7 @@ namespace Zork_BR.Models
             return Environment.NewLine + Environment.NewLine;
         }
 
+        //Sets a string to Titlecase
         public static string ToTitleCase(this string input)
         {
             string updatedInput = input.Trim().ToLower();

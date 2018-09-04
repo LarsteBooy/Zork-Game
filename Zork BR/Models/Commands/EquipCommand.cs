@@ -53,15 +53,23 @@ namespace Zork_BR.Models.Commands
                 }
             }
 
-            foreach(Weapon weapon in availableWeapons)
+            using (var context = ApplicationDbContext.Create())
             {
-                string updatedInput = input.ToTitleCase();
+                player = context.Players.FirstOrDefault();
 
-                if (weapon.Name.Equals(updatedInput))
+                foreach (Weapon weapon in availableWeapons)
                 {
-                    player.SelectedWeapon = weapon;
+                    string updatedInput = input.ToTitleCase();
+
+                    if (weapon.Name.Equals(updatedInput))
+                    {
+                        player.SelectedWeapon = weapon;
+                    }
                 }
+
+                context.SaveChanges();
             }
+
 
             return "";
 

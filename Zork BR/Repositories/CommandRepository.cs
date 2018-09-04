@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Zork_BR.Models;
 using Zork_BR.Models.Commands;
 using Zork_BR.Models.Items;
@@ -155,11 +156,18 @@ namespace Zork_BR.Controllers
             //if the player want to equip a weapon
             if (player.InEquipState)
             {
-                var equipcommand = new EquipCommand(player, input);
+                using (var context = ApplicationDbContext.Create())
+                {
+                    var equipcommand = new EquipCommand(player, input);
+                    player = context.Players.FirstOrDefault();
+                    context.SaveChanges();
+                    equipcommand.MyAction();
+                    context.SaveChanges();
+                    player = context.Players.FirstOrDefault();
 
-                equipcommand.MyAction();
-
-                player.InEquipState = false;
+                    context.SaveChanges();
+                }
+                    player.InEquipState = false;
 
                 return "";
             }

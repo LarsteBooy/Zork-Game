@@ -113,7 +113,9 @@ namespace Zork_BR.Controllers
                 
                 story.MyStory += commandRepository.ExecuteCommand(input);
                 story.MyStory += commandRepository.EndOfAction();
-                
+
+                player = context.Players.Find(id);
+
                 context.SaveChanges();
 
             }
