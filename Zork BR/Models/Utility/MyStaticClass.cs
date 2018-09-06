@@ -9,7 +9,7 @@ namespace Zork_BR.Models
         public static bool RenderMinimap { get; set; }
 
         //How much inventoryslots does the player have
-        public static int MaximumItemsInInventory { get; set; } = 5;
+        public static int MaximumItemsInInventory { get; set; } = 8;
 
         //How many enemies are remaining
         public static int EnemiesRemaining { get; set; } = 99;

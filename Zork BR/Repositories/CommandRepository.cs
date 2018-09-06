@@ -93,14 +93,20 @@ namespace Zork_BR.Controllers
         public string GetCommandText(string input)
         {
             var i = input.Trim();
+            string inputString = MyStaticClass.WhiteLine() + "<" + i + ">";
+            
             if (Commands.ContainsKey(i))
             {
                 var c = Commands[i];
-                return MyStaticClass.WhiteLine() + "<" + i + ">" + Environment.NewLine + c + MyStaticClass.WhiteLine();
+                return inputString + Environment.NewLine + c + MyStaticClass.WhiteLine();
             }
             else
             {
-                return MyStaticClass.WhiteLine() + "<" + i + ">" + Environment.NewLine + "This is not a command, for all commands see the Help page" + MyStaticClass.WhiteLine();
+                if(player.InEquipState == true){
+                    return inputString + Environment.NewLine;
+                }
+
+                return inputString + Environment.NewLine + "This is not a command, for all commands see the Help page" + MyStaticClass.WhiteLine();
             }
         }
 
@@ -156,20 +162,13 @@ namespace Zork_BR.Controllers
             //if the player want to equip a weapon
             if (player.InEquipState)
             {
-                using (var context = ApplicationDbContext.Create())
-                {
-                    var equipcommand = new EquipCommand(player, input);
-                    player = context.Players.FirstOrDefault();
-                    context.SaveChanges();
-                    equipcommand.MyAction();
-                    context.SaveChanges();
-                    player = context.Players.FirstOrDefault();
+                var equipcommand = new EquipCommand(player, input);
+                string actionString = equipcommand.MyAction();
 
-                    context.SaveChanges();
-                }
-                    player.InEquipState = false;
-
-                return "";
+                player.InEquipState = false;
+                
+                return actionString;
+                
             }
 
             //If there is no battle going on create a CommandFactory

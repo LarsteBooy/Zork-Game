@@ -23,7 +23,7 @@ namespace Zork_BR.Models.Items
                 } 
                 if(item is Backpack)
                 {
-                    MyStaticClass.MaximumItemsInInventory = 15;
+                    MyStaticClass.MaximumItemsInInventory = 13;
                 }
 
                 Inventory.Add(item);

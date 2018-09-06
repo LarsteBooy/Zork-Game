@@ -10,12 +10,12 @@ namespace Zork_BR.Models.Commands
     public class EquipCommand :Command
     {
         Player player = null;
-        string input;
+        readonly string input;
 
         public EquipCommand(Player player, string input)
         {
             this.player = player;
-            this.input = input;
+            this.input = input.ToTitleCase();
         }
 
         public override string MyAction()
@@ -53,25 +53,18 @@ namespace Zork_BR.Models.Commands
                 }
             }
 
-            using (var context = ApplicationDbContext.Create())
+            string weaponEquiped = string.Format("{0} is not a weapon you can equip {1}", input.ToTitleCase(), MyStaticClass.WhiteLine());
+
+            foreach (Weapon weapon in availableWeapons)
             {
-                player = context.Players.FirstOrDefault();
-
-                foreach (Weapon weapon in availableWeapons)
+                if (weapon.Name.Equals(input))
                 {
-                    string updatedInput = input.ToTitleCase();
-
-                    if (weapon.Name.Equals(updatedInput))
-                    {
-                        player.SelectedWeapon = weapon;
-                    }
+                    player.SelectedWeapon = weapon;
+                    weaponEquiped = string.Format("You equiped {0}", player.SelectedWeapon.Name) + MyStaticClass.WhiteLine();
                 }
-
-                context.SaveChanges();
             }
 
-
-            return "";
+            return weaponEquiped;
 
         }
     }

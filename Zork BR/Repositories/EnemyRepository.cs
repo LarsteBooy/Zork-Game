@@ -22,7 +22,7 @@ namespace Zork_BR.Repositories
 
             if(MyStaticClass.EnemiesRemaining > 70) //If there are more than 70 enemies remaining
             {
-                if(chanceToSpawnEnemy < 0) //60% chance enemy is spawned
+                if(chanceToSpawnEnemy < 60) //60% chance enemy is spawned
                 {
                     player.CurrentLocation.Enemy = new CommonEnemy();
                     player.InBattle = true;
@@ -32,7 +32,7 @@ namespace Zork_BR.Repositories
 
             if (MyStaticClass.EnemiesRemaining > 40 && MyStaticClass.EnemiesRemaining <= 70) //if there are more than 40 enemies and less than 70
             {
-                if (chanceToSpawnEnemy < 0) //40% chance enemy is spawned
+                if (chanceToSpawnEnemy < 40) //40% chance enemy is spawned
                 {
                     player.CurrentLocation.Enemy = new CommonEnemy();
                     player.InBattle = true;

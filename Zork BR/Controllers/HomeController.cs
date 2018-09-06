@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Zork_BR.Models;
-using Zork_BR.Models.Commands;
+using Zork_BR.Models.Items;
 using Zork_BR.ViewModels;
 
 namespace Zork_BR.Controllers
@@ -22,7 +18,7 @@ namespace Zork_BR.Controllers
         {
             story = new Story();
             map = new Map();
-            player = new Player();
+            player = new Player(new Fists());
             
             using (var context = ApplicationDbContext.Create())
             {
@@ -113,8 +109,6 @@ namespace Zork_BR.Controllers
                 
                 story.MyStory += commandRepository.ExecuteCommand(input);
                 story.MyStory += commandRepository.EndOfAction();
-
-                player = context.Players.Find(id);
 
                 context.SaveChanges();
 

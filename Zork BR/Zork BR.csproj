@@ -198,55 +198,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Migrations\201808011216131_MyMigration.cs" />
-    <Compile Include="Migrations\201808011216131_MyMigration.Designer.cs">
-      <DependentUpon>201808011216131_MyMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808161429145_secondMigration.cs" />
-    <Compile Include="Migrations\201808161429145_secondMigration.Designer.cs">
-      <DependentUpon>201808161429145_secondMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808161445572_thirdMigration.cs" />
-    <Compile Include="Migrations\201808161445572_thirdMigration.Designer.cs">
-      <DependentUpon>201808161445572_thirdMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808200933380_fourthmigration.cs" />
-    <Compile Include="Migrations\201808200933380_fourthmigration.Designer.cs">
-      <DependentUpon>201808200933380_fourthmigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808231007410_nog_een_migration.cs" />
-    <Compile Include="Migrations\201808231007410_nog_een_migration.Designer.cs">
-      <DependentUpon>201808231007410_nog_een_migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808231023062_Yet_Another_Migration.cs" />
-    <Compile Include="Migrations\201808231023062_Yet_Another_Migration.Designer.cs">
-      <DependentUpon>201808231023062_Yet_Another_Migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808231050120_I_Hate_Migrations.cs" />
-    <Compile Include="Migrations\201808231050120_I_Hate_Migrations.Designer.cs">
-      <DependentUpon>201808231050120_I_Hate_Migrations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808231112162_Migration_7_Or_Something.cs" />
-    <Compile Include="Migrations\201808231112162_Migration_7_Or_Something.Designer.cs">
-      <DependentUpon>201808231112162_Migration_7_Or_Something.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808231230579_Migrationnnn.cs" />
-    <Compile Include="Migrations\201808231230579_Migrationnnn.Designer.cs">
-      <DependentUpon>201808231230579_Migrationnnn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809031419190_hoi.cs" />
-    <Compile Include="Migrations\201809031419190_hoi.Designer.cs">
-      <DependentUpon>201809031419190_hoi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809031448551_hoi2.cs" />
-    <Compile Include="Migrations\201809031448551_hoi2.Designer.cs">
-      <DependentUpon>201809031448551_hoi2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809040901016_Deleted_Consumable.cs" />
-    <Compile Include="Migrations\201809040901016_Deleted_Consumable.Designer.cs">
-      <DependentUpon>201809040901016_Deleted_Consumable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Commands\AdminCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\AttackCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\BattleCommandFactory.cs" />
@@ -383,44 +334,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808011216131_MyMigration.resx">
-      <DependentUpon>201808011216131_MyMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808161429145_secondMigration.resx">
-      <DependentUpon>201808161429145_secondMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808161445572_thirdMigration.resx">
-      <DependentUpon>201808161445572_thirdMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808200933380_fourthmigration.resx">
-      <DependentUpon>201808200933380_fourthmigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808231007410_nog_een_migration.resx">
-      <DependentUpon>201808231007410_nog_een_migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808231023062_Yet_Another_Migration.resx">
-      <DependentUpon>201808231023062_Yet_Another_Migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808231050120_I_Hate_Migrations.resx">
-      <DependentUpon>201808231050120_I_Hate_Migrations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808231112162_Migration_7_Or_Something.resx">
-      <DependentUpon>201808231112162_Migration_7_Or_Something.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808231230579_Migrationnnn.resx">
-      <DependentUpon>201808231230579_Migrationnnn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809031419190_hoi.resx">
-      <DependentUpon>201809031419190_hoi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809031448551_hoi2.resx">
-      <DependentUpon>201809031448551_hoi2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809040901016_Deleted_Consumable.resx">
-      <DependentUpon>201809040901016_Deleted_Consumable.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
