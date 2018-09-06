@@ -14,7 +14,7 @@ namespace Zork_BR.Models.Commands
             {
                 switch (commandType)
                 {
-                    case Inputs.Help: result = new HelpCommand(story);
+                    case Inputs.Help: result = new HelpCommand();
                         break;
                     case Inputs.Render: result = new AdminCommand(input);
                         break;

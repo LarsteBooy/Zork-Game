@@ -88,6 +88,7 @@ namespace Zork_BR.Controllers
             BattleCommands.Add("Attack", String.Format("Attacking with {0}", player.SelectedWeapon.Name));
             BattleCommands.Add("status", "Beep Boop. Physic Powers activated");
             BattleCommands.Add("heal", "You can't heal during battle. This isn't Skyrim");
+            BattleCommands.Add("help", "You need help? Here's a list of commands");
         }
 
         public string GetCommandText(string input)

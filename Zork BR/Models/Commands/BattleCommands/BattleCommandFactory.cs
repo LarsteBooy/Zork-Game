@@ -18,6 +18,8 @@ namespace Zork_BR.Models.Commands
                         break;
                     case BattleInputs.Status: result = new StatusCommand(player);
                         break;
+                    case BattleInputs.Help: result = new HelpCommand();
+                        break;
                 }
                 return result;
             }
@@ -32,6 +34,7 @@ namespace Zork_BR.Models.Commands
     {
         Run,
         Attack,
-        Status
+        Status,
+        Help
     }
 }
