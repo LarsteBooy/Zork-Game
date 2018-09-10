@@ -4,7 +4,7 @@ using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models.Enemies
 {
-    public class CommonEnemy : Enemy
+    public class Regular : Enemy
     {
         public override string Name => "Common Enemy";
         public override int DamageToPlayer => Rng.Next(7, 13);

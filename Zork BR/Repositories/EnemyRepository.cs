@@ -14,53 +14,47 @@ namespace Zork_BR.Repositories
             this.player = player;
         }
 
+        string appendToStory = "No enemies in sight" + MyStaticClass.WhiteLine();
+
+        private void ChanceToSpawnEnemy(Enemy enemy, int chanceToSpawn)
+        {
+            int random = Rng.Next(0, 100);
+
+            if(random < chanceToSpawn)
+            {
+                player.CurrentLocation.Enemy = enemy;
+                player.InBattle = true;
+                appendToStory = string.Format("You see a {0} and ask for help. Than you remember you are in a game and these are your enemies so you engage in combat. {1}", player.CurrentLocation.Enemy.Name, MyStaticClass.WhiteLine());
+            }
+        }
+
         public string SpawnEnemy()
         {
             Location location = player.CurrentLocation;
 
-            int chanceToSpawnEnemy = Rng.Next(0, 100);
-
             if(MyStaticClass.EnemiesRemaining > 70) //If there are more than 70 enemies remaining
             {
-                if(chanceToSpawnEnemy < 60) //60% chance enemy is spawned
-                {
-                    player.CurrentLocation.Enemy = new CommonEnemy();
-                    player.InBattle = true;
-                    return string.Format("You see {0} and ask for help. Than you remember you are in a game and these are your enemies so you engage in combat." + MyStaticClass.WhiteLine(), player.CurrentLocation.Enemy.Name);
-                }
+                ChanceToSpawnEnemy(new Regular(), 60);
             }
 
             if (MyStaticClass.EnemiesRemaining > 40 && MyStaticClass.EnemiesRemaining <= 70) //if there are more than 40 enemies and less than 70
             {
-                if (chanceToSpawnEnemy < 40) //40% chance enemy is spawned
-                {
-                    player.CurrentLocation.Enemy = new CommonEnemy();
-                    player.InBattle = true;
-                    return string.Format("You see {0} and ask for help. Than you remember you are in a game and these are your enemies so you engage in combat." + MyStaticClass.WhiteLine(), player.CurrentLocation.Enemy.Name);
-                }
+                ChanceToSpawnEnemy(new Brute(), 40);
+                ChanceToSpawnEnemy(new Regular(), 40);
+                
             }
 
             if (MyStaticClass.EnemiesRemaining > 10 && MyStaticClass.EnemiesRemaining <= 40) //if there are more than 10 enemies and less than 40
             {
-                if (chanceToSpawnEnemy < 20) //20% chance enemy is spawned
-                {
-                    player.CurrentLocation.Enemy = new CommonEnemy();
-                    player.InBattle = true;
-                    return string.Format("You see {0} and ask for help. Than you remember you are in a game and these are your enemies so you engage in combat." + MyStaticClass.WhiteLine(), player.CurrentLocation.Enemy.Name);
-                }
+                ChanceToSpawnEnemy(new Regular(), 20);
             }
 
             if (MyStaticClass.EnemiesRemaining > 0 && MyStaticClass.EnemiesRemaining <= 10) //if there are more than 10 enemies and less than 40
             {
-                if (chanceToSpawnEnemy < 5) //5% chance enemy is spawned
-                {
-                    player.CurrentLocation.Enemy = new CommonEnemy();
-                    player.InBattle = true;
-                    return string.Format("You see {0} and ask for help. Than you remember you are in a game and these are your enemies so you engage in combat." + MyStaticClass.WhiteLine(), player.CurrentLocation.Enemy.Name);
-                }
+                ChanceToSpawnEnemy(new Regular(), 5);
             }
 
-            return "No enemies in sight" + MyStaticClass.WhiteLine();
+            return appendToStory;
         }
 
         public void RandomEnemyDeath()
