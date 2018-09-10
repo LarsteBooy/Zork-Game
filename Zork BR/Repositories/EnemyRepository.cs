@@ -16,12 +16,38 @@ namespace Zork_BR.Repositories
 
         string appendToStory = "No enemies in sight" + MyStaticClass.WhiteLine();
 
-        private void ChanceToSpawnEnemy(Enemy enemy, int chanceToSpawn)
+        private void ChanceToSpawnEnemy(int chanceToSpawn)
         {
             int random = Rng.Next(0, 100);
+            int whichEnemy = Rng.Next(0, 100);
+            Enemy enemy = null;
 
-            if(random < chanceToSpawn)
+            if (random > chanceToSpawn)
             {
+                appendToStory = "No enemies in sight" + MyStaticClass.WhiteLine();
+            }
+            else
+            { 
+                if(MyStaticClass.EnemiesRemaining > 70)
+                {
+                    enemy = new Regular();
+                }
+                else if (MyStaticClass.EnemiesRemaining > 40)
+                {
+                    if(whichEnemy < 50) { enemy = new Regular(); }
+                    else { enemy = new Brute(); }
+                }
+                else if( MyStaticClass.EnemiesRemaining > 10)
+                {
+                    if(whichEnemy < 30) { enemy = new Regular(); }
+                    else { enemy = new Brute(); }
+                }
+                else
+                {
+                    if(whichEnemy < 10) { enemy = new Regular(); }
+                    else { enemy = new Brute(); }
+                }
+
                 player.CurrentLocation.Enemy = enemy;
                 player.InBattle = true;
                 appendToStory = string.Format("You see a {0} and ask for help. Than you remember you are in a game and these are your enemies so you engage in combat. {1}", player.CurrentLocation.Enemy.Name, MyStaticClass.WhiteLine());
@@ -34,24 +60,19 @@ namespace Zork_BR.Repositories
 
             if(MyStaticClass.EnemiesRemaining > 70) //If there are more than 70 enemies remaining
             {
-                ChanceToSpawnEnemy(new Regular(), 60);
+                ChanceToSpawnEnemy(60);
             }
-
-            if (MyStaticClass.EnemiesRemaining > 40 && MyStaticClass.EnemiesRemaining <= 70) //if there are more than 40 enemies and less than 70
+            else if (MyStaticClass.EnemiesRemaining > 40) //if there are more than 40 enemies and less than 70
             {
-                ChanceToSpawnEnemy(new Brute(), 40);
-                ChanceToSpawnEnemy(new Regular(), 40);
-                
+                ChanceToSpawnEnemy(40);
             }
-
-            if (MyStaticClass.EnemiesRemaining > 10 && MyStaticClass.EnemiesRemaining <= 40) //if there are more than 10 enemies and less than 40
+            else if (MyStaticClass.EnemiesRemaining > 10) //if there are more than 10 enemies and less than 40
             {
-                ChanceToSpawnEnemy(new Regular(), 20);
+                ChanceToSpawnEnemy(20);
             }
-
-            if (MyStaticClass.EnemiesRemaining > 0 && MyStaticClass.EnemiesRemaining <= 10) //if there are more than 10 enemies and less than 40
+            else //if there are 10 or less enmies remaining
             {
-                ChanceToSpawnEnemy(new Regular(), 5);
+                ChanceToSpawnEnemy(5);
             }
 
             return appendToStory;
