@@ -104,7 +104,12 @@ namespace Zork_BR.Controllers
             }
             else
             {
-                if(player.InEquipState == true){
+                if(player.InEquipState){
+                    return inputString + Environment.NewLine;
+                }
+
+                if (player.InDropState)
+                {
                     return inputString + Environment.NewLine;
                 }
 
