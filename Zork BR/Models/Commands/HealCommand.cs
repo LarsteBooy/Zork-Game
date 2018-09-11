@@ -48,7 +48,7 @@ namespace Zork_BR.Models.Commands
             {
                 Player.inventoryPlayer.RemoveItem(potion);
             }
-
+            
             if (containsBigHealthPotion == true && hpToHeal >= bigHealthPotion.HealthRegain)
             {
                 UseHealthPotion(bigHealthPotion);
@@ -71,7 +71,8 @@ namespace Zork_BR.Models.Commands
 
                 appendToStory = string.Format("You replenished {0} health by drinking a {1}", smallHealthPotion.HealthRegain, smallHealthPotion.Name);
 
-            }else if(hpToHeal < 30)
+            }
+            else
             {
                 if(containsSmallHealthPotion == true)
                 {
@@ -85,14 +86,14 @@ namespace Zork_BR.Models.Commands
                     UseHealthPotion(normalHealthPotion);
                     RemovePotionFromInventory(bigHealthPotion);
 
-                    appendToStory = string.Format("You replenished {0} health by drinking a {1}", hpToHeal, smallHealthPotion.Name);
+                    appendToStory = string.Format("You replenished {0} health by drinking a {1}", hpToHeal, normalHealthPotion.Name);
                 }
                 else if(containsBigHealthPotion == true)
                 {
                     UseHealthPotion(bigHealthPotion);
                     RemovePotionFromInventory(bigHealthPotion);
 
-                    appendToStory = string.Format("You replenished {0} health by drinking a {1}", hpToHeal, smallHealthPotion.Name);
+                    appendToStory = string.Format("You replenished {0} health by drinking a {1}", hpToHeal, bigHealthPotion.Name);
                 }
             }
 
