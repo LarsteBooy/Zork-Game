@@ -21,7 +21,9 @@ namespace Zork_BR.Models.Commands
         {
             string appendToStory = "";
 
+            //TODO the following 2 lines has to be removed when there is a loottable for weapons
             Player.inventoryPlayer.Inventory.Add(new Knife());
+            Player.inventoryPlayer.NumberOfItems++;
 
             if (!player.CurrentLocation.IsLootable)
             {

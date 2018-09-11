@@ -80,6 +80,7 @@ namespace Zork_BR.Controllers
             Commands.Add("status", "Beep Boop. Physic Powers activated");
             Commands.Add("heal", "Ayy lmao, you think you injured, lets drink a potion");
             Commands.Add("equip", "You search your own body for weapons...");
+            Commands.Add("drop", "Ayy, so you want to drop things???");
         }
 
         public void FillBattleCommands()
@@ -160,16 +161,26 @@ namespace Zork_BR.Controllers
                 return "";
             }
 
-            //if the player want to equip a weapon
+            //if the player wants to equip a weapon
             if (player.InEquipState)
             {
-                var equipcommand = new EquipCommand(player, input);
-                string actionString = equipcommand.MyAction();
+                var equipCommand = new EquipCommand(player, input);
+                string actionString = equipCommand.MyAction();
 
                 player.InEquipState = false;
                 
                 return actionString;
-                
+            }
+
+            //if the player wants to drop an item
+            if (player.InDropState)
+            {
+                var dropCommand = new DropCommand(player, input);
+                string actionString = dropCommand.MyAction();
+
+                player.InDropState = false;
+
+                return actionString;
             }
 
             //If there is no battle going on create a CommandFactory

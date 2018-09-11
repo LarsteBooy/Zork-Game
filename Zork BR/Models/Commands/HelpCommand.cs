@@ -28,6 +28,7 @@ namespace Zork_BR.Models.Commands
                       " [Items / Actions]" + Environment.NewLine + 
                       "--------------------" + Environment.NewLine + 
                       " - Equip - Equip a weapon" + Environment.NewLine + 
+                      " - Drop - Drop an item" + Environment.NewLine + 
                       " - Heal - Heal with best potion available" + Environment.NewLine +
                       " - Inventory - Get your inventory" + Environment.NewLine +
                       " - Loot - Loot tile" + Environment.NewLine +

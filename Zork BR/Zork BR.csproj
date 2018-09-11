@@ -201,6 +201,7 @@
     <Compile Include="Models\Commands\AdminCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\AttackCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\BattleCommandFactory.cs" />
+    <Compile Include="Models\Commands\DropCommand.cs" />
     <Compile Include="Models\Commands\EquipCommand.cs" />
     <Compile Include="Models\Commands\GetInventoryCommand.cs" />
     <Compile Include="Models\Commands\HealCommand.cs" />

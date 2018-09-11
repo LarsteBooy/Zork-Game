@@ -18,11 +18,11 @@ namespace Zork_BR.Models
         public int XCoord { get; set; }
         public int YCoord { get; set; }
         public string PlayerName { get; set; }
-
-
-
+        
         public bool InBattle { get; set; }
         public bool InEquipState { get; set; }
+        public bool InDropState { get; set; }
+
         public int Kills { get; set; }
 
         [NotMapped]
