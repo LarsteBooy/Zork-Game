@@ -186,6 +186,7 @@ button.inBattle:hover{
 }
 
 /*===== HELP PAGE =====*/
+
 #commands {
     float: none;
 }
@@ -194,4 +195,10 @@ button.inBattle:hover{
     margin-top: 7px;
     margin-left: -22px;
     color: red;
+}
+
+/*===== Game Over Page =====*/
+
+.pageHeader{
+    text-align: center;
 }

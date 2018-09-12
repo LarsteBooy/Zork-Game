@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Zork_BR.Models;
-using Zork_BR.Models.Commands;
+﻿using Zork_BR.Models;
 
 namespace Zork_BR.ViewModels
 {

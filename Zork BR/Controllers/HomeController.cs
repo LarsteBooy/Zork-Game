@@ -110,6 +110,11 @@ namespace Zork_BR.Controllers
                 story.MyStory += commandRepository.ExecuteCommand(input);
                 story.MyStory += commandRepository.EndOfAction();
 
+                if(player.CurrentHealth <= 0)
+                {
+                    return RedirectToAction("GameOver", player);
+                }
+
                 context.SaveChanges();
 
             }
@@ -143,6 +148,17 @@ namespace Zork_BR.Controllers
             HelpViewModel helpViewModel = new HelpViewModel(player);
 
             return View(helpViewModel);
+        }
+
+        public ActionResult GameOver()
+        {
+            var gameId = Session["gameId"] as int?;
+
+            player = (Player)FindInDatabase("player", gameId.Value);
+
+            GameOverViewModel gameOverViewModel = new GameOverViewModel(player);
+
+            return View(gameOverViewModel);
         }
     }
 }

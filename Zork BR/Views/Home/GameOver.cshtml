@@ -1,0 +1,22 @@
+﻿@model Zork_BR.ViewModels.GameOverViewModel
+
+@{
+    ViewBag.Title = "Game Over";
+    Layout = null;
+
+}
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@ViewBag.Title - My first textbased game</title>
+@Styles.Render("~/Content/css")
+<link href="@Url.Content("~/Content/main.css")" rel="stylesheet" type="text/css" />
+@Scripts.Render("~/bundles/modernizr")
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+<div class="pageHeader">
+    <h1 id="gameOverTitle">@ViewBag.Title</h1>
+    <p>kills: @Html.Raw(Model.Kills)</p>
+    <p>Enemies Remaining: @Html.Raw(Model.EnemiesRemaining)</p>
+    <button class="btn btn-primary sendBtn">Retry</button>
+</div>
