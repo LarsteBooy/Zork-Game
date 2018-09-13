@@ -202,3 +202,12 @@ button.inBattle:hover{
 .pageHeader{
     text-align: center;
 }
+
+.gameOverLink a {
+    text-decoration: none;
+    color: #00FF00;
+}
+
+.gameOverLink:hover > a{
+    color: #000;
+}

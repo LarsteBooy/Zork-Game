@@ -14,6 +14,8 @@ namespace Zork_BR.Controllers
         StoryViewModel storyViewModel;
         CommandRepository commandRepository;
 
+        static int sessionId;
+
         public ActionResult FillDatabase()
         {
             story = new Story();
@@ -34,7 +36,7 @@ namespace Zork_BR.Controllers
 
                 context.SaveChanges();
             }
-            Session.Add("gameId", story.Id);
+            Session.Add(sessionId.ToString(), story.Id);
             return RedirectToAction("Index", new { id = story.Id });
         }
 
@@ -66,7 +68,7 @@ namespace Zork_BR.Controllers
 
             if (id == 0)
             {
-                var gameId = Session["gameId"] as int?;
+                var gameId = Session[sessionId.ToString()] as int?;
                 if (!gameId.HasValue)
                 {
                     return RedirectToAction("FillDatabase");
@@ -131,7 +133,7 @@ namespace Zork_BR.Controllers
 
             if (id == 0)
             {
-                var gameId = Session["gameId"] as int?;
+                var gameId = Session[sessionId.ToString()] as int?;
 
                     story = (Story)FindInDatabase("story", gameId.Value);
                     player = (Player)FindInDatabase("player", gameId.Value);
@@ -152,11 +154,13 @@ namespace Zork_BR.Controllers
 
         public ActionResult GameOver()
         {
-            var gameId = Session["gameId"] as int?;
+            var gameId = Session[sessionId.ToString()] as int?;
 
             player = (Player)FindInDatabase("player", gameId.Value);
 
             GameOverViewModel gameOverViewModel = new GameOverViewModel(player);
+
+            sessionId++;
 
             return View(gameOverViewModel);
         }

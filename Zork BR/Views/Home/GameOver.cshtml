@@ -18,5 +18,5 @@
     <h1 id="gameOverTitle">@ViewBag.Title</h1>
     <p>kills: @Html.Raw(Model.Kills)</p>
     <p>Enemies Remaining: @Html.Raw(Model.EnemiesRemaining)</p>
-    <button class="btn btn-primary sendBtn">Retry</button>
+    <button class="btn btn-primary sendBtn gameOverLink">@Html.ActionLink("Retry", "Index", "Home")</button>
 </div>
