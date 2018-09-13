@@ -198,6 +198,31 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Migrations\201809131334154_InitialCreate.cs" />
+    <Compile Include="Migrations\201809131334154_InitialCreate.Designer.cs">
+      <DependentUpon>201809131334154_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809131345240_added_playerstats.cs" />
+    <Compile Include="Migrations\201809131345240_added_playerstats.Designer.cs">
+      <DependentUpon>201809131345240_added_playerstats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809131353370_Another_Migration.cs" />
+    <Compile Include="Migrations\201809131353370_Another_Migration.Designer.cs">
+      <DependentUpon>201809131353370_Another_Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809131402002_Yet_Another_Migration.cs" />
+    <Compile Include="Migrations\201809131402002_Yet_Another_Migration.Designer.cs">
+      <DependentUpon>201809131402002_Yet_Another_Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809131404250_Sick_Of_Migrations.cs" />
+    <Compile Include="Migrations\201809131404250_Sick_Of_Migrations.Designer.cs">
+      <DependentUpon>201809131404250_Sick_Of_Migrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809131443065_Hoi.cs" />
+    <Compile Include="Migrations\201809131443065_Hoi.Designer.cs">
+      <DependentUpon>201809131443065_Hoi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Commands\AdminCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\AttackCommand.cs" />
     <Compile Include="Models\Commands\BattleCommands\BattleCommandFactory.cs" />
@@ -218,6 +243,7 @@
     <Compile Include="Models\Items\ILocationInventory.cs" />
     <Compile Include="Models\Items\InventoryPlayer.cs" />
     <Compile Include="Models\LootTables.cs" />
+    <Compile Include="Models\PlayerStats.cs" />
     <Compile Include="Models\Utility\MyStaticClass.cs" />
     <Compile Include="Models\Utility\Rng.cs" />
     <Compile Include="Models\Enemies\Brute.cs" />
@@ -339,6 +365,26 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809131334154_InitialCreate.resx">
+      <DependentUpon>201809131334154_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809131345240_added_playerstats.resx">
+      <DependentUpon>201809131345240_added_playerstats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809131353370_Another_Migration.resx">
+      <DependentUpon>201809131353370_Another_Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809131402002_Yet_Another_Migration.resx">
+      <DependentUpon>201809131402002_Yet_Another_Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809131404250_Sick_Of_Migrations.resx">
+      <DependentUpon>201809131404250_Sick_Of_Migrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809131443065_Hoi.resx">
+      <DependentUpon>201809131443065_Hoi.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

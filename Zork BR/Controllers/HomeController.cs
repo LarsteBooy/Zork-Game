@@ -11,6 +11,7 @@ namespace Zork_BR.Controllers
         Story story;
         Map map;
         Player player;
+        PlayerStats playerStats;
         StoryViewModel storyViewModel;
         CommandRepository commandRepository;
 
@@ -21,16 +22,18 @@ namespace Zork_BR.Controllers
             story = new Story();
             map = new Map();
             player = new Player(new Fists());
+            playerStats = new PlayerStats();
             
             using (var context = ApplicationDbContext.Create())
             {
                 context.Stories.Add(story);
                 context.Maps.Add(map);
                 context.Players.Add(player);
+                context.PlayerStats.Add(playerStats);
 
                 map.BuildMap();
                 
-                commandRepository = new CommandRepository(story, player);
+                commandRepository = new CommandRepository(story, player, playerStats);
                 commandRepository.CreatePlayer();
                 story.MyStory += commandRepository.SpawnStory();
 
@@ -55,6 +58,9 @@ namespace Zork_BR.Controllers
                     case "map":
                         map = context.Maps.Find(id);
                         return map;
+                    case "playerStats":
+                        playerStats = context.PlayerStats.Find(id);
+                        return playerStats;
                     default: return null;
                 }
             }
@@ -77,6 +83,7 @@ namespace Zork_BR.Controllers
                 {
                     story = (Story)FindInDatabase("story", gameId.Value);
                     player = (Player)FindInDatabase("player", gameId.Value);
+                    playerStats = (PlayerStats)FindInDatabase("playerStats", gameId.Value);
                     map = (Map)FindInDatabase("map", gameId.Value);
                 }
             }
@@ -84,21 +91,23 @@ namespace Zork_BR.Controllers
             {
                 story = (Story)FindInDatabase("story", id);
                 player = (Player)FindInDatabase("player", id);
+                playerStats = (PlayerStats)FindInDatabase("playerStats", id);
                 map = (Map)FindInDatabase("map", id);
             }
 
             if (input == null)
             {
-                storyViewModel = new StoryViewModel(story, player);
+                storyViewModel = new StoryViewModel(story, player, playerStats);
                 return View(storyViewModel);
             }
             
-            commandRepository = new CommandRepository(story, player);
+            commandRepository = new CommandRepository(story, player, playerStats);
 
             using (var context = ApplicationDbContext.Create())
             {
                 context.Stories.Attach(story);
                 context.Players.Attach(player);
+                context.PlayerStats.Attach(playerStats);
 
                 if (!player.InBattle)
                 {
@@ -111,22 +120,22 @@ namespace Zork_BR.Controllers
                 
                 story.MyStory += commandRepository.ExecuteCommand(input);
                 story.MyStory += commandRepository.EndOfAction();
+                
+                context.SaveChanges();
 
-                if(player.CurrentHealth <= 0)
+                if (player.CurrentHealth <= 0)
                 {
                     return RedirectToAction("GameOver", player);
                 }
 
-                if(MyStaticClass.EnemiesRemaining <= 0)
+                if (playerStats.EnemiesRemaining <= 0)
                 {
                     return RedirectToAction("GameWon", player);
                 }
 
-                context.SaveChanges();
-
             }
             
-            storyViewModel = new StoryViewModel(story, player);
+            storyViewModel = new StoryViewModel(story, player, playerStats);
 
             return View(storyViewModel);
         }
@@ -142,14 +151,16 @@ namespace Zork_BR.Controllers
 
                     story = (Story)FindInDatabase("story", gameId.Value);
                     player = (Player)FindInDatabase("player", gameId.Value);
+                    playerStats = (PlayerStats)FindInDatabase("playerStats", gameId.Value);
                     map = (Map)FindInDatabase("map", gameId.Value);
-                
             }
             else
             {
                 story = (Story)FindInDatabase("story", id);
                 player = (Player)FindInDatabase("player", id);
+                playerStats = (PlayerStats)FindInDatabase("playerStats", id);
                 map = (Map)FindInDatabase("map", id);
+
             }
 
             HelpViewModel helpViewModel = new HelpViewModel(player);
@@ -160,10 +171,10 @@ namespace Zork_BR.Controllers
         public ActionResult GameOver()
         {
             var gameId = Session[sessionId.ToString()] as int?;
+            
+            playerStats = (PlayerStats)FindInDatabase("playerStats", gameId.Value);
 
-            player = (Player)FindInDatabase("player", gameId.Value);
-
-            AfterGameViewModel gameOverViewModel = new AfterGameViewModel(player);
+            AfterGameViewModel gameOverViewModel = new AfterGameViewModel(playerStats);
 
             sessionId++;
 
@@ -173,10 +184,10 @@ namespace Zork_BR.Controllers
         public ActionResult GameWon()
         {
             var gameId = Session[sessionId.ToString()] as int?;
+            
+            playerStats = (PlayerStats)FindInDatabase("playerStats", gameId.Value);
 
-            player = (Player)FindInDatabase("player", gameId.Value);
-
-            AfterGameViewModel gameWonViewModel = new AfterGameViewModel(player);
+            AfterGameViewModel gameWonViewModel = new AfterGameViewModel(playerStats);
 
             sessionId++;
 

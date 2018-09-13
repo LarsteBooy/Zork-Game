@@ -11,6 +11,7 @@ namespace Zork_BR.Models
         [Key]
         public int Id { get; set; }
 
+        //TODO make inventory non-static
         public static InventoryPlayer inventoryPlayer = new InventoryPlayer();
         private int currentHealth = 100;
         public int MaxHealth { get; set; } = 100;
@@ -22,8 +23,6 @@ namespace Zork_BR.Models
         public bool InBattle { get; set; }
         public bool InEquipState { get; set; }
         public bool InDropState { get; set; }
-
-        public int Kills { get; set; }
 
         [NotMapped]
         private Weapon _selectedWeapon;

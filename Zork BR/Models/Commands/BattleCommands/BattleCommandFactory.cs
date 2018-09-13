@@ -5,7 +5,7 @@ namespace Zork_BR.Models.Commands
 {
     public class BattleCommandFactory
     {
-        public static Command Create(string input, Story story, Player player)
+        public static Command Create(string input, Story story, Player player, PlayerStats playerStats)
         {
             Command result = null;
             if (Enum.TryParse(input, true, out BattleInputs commandType))
@@ -14,9 +14,9 @@ namespace Zork_BR.Models.Commands
                 {
                     case BattleInputs.Run: result = new RunCommand(player);
                         break;
-                    case BattleInputs.Attack: result = new AttackCommand(player);
+                    case BattleInputs.Attack: result = new AttackCommand(player, playerStats);
                         break;
-                    case BattleInputs.Status: result = new StatusCommand(player);
+                    case BattleInputs.Status: result = new StatusCommand(player, playerStats);
                         break;
                     case BattleInputs.Help: result = new HelpCommand();
                         break;

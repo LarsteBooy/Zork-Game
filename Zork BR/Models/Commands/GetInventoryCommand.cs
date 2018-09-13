@@ -7,9 +7,16 @@ namespace Zork_BR.Models.Commands
 {
     public class GetInventoryCommand : Command
     {
+        PlayerStats playerStats = null;
+
+        public GetInventoryCommand(PlayerStats playerStats)
+        {
+            this.playerStats = playerStats;
+        }
+
         public override string MyAction()
         {
-            string appendToStory = string.Format("You can have a maximum number of {0} inventory slots. {1}You've got:{1}", MyStaticClass.MaximumItemsInInventory, Environment.NewLine);
+            string appendToStory = string.Format("You can have a maximum number of {0} inventory slots. {1}You've got:{1}", playerStats.MaximumItemsInInventory, Environment.NewLine);
             int ocupiedInventorySpaces = 1;
 
             if(Player.inventoryPlayer.Inventory.Count == 0)

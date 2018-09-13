@@ -8,10 +8,12 @@ namespace Zork_BR.Models.Items
     {
         public ICollection<Item> Inventory { get; set; }
         public int NumberOfItems { get; set; }
+        PlayerStats playerStats = null;
 
-        public InventoryPlayer()
+        public InventoryPlayer(/*PlayerStats playerStats*/)
         {
             Inventory = new List<Item>();
+            //this.playerStats = playerStats;
         }
         
 
@@ -19,7 +21,7 @@ namespace Zork_BR.Models.Items
         {
                 if(item is Binoculars)
                 {
-                    MyStaticClass.RenderMinimap = true;
+                    playerStats.RenderMinimap = true;
                 } 
                 if(item is Backpack)
                 {
@@ -37,7 +39,7 @@ namespace Zork_BR.Models.Items
 
             if (!Inventory.Any(x => x is Binoculars))
             {
-                MyStaticClass.RenderMinimap = false;
+                playerStats.RenderMinimap = false;
             }
 
             if (!Inventory.Any(x => x is Backpack))

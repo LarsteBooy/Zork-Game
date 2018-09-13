@@ -25,6 +25,7 @@ namespace Zork_BR.Models
         public DbSet<Story> Stories { get; set; }
         public DbSet<Map> Maps { get; set; }
         public DbSet<Player> Players { get; set; }
+        public DbSet<PlayerStats> PlayerStats { get; set; }
         public DbSet<Item> Items { get; set; }
 
         public ApplicationDbContext()

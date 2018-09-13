@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Zork_BR.Models.Commands
 {
     public class CommandFactory
     {
-        public static Command Create(string input, Story story, Player player)
+        public static Command Create(string input, Story story, Player player, PlayerStats playerStats)
         {
             Command result = null;
             if (Enum.TryParse(input, true, out Inputs commandType))
@@ -16,16 +13,16 @@ namespace Zork_BR.Models.Commands
                 {
                     case Inputs.Help: result = new HelpCommand();
                         break;
-                    case Inputs.Render: result = new AdminCommand(input);
+                    case Inputs.Render: result = new AdminCommand(input, playerStats);
                         break;
-                    case Inputs.Status: result = new StatusCommand(player);
+                    case Inputs.Status: result = new StatusCommand(player, playerStats);
                         break;
                     case Inputs.Bagspace:
-                        result = new AdminCommand(input);
+                        result = new AdminCommand(input, playerStats);
                         break;
-                    case Inputs.Loot: result = new LootCommand(input, story, player);
+                    case Inputs.Loot: result = new LootCommand(input, player, playerStats);
                         break;
-                    case Inputs.Inventory: result = new GetInventoryCommand();
+                    case Inputs.Inventory: result = new GetInventoryCommand(playerStats);
                         break;
                     case Inputs.Heal: result = new HealCommand(player);
                         break;

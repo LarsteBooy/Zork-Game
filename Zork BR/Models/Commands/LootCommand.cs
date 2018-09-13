@@ -7,14 +7,14 @@ namespace Zork_BR.Models.Commands
     public class LootCommand : Command
     {
         private readonly string input;
-        private readonly Story story = null;
         private readonly Player player = null;
+        private readonly PlayerStats playerStats = null;
 
-        public LootCommand(string input, Story story, Player player)
+        public LootCommand(string input, Player player, PlayerStats playerStats)
         {
             this.input = input;
-            this.story = story;
             this.player = player;
+            this.playerStats = playerStats;
         }
 
         public override string MyAction()
@@ -47,7 +47,7 @@ namespace Zork_BR.Models.Commands
             var pickedUp = new List<Item>();
             foreach (Item i in location.LootList)
             {
-                if (Player.inventoryPlayer.NumberOfItems < MyStaticClass.MaximumItemsInInventory)
+                if (Player.inventoryPlayer.NumberOfItems < playerStats.MaximumItemsInInventory)
                 {
                     Player.inventoryPlayer.AddItem(i);
                     pickedUp.Add(i);

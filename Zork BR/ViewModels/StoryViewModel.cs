@@ -8,12 +8,13 @@ namespace Zork_BR.ViewModels
         public string StoryText { get; set; }
 
         Player player = null;
+        PlayerStats playerStats = null;
 
         //if true render more locations on the minimap
         public bool Render {
             get
             {
-                return Render = MyStaticClass.RenderMinimap;
+                return Render = playerStats.RenderMinimap;
             }
             set { }
         }
@@ -93,11 +94,12 @@ namespace Zork_BR.ViewModels
 
 
 
-        public StoryViewModel(Story story, Player player)
+        public StoryViewModel(Story story, Player player, PlayerStats playerStats)
         {
             this.Id = story.Id;
             this.StoryText = story.MyStory;
             this.player = player;
+            this.playerStats = playerStats;
 
             if (player != null && story != null)
             {

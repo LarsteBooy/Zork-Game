@@ -14,13 +14,15 @@ namespace Zork_BR.Controllers
     {
         readonly Story story = null;
         Player player = null;
+        readonly PlayerStats playerStats = null;
         
 
         Dictionary<string, string> Commands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
         Dictionary<string, string> BattleCommands = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
 
-        public CommandRepository(Story story, Player player) {
+        public CommandRepository(Story story, Player player, PlayerStats playerStats) {
             this.player = player;
+            this.playerStats = playerStats;
             this.story = story;
             FillCommands();
             FillBattleCommands();
@@ -151,12 +153,12 @@ namespace Zork_BR.Controllers
 
         public string ExecuteCommand(string input)
         {
-            EnemyRepository enemyRepository = new EnemyRepository(player);
+            EnemyRepository enemyRepository = new EnemyRepository(player, playerStats);
 
             //If the player is in battle create a BattleCommandFactory
             if (player.InBattle)
             {
-                var battleCommand = BattleCommandFactory.Create(input, story, player);
+                var battleCommand = BattleCommandFactory.Create(input, story, player, playerStats);
                 if(battleCommand != null)
                 {
                     string actionString = battleCommand.MyAction();
@@ -189,13 +191,13 @@ namespace Zork_BR.Controllers
             }
 
             //If there is no battle going on create a CommandFactory
-            var command = CommandFactory.Create(input, story, player);
+            var command = CommandFactory.Create(input, story, player, playerStats);
             if (command != null)
             {
                 string actionString = command.MyAction();
 
                 //TODO dit zetten in de homecontroller voor cleaner code.
-                if(command is DirectionCommand && MyStaticClass.EnemiesRemaining > 0)
+                if(command is DirectionCommand && playerStats.EnemiesRemaining > 0)
                 {
                     actionString += enemyRepository.SpawnEnemy();
                     enemyRepository.RandomEnemyDeath();

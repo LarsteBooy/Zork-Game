@@ -36,6 +36,8 @@ namespace Zork_BR.Models.Commands
             {
                 string appendToStory = string.Format("Which weapon would you like to equip:{0}",  Environment.NewLine);
                 
+                var sortedList = availableWeapons.OrderBy(x => x.Name);
+
                 foreach (Weapon i in availableWeapons)
                 {
                     appendToStory += Environment.NewLine + howManyWeapons + ". " + i.Name;

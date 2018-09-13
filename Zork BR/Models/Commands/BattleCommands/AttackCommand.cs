@@ -10,12 +10,14 @@ namespace Zork_BR.Models.Commands.BattleCommands
     public class AttackCommand : Command
     {
         Player player = null;
+        PlayerStats playerStats = null;
         Enemy enemy = null;
         Weapon weapon = null;
 
-        public AttackCommand(Player player)
+        public AttackCommand(Player player, PlayerStats playerStats)
         {
             this.player = player;
+            this.playerStats = playerStats;
             enemy = player.CurrentLocation.Enemy;
             weapon = player.SelectedWeapon;
         }
@@ -41,8 +43,8 @@ namespace Zork_BR.Models.Commands.BattleCommands
                 enemy.IsDead = true;
                 appendToStory += string.Format("You deaded the {0}", enemy.Name + MyStaticClass.WhiteLine());
 
-                MyStaticClass.EnemiesRemaining--;
-                player.Kills++;
+                playerStats.EnemiesRemaining--;
+                playerStats.Kills++;
                 player.InBattle = false;
                 player.CurrentLocation.Enemy = null; //Remove Enemy from location
             }

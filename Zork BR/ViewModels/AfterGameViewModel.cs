@@ -4,18 +4,18 @@ namespace Zork_BR.ViewModels
 {
     public class AfterGameViewModel
     {
-        Player player = null;
+        PlayerStats playerStats = null;
 
-        public AfterGameViewModel(Player player)
+        public AfterGameViewModel(PlayerStats playerStats)
         {
-            this.player = player;
+            this.playerStats = playerStats;
         }
 
         public int Kills
         {
             get
             {
-                return Kills = player.Kills;
+                return Kills = playerStats.Kills;
             }
             set { }
         }
@@ -24,7 +24,7 @@ namespace Zork_BR.ViewModels
         {
             get
             {
-                return EnemiesRemaining = MyStaticClass.EnemiesRemaining;
+                return EnemiesRemaining = playerStats.EnemiesRemaining;
             }
             set { }
         }

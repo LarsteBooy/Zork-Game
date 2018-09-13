@@ -31,7 +31,9 @@ namespace Zork_BR.Models.Commands
             {
                 string appendToStory = string.Format("Which ítem would you like to drop:{0}", Environment.NewLine);
 
-                foreach (Item i in Player.inventoryPlayer.Inventory)
+                var sortedList = Player.inventoryPlayer.Inventory.OrderBy(x => x.Name);
+
+                foreach (Item i in sortedList)
                 {
                     appendToStory += Environment.NewLine + itemCounter + ". " + i.Name;
                     itemCounter++;
