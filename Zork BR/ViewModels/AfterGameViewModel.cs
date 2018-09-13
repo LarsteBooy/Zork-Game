@@ -2,11 +2,11 @@
 
 namespace Zork_BR.ViewModels
 {
-    public class GameOverViewModel
+    public class AfterGameViewModel
     {
         Player player = null;
 
-        public GameOverViewModel(Player player)
+        public AfterGameViewModel(Player player)
         {
             this.player = player;
         }

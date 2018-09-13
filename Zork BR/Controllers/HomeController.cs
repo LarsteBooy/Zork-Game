@@ -117,6 +117,11 @@ namespace Zork_BR.Controllers
                     return RedirectToAction("GameOver", player);
                 }
 
+                if(MyStaticClass.EnemiesRemaining <= 0)
+                {
+                    return RedirectToAction("GameWon", player);
+                }
+
                 context.SaveChanges();
 
             }
@@ -158,11 +163,24 @@ namespace Zork_BR.Controllers
 
             player = (Player)FindInDatabase("player", gameId.Value);
 
-            GameOverViewModel gameOverViewModel = new GameOverViewModel(player);
+            AfterGameViewModel gameOverViewModel = new AfterGameViewModel(player);
 
             sessionId++;
 
             return View(gameOverViewModel);
+        }
+
+        public ActionResult GameWon()
+        {
+            var gameId = Session[sessionId.ToString()] as int?;
+
+            player = (Player)FindInDatabase("player", gameId.Value);
+
+            AfterGameViewModel gameWonViewModel = new AfterGameViewModel(player);
+
+            sessionId++;
+
+            return View(gameWonViewModel);
         }
     }
 }

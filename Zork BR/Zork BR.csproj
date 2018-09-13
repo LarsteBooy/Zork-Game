@@ -222,7 +222,7 @@
     <Compile Include="Models\Utility\Rng.cs" />
     <Compile Include="Models\Enemies\Brute.cs" />
     <Compile Include="Repositories\EnemyRepository.cs" />
-    <Compile Include="ViewModels\GameOverViewModel.cs" />
+    <Compile Include="ViewModels\AfterGameViewModel.cs" />
     <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="Repositories\CommandRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -320,6 +320,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\GameOver.cshtml" />
+    <Content Include="Views\Home\GameWon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

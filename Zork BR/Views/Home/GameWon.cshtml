@@ -1,9 +1,8 @@
 ﻿@using Zork_BR.Models
 @model Zork_BR.ViewModels.AfterGameViewModel
 @{
-    ViewBag.Title = "Game Over";
+    ViewBag.Title = "Winner Winner, Chicken Dinner!!!";
     Layout = null;
-
 }
 
 <meta charset="utf-8" />
@@ -15,8 +14,7 @@
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
 <div class="pageHeader">
-    <h1>@ViewBag.Title</h1>
+    <h1 id="gameOverTitle">@ViewBag.Title</h1>
     <p>kills: @Html.Raw(Model.Kills)</p>
-    <p>Enemies Remaining: @Html.Raw(Model.EnemiesRemaining)</p>
     <button class="btn btn-primary sendBtn gameOverLink">@Html.ActionLink("Retry", "Index", "Home")</button>
 </div>

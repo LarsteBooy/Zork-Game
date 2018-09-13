@@ -12,7 +12,7 @@ namespace Zork_BR.Models
         public static int MaximumItemsInInventory { get; set; } = 8;
 
         //How many enemies are remaining
-        public static int EnemiesRemaining { get; set; } = 99;
+        public static int EnemiesRemaining { get; set; } = 2;
 
         public static string WhiteLine()
         {
