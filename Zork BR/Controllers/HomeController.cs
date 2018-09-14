@@ -15,6 +15,7 @@ namespace Zork_BR.Controllers
         StoryViewModel storyViewModel;
         CommandRepository commandRepository;
 
+        //TODO put this field in the playerStats class
         static int sessionId;
 
         public ActionResult FillDatabase()
@@ -23,6 +24,9 @@ namespace Zork_BR.Controllers
             map = new Map();
             player = new Player(new Fists());
             playerStats = new PlayerStats();
+            player.PlayerInventory = new PlayerInventory();
+
+            
             
             using (var context = ApplicationDbContext.Create())
             {
@@ -30,6 +34,7 @@ namespace Zork_BR.Controllers
                 context.Maps.Add(map);
                 context.Players.Add(player);
                 context.PlayerStats.Add(playerStats);
+                context.PlayerInventories.Add(player.PlayerInventory);
 
                 map.BuildMap();
                 
@@ -61,6 +66,9 @@ namespace Zork_BR.Controllers
                     case "playerStats":
                         playerStats = context.PlayerStats.Find(id);
                         return playerStats;
+                    case "playerInventory":
+                        player.PlayerInventory = context.PlayerInventories.Find(id);
+                        return player.PlayerInventory;
                     default: return null;
                 }
             }
@@ -84,6 +92,7 @@ namespace Zork_BR.Controllers
                     story = (Story)FindInDatabase("story", gameId.Value);
                     player = (Player)FindInDatabase("player", gameId.Value);
                     playerStats = (PlayerStats)FindInDatabase("playerStats", gameId.Value);
+                    player.PlayerInventory = (PlayerInventory)FindInDatabase("playerInventory", gameId.Value);
                     map = (Map)FindInDatabase("map", gameId.Value);
                 }
             }
@@ -92,6 +101,7 @@ namespace Zork_BR.Controllers
                 story = (Story)FindInDatabase("story", id);
                 player = (Player)FindInDatabase("player", id);
                 playerStats = (PlayerStats)FindInDatabase("playerStats", id);
+                player.PlayerInventory = (PlayerInventory)FindInDatabase("playerInventory", id);
                 map = (Map)FindInDatabase("map", id);
             }
 
@@ -108,6 +118,7 @@ namespace Zork_BR.Controllers
                 context.Stories.Attach(story);
                 context.Players.Attach(player);
                 context.PlayerStats.Attach(playerStats);
+                context.PlayerInventories.Attach(player.PlayerInventory);
 
                 if (!player.InBattle)
                 {
@@ -152,6 +163,7 @@ namespace Zork_BR.Controllers
                     story = (Story)FindInDatabase("story", gameId.Value);
                     player = (Player)FindInDatabase("player", gameId.Value);
                     playerStats = (PlayerStats)FindInDatabase("playerStats", gameId.Value);
+                    player.PlayerInventory = (PlayerInventory)FindInDatabase("playerInventory", gameId.Value);
                     map = (Map)FindInDatabase("map", gameId.Value);
             }
             else
@@ -159,6 +171,7 @@ namespace Zork_BR.Controllers
                 story = (Story)FindInDatabase("story", id);
                 player = (Player)FindInDatabase("player", id);
                 playerStats = (PlayerStats)FindInDatabase("playerStats", id);
+                player.PlayerInventory = (PlayerInventory)FindInDatabase("playerInventory", id);
                 map = (Map)FindInDatabase("map", id);
 
             }

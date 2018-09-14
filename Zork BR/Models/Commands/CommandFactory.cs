@@ -22,7 +22,7 @@ namespace Zork_BR.Models.Commands
                         break;
                     case Inputs.Loot: result = new LootCommand(input, player, playerStats);
                         break;
-                    case Inputs.Inventory: result = new GetInventoryCommand(playerStats);
+                    case Inputs.Inventory: result = new GetInventoryCommand(player, playerStats);
                         break;
                     case Inputs.Heal: result = new HealCommand(player);
                         break;

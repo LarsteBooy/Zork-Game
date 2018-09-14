@@ -24,7 +24,7 @@ namespace Zork_BR.Models.Commands
             List<Weapon> availableWeapons = new List<Weapon>();
             int howManyWeapons = 1;
 
-            foreach (Item item in Player.inventoryPlayer.Inventory)
+            foreach (Item item in player.PlayerInventory.Inventory)
             {
                 if (item is Weapon)
                 {

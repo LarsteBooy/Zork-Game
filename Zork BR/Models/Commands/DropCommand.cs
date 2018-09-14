@@ -22,7 +22,7 @@ namespace Zork_BR.Models.Commands
             List<Item> allItemsInInventory = new List<Item>();
             int itemCounter = 1;
 
-            foreach (Item item in Player.inventoryPlayer.Inventory)
+            foreach (Item item in player.PlayerInventory.Inventory)
             {
                  allItemsInInventory.Add(item);
             }
@@ -31,7 +31,7 @@ namespace Zork_BR.Models.Commands
             {
                 string appendToStory = string.Format("Which ítem would you like to drop:{0}", Environment.NewLine);
 
-                var sortedList = Player.inventoryPlayer.Inventory.OrderBy(x => x.Name);
+                var sortedList = player.PlayerInventory.Inventory.OrderBy(x => x.Name);
 
                 foreach (Item i in sortedList)
                 {
@@ -39,7 +39,7 @@ namespace Zork_BR.Models.Commands
                     itemCounter++;
                 }
 
-                if (Player.inventoryPlayer.NumberOfItems <= 0)
+                if (player.PlayerInventory.NumberOfItems <= 0)
                 {
                     return "You don't have any items" + MyStaticClass.WhiteLine();
                 }
@@ -57,7 +57,7 @@ namespace Zork_BR.Models.Commands
             {
                 if (item.Name.Equals(input) && !itemDropped)
                 {
-                    Player.inventoryPlayer.RemoveItem(item);
+                    player.PlayerInventory.RemoveItem(item);
                     itemToBeDropped = string.Format("You dropped {0}", item.Name) + MyStaticClass.WhiteLine();
                     itemDropped = true;
                 }

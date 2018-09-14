@@ -9,10 +9,10 @@ namespace Zork_BR.Models
     public class Player
     {
         [Key]
-        public int Id { get; set; }
+        public int PlayerId { get; set; }
+        
+        public virtual PlayerInventory PlayerInventory { get; set; }
 
-        //TODO make inventory non-static
-        public static InventoryPlayer inventoryPlayer = new InventoryPlayer();
         private int currentHealth = 100;
         public int MaxHealth { get; set; } = 100;
 

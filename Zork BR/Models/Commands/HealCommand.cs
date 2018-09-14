@@ -19,7 +19,7 @@ namespace Zork_BR.Models.Commands
         {
             List<HealthPotion> availableHealthPotions = new List<HealthPotion>();
             
-            foreach(Item item in Player.inventoryPlayer.Inventory)
+            foreach(Item item in player.PlayerInventory.Inventory)
             {
                 if (item is HealthPotion)
                 {
@@ -46,7 +46,7 @@ namespace Zork_BR.Models.Commands
 
             void RemovePotionFromInventory(HealthPotion potion)
             {
-                Player.inventoryPlayer.RemoveItem(potion);
+                player.PlayerInventory.RemoveItem(potion);
             }
             
             if (containsBigHealthPotion == true && hpToHeal >= bigHealthPotion.HealthRegain)

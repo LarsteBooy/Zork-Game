@@ -1,16 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace Zork_BR.Models.Items
 {
-    public class InventoryPlayer
+    public class PlayerInventory
     {
+        [Key, ForeignKey("Player")]
+        public int PlayerInventoryId { get; set; }
+        
+        public Player Player { get; set; }
+
         public ICollection<Item> Inventory { get; set; }
         public int NumberOfItems { get; set; }
         PlayerStats playerStats = null;
 
-        public InventoryPlayer(/*PlayerStats playerStats*/)
+        public PlayerInventory(/*PlayerStats playerStats*/)
         {
             Inventory = new List<Item>();
             //this.playerStats = playerStats;

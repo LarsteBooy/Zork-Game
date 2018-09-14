@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Zork_BR.Models.Enemies;
+using Zork_BR.Models.Items;
 
 namespace Zork_BR.Models
 {
@@ -26,13 +26,14 @@ namespace Zork_BR.Models
         public DbSet<Map> Maps { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<PlayerStats> PlayerStats { get; set; }
-        public DbSet<Item> Items { get; set; }
+        public DbSet<PlayerInventory> PlayerInventories { get; set; }
+        //public DbSet<Item> Items { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
             //Leegt de database
-            Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseAlways<ApplicationDbContext>());
+            Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
 
         public static ApplicationDbContext Create()
