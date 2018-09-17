@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Zork_BR.Models.Items;
 
 namespace Zork_BR.Models
 {
     public class PlayerStats
     {
-        [Key]
+        [Key, ForeignKey("PlayerInventory")]
         public int Id { get; set; }
+
+        public PlayerInventory PlayerInventory { get; set; }
 
         //How many enemies are remaining
         public int EnemiesRemaining { get; set; } = 2;

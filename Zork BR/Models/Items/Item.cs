@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Zork_BR.Models.Items;
 
 namespace Zork_BR.Models
 {

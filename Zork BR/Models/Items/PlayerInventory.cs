@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -9,32 +8,32 @@ namespace Zork_BR.Models.Items
     public class PlayerInventory
     {
         [Key, ForeignKey("Player")]
-        public int PlayerInventoryId { get; set; }
+        public int Id { get; set; }
         
         public Player Player { get; set; }
+        public PlayerStats PlayerStats { get; set; }
 
         public virtual ICollection<Item> Inventory { get; set; }
         public int NumberOfItems { get; set; }
-        PlayerStats playerStats = null;
+        
 
-        public PlayerInventory(/*PlayerStats playerStats*/)
+        public PlayerInventory()
         {
             Inventory = new List<Item>();
-            //this.playerStats = playerStats;
         }
         
 
         public void AddItem(Item item)
         {
-                /*if(item is Binoculars)
+                if(item is Binoculars)
                 {
-                    playerStats.RenderMinimap = true;
+                    PlayerStats.RenderMinimap = true;
                 } 
                 if(item is Backpack)
                 {
-                    MyStaticClass.MaximumItemsInInventory = 13;
+                    PlayerStats.MaximumItemsInInventory = 13;
                 }
-                */
+                
                 Inventory.Add(item);
                 NumberOfItems++;
                 
@@ -44,16 +43,16 @@ namespace Zork_BR.Models.Items
         {
             Inventory.Remove(item);
 
-            /*if (!Inventory.Any(x => x is Binoculars))
+            if (!Inventory.Any(x => x is Binoculars))
             {
-                playerStats.RenderMinimap = false;
+                PlayerStats.RenderMinimap = false;
             }
 
             if (!Inventory.Any(x => x is Backpack))
             {
-                MyStaticClass.MaximumItemsInInventory = 8;
+                PlayerStats.MaximumItemsInInventory = 8;
             }
-            */
+            
             NumberOfItems--;
         }
     }

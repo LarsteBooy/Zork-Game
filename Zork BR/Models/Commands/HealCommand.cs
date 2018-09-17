@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Zork_BR.Models.Items;
 using Zork_BR.Models.Items.Consumables;
 
 namespace Zork_BR.Models.Commands

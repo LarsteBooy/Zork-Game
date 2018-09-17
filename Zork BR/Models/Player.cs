@@ -9,7 +9,7 @@ namespace Zork_BR.Models
     public class Player
     {
         [Key]
-        public int PlayerId { get; set; }
+        public int Id { get; set; }
         
         public virtual PlayerInventory PlayerInventory { get; set; }
 

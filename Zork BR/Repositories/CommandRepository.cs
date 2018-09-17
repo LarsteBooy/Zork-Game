@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using Zork_BR.Models;
 using Zork_BR.Models.Commands;
-using Zork_BR.Models.Items;
 using Zork_BR.Models.Utility;
 using Zork_BR.Repositories;
 

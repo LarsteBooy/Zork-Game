@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Zork_BR.Models.Enemies;
 using Zork_BR.Models.Items;
 
