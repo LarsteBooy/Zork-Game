@@ -1,5 +1,4 @@
-﻿using System;
-using Zork_BR.Models.Utility;
+﻿using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models.Items
 {

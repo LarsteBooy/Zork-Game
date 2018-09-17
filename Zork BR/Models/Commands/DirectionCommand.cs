@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Web;
-using Zork_BR.Models.Enemies;
 using Zork_BR.Models.Locations;
-using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models.Commands
 {

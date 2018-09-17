@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Zork_BR.Models.Utility;
+﻿using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models.Enemies
 {
