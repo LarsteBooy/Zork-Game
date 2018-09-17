@@ -3,18 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Zork_BR.Models.Items
+namespace Zork_BR.Models.Items.Consumables
 {
-    public class HealthPotion : Item, IHealthRegain
+    public abstract class HealthPotion : Item, IHealthRegain
     {
-        public override string Name { get ; }
-        public int HealthRegain { get; set; }
-
-        public HealthPotion(string name, int healthRegain)
-        {
-            this.Name = name;
-            this.HealthRegain = healthRegain;
-        }
-
+        public abstract int HealthRegain { get; }
     }
 }

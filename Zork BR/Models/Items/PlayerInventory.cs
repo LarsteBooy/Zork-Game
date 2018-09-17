@@ -13,7 +13,7 @@ namespace Zork_BR.Models.Items
         
         public Player Player { get; set; }
 
-        public ICollection<Item> Inventory { get; set; }
+        public virtual ICollection<Item> Inventory { get; set; }
         public int NumberOfItems { get; set; }
         PlayerStats playerStats = null;
 
@@ -26,7 +26,7 @@ namespace Zork_BR.Models.Items
 
         public void AddItem(Item item)
         {
-                if(item is Binoculars)
+                /*if(item is Binoculars)
                 {
                     playerStats.RenderMinimap = true;
                 } 
@@ -34,7 +34,7 @@ namespace Zork_BR.Models.Items
                 {
                     MyStaticClass.MaximumItemsInInventory = 13;
                 }
-
+                */
                 Inventory.Add(item);
                 NumberOfItems++;
                 
@@ -44,7 +44,7 @@ namespace Zork_BR.Models.Items
         {
             Inventory.Remove(item);
 
-            if (!Inventory.Any(x => x is Binoculars))
+            /*if (!Inventory.Any(x => x is Binoculars))
             {
                 playerStats.RenderMinimap = false;
             }
@@ -53,7 +53,7 @@ namespace Zork_BR.Models.Items
             {
                 MyStaticClass.MaximumItemsInInventory = 8;
             }
-
+            */
             NumberOfItems--;
         }
     }

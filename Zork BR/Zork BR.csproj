@@ -210,10 +210,13 @@
     <Compile Include="Models\Commands\StatusCommand.cs" />
     <Compile Include="Models\Enemies\Regular.cs" />
     <Compile Include="Models\Enemies\Enemy.cs" />
+    <Compile Include="Models\Items\Consumables\BigHealthPotion.cs" />
+    <Compile Include="Models\Items\Consumables\HealthPotion.cs" />
+    <Compile Include="Models\Items\Consumables\NormalHealthPotion.cs" />
+    <Compile Include="Models\Items\Consumables\SmallHealthPotion.cs" />
     <Compile Include="Models\Items\Rare Items\Backpack.cs" />
     <Compile Include="Models\Items\Rare Items\Binoculars.cs" />
     <Compile Include="Models\Items\Weapons\Fists.cs" />
-    <Compile Include="Models\Items\Consumables\HealthPotion.cs" />
     <Compile Include="Models\Items\Consumables\IHealthRegain.cs" />
     <Compile Include="Models\Items\ILocationInventory.cs" />
     <Compile Include="Models\Items\PlayerInventory.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Zork_BR.Models.Items;
+using Zork_BR.Models.Items.Consumables;
 
 namespace Zork_BR.Models.Commands
 {
@@ -28,16 +29,16 @@ namespace Zork_BR.Models.Commands
                  
             }
 
-            bool containsBigHealthPotion = availableHealthPotions.Any(p => p.Name == "Big Healthpotion");
-            bool containsNormalHealthPotion = availableHealthPotions.Any(p => p.Name == "Normal Healthpotion");
-            bool containsSmallHealthPotion = availableHealthPotions.Any(p => p.Name == "Small Healthpotion");
+            bool containsBigHealthPotion = availableHealthPotions.Any(p => p is BigHealthPotion);
+            bool containsNormalHealthPotion = availableHealthPotions.Any(p => p is NormalHealthPotion);
+            bool containsSmallHealthPotion = availableHealthPotions.Any(p => p is SmallHealthPotion);
 
             int hpToHeal = player.MaxHealth - player.CurrentHealth;
             string appendToStory = "Miljaar, you don't have any healing potions";
 
-            HealthPotion bigHealthPotion = availableHealthPotions.FirstOrDefault(p => p.Name == "Big Healthpotion");
-            HealthPotion normalHealthPotion = availableHealthPotions.FirstOrDefault(p => p.Name == "Normal Healthpotion");
-            HealthPotion smallHealthPotion = availableHealthPotions.FirstOrDefault(p => p.Name == "Small Healthpotion");
+            HealthPotion bigHealthPotion = availableHealthPotions.FirstOrDefault(p => p is BigHealthPotion);
+            HealthPotion normalHealthPotion = availableHealthPotions.FirstOrDefault(p => p is NormalHealthPotion);
+            HealthPotion smallHealthPotion = availableHealthPotions.FirstOrDefault(p => p is SmallHealthPotion);
 
             void UseHealthPotion(HealthPotion potion)
             {
@@ -49,6 +50,11 @@ namespace Zork_BR.Models.Commands
                 player.PlayerInventory.RemoveItem(potion);
             }
             
+            if(hpToHeal == 0)
+            {
+                return "Ayy you thought wrong. You have full health" + MyStaticClass.WhiteLine();
+            }
+
             if (containsBigHealthPotion == true && hpToHeal >= bigHealthPotion.HealthRegain)
             {
                 UseHealthPotion(bigHealthPotion);
@@ -72,7 +78,7 @@ namespace Zork_BR.Models.Commands
                 appendToStory = string.Format("You replenished {0} health by drinking a {1}", smallHealthPotion.HealthRegain, smallHealthPotion.Name);
 
             }
-            else
+            else if(hpToHeal > 0)
             {
                 if(containsSmallHealthPotion == true)
                 {
@@ -84,7 +90,7 @@ namespace Zork_BR.Models.Commands
                 else if(containsNormalHealthPotion == true)
                 {
                     UseHealthPotion(normalHealthPotion);
-                    RemovePotionFromInventory(bigHealthPotion);
+                    RemovePotionFromInventory(normalHealthPotion);
 
                     appendToStory = string.Format("You replenished {0} health by drinking a {1}", hpToHeal, normalHealthPotion.Name);
                 }

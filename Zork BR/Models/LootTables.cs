@@ -1,4 +1,5 @@
 ﻿using Zork_BR.Models.Items;
+using Zork_BR.Models.Items.Consumables;
 using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models
@@ -14,15 +15,15 @@ namespace Zork_BR.Models
                 int whichPotion = Rng.Next(0, 100);
                 if (whichPotion < 60)    //60% chance for SmallHealthPotion
                 {
-                    location.LootList.Add(new HealthPotion("Small Healthpotion", 30));
+                    location.LootList.Add(new SmallHealthPotion());
                 }
                 else if (whichPotion >= 60 && whichPotion < 90) //30% chance for NormalHealthPotion
                 {
-                    location.LootList.Add(new HealthPotion("Normal Healthpotion", 50));
+                    location.LootList.Add(new NormalHealthPotion());
                 }
                 else //10% chance for BigHealthPotion
                 {
-                    location.LootList.Add(new HealthPotion("Big Healthpotion", 70)); 
+                    location.LootList.Add(new BigHealthPotion()); 
                 }
             }
         }
@@ -30,7 +31,7 @@ namespace Zork_BR.Models
         public static void RareItemTable(ILootList location)
         {
             int chanceForRareItemTable = Rng.Next(0, 100);
-            if(chanceForRareItemTable < 10) //10% chance for a item from RareItemTable
+            if(chanceForRareItemTable < 90) //10% chance for a item from RareItemTable
             {
                 int chanceForBinoculars = Rng.Next(0, 100);
                 if(chanceForBinoculars < 50) //50% chance for a Binoculars

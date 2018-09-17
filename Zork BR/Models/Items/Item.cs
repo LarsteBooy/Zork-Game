@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Zork_BR.Models.Items;
 
 namespace Zork_BR.Models
 {
@@ -7,7 +9,6 @@ namespace Zork_BR.Models
         [Key]
         public int Id { get; set; }
 
-        public abstract string Name { get; }
-        
+        public abstract string Name { get;}
     }
 }
