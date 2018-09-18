@@ -19,7 +19,7 @@ namespace Zork_BR.Models.Commands
         public override string MyAction()
         {
             
-            var availableWeapons = player.PlayerInventory.Get<Weapon>();
+            var availableWeapons = player.PlayerInventorySystem.Get<Weapon>();
             
             int howManyWeapons = 1;
             if (!player.InEquipState)

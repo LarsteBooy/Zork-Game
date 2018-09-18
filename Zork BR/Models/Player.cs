@@ -11,7 +11,7 @@ namespace Zork_BR.Models
         [Key]
         public int Id { get; set; }
         
-        public virtual PlayerInventory PlayerInventory { get; set; }
+        public virtual PlayerInventorySystem PlayerInventorySystem { get; set; }
 
         private int currentHealth = 100;
         public int MaxHealth { get; set; } = 100;

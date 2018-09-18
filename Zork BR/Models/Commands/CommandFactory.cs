@@ -28,7 +28,7 @@ namespace Zork_BR.Models.Commands
                         break;
                     case Inputs.Equip: result = new EquipCommand(player, input);
                         break;
-                    case Inputs.Drop: result = new DropCommand(player, input);
+                    case Inputs.Drop: result = new DropCommand(player, playerStats, input);
                         break;
                     case Inputs.North:
                     case Inputs.East:

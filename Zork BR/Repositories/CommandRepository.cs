@@ -180,7 +180,7 @@ namespace Zork_BR.Controllers
             //if the player wants to drop an item
             if (player.InDropState)
             {
-                var dropCommand = new DropCommand(player, input);
+                var dropCommand = new DropCommand(player, playerStats, input);
                 string actionString = dropCommand.MyAction();
 
                 player.InDropState = false;

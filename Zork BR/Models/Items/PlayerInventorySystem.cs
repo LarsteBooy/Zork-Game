@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Zork_BR.Models.Items
 {
-    public class PlayerInventory
+    public class PlayerInventorySystem
     {
         [Key, ForeignKey("Player")]
         public int Id { get; set; }
@@ -17,13 +17,12 @@ namespace Zork_BR.Models.Items
         public virtual ICollection<Item> Inventory { get; set; }
         public int NumberOfItems { get; set; }
         
+        public string WhyIsDropUnsuccesfull { get; set; }
 
-        public PlayerInventory()
+        public PlayerInventorySystem()
         {
             Inventory = new List<Item>();
         }
-
-
 
         public void AddItem(Item item)
         {
@@ -44,32 +43,18 @@ namespace Zork_BR.Models.Items
         public void RemoveItem(Item item)
         {
             Inventory.Remove(item);
-
-            if (!Inventory.Any(x => x is Binoculars))
-            {
-                PlayerStats.RenderMinimap = false;
-            }
-
-            if (!Inventory.Any(x => x is Backpack))
-            {
-                if (Inventory.Count < PlayerStats.MaximumItemsInInventory)
-                {
-                    //TODO Maak dit af
-                }
-                PlayerStats.MaximumItemsInInventory = 8;
-            }
             
             NumberOfItems--;
         }
         
         public IEnumerable<Item> Get<T>()
         {
-            var availableWeapons = from item in Inventory
+            var availableItems = from item in Inventory
                                    where item is T
                                    orderby item.Name
                                    select item;
 
-            return availableWeapons;
+            return availableItems;
         }
     }
 }

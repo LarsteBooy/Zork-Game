@@ -9,7 +9,7 @@ namespace Zork_BR.Models
         [Key, ForeignKey("PlayerInventory")]
         public int Id { get; set; }
 
-        public PlayerInventory PlayerInventory { get; set; }
+        public PlayerInventorySystem PlayerInventory { get; set; }
 
         //How many enemies are remaining
         public int EnemiesRemaining { get; set; } = 2;

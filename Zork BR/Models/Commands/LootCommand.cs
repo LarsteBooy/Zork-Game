@@ -22,8 +22,8 @@ namespace Zork_BR.Models.Commands
             string appendToStory = "";
 
             //TODO the following 2 lines has to be removed when there is a loottable for weapons
-            player.PlayerInventory.Inventory.Add(new Knife());
-            player.PlayerInventory.NumberOfItems++;
+            player.PlayerInventorySystem.Inventory.Add(new Knife());
+            player.PlayerInventorySystem.NumberOfItems++;
 
             if (!player.CurrentLocation.IsLootable)
             {
@@ -47,9 +47,9 @@ namespace Zork_BR.Models.Commands
             var pickedUp = new List<Item>();
             foreach (Item i in location.LootList)
             {
-                if (player.PlayerInventory.NumberOfItems < playerStats.MaximumItemsInInventory)
+                if (player.PlayerInventorySystem.NumberOfItems < playerStats.MaximumItemsInInventory)
                 {
-                    player.PlayerInventory.AddItem(i);
+                    player.PlayerInventorySystem.AddItem(i);
                     pickedUp.Add(i);
 
                     appendToStory += String.Format("You found a {0}" + MyStaticClass.WhiteLine(), i.Name);

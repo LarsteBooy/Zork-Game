@@ -19,12 +19,12 @@ namespace Zork_BR.Models.Commands
             string appendToStory = string.Format("You can have a maximum number of {0} inventory slots. {1}You've got:{1}", playerStats.MaximumItemsInInventory, Environment.NewLine);
             int ocupiedInventorySpaces = 1;
 
-            if(player.PlayerInventory.Inventory.Count == 0)
+            if(player.PlayerInventorySystem.Inventory.Count == 0)
             {
                 appendToStory += Environment.NewLine + "Nothing... it's good practice to have some items before looking through your inventory";
             }
 
-            var sortedList = player.PlayerInventory.Inventory.OrderBy(x => x.Name);
+            var sortedList = player.PlayerInventorySystem.Inventory.OrderBy(x => x.Name);
 
             foreach (Item i in sortedList)
             {

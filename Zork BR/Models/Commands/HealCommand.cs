@@ -15,7 +15,7 @@ namespace Zork_BR.Models.Commands
 
         public override string MyAction()
         {
-            var availableHealthPotions = player.PlayerInventory.Get<HealthPotion>();
+            var availableHealthPotions = player.PlayerInventorySystem.Get<HealthPotion>();
             
             bool containsBigHealthPotion = availableHealthPotions.Any(p => p is BigHealthPotion);
             bool containsNormalHealthPotion = availableHealthPotions.Any(p => p is NormalHealthPotion);
@@ -35,7 +35,7 @@ namespace Zork_BR.Models.Commands
 
             void RemovePotionFromInventory(HealthPotion potion)
             {
-                player.PlayerInventory.RemoveItem(potion);
+                player.PlayerInventorySystem.RemoveItem(potion);
             }
             
             if(hpToHeal == 0)
