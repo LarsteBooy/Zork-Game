@@ -2,7 +2,7 @@
 {
     public class BigHealthPotion: HealthPotion, IHealthRegain
     {
-        public override string Name => "Small Healthpotion";
+        public override string Name => "Big Healthpotion";
 
         public override int HealthRegain { get => 70; }
     }

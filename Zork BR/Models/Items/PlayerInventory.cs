@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace Zork_BR.Models.Items
         {
             Inventory = new List<Item>();
         }
-        
+
+
 
         public void AddItem(Item item)
         {
@@ -50,10 +52,24 @@ namespace Zork_BR.Models.Items
 
             if (!Inventory.Any(x => x is Backpack))
             {
+                if (Inventory.Count < PlayerStats.MaximumItemsInInventory)
+                {
+                    //TODO Maak dit af
+                }
                 PlayerStats.MaximumItemsInInventory = 8;
             }
             
             NumberOfItems--;
+        }
+        
+        public IEnumerable<Item> Get<T>()
+        {
+            var availableWeapons = from item in Inventory
+                                   where item is T
+                                   orderby item.Name
+                                   select item;
+
+            return availableWeapons;
         }
     }
 }

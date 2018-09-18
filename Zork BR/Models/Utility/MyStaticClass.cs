@@ -4,11 +4,7 @@ using System.Globalization;
 namespace Zork_BR.Models
 {
     public static class MyStaticClass
-    {
-
-        //How much inventoryslots does the player have
-        public static int MaximumItemsInInventory { get; set; } = 8;
-        
+    {        
         //Adds 2 new lines
         public static string WhiteLine()
         {

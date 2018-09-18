@@ -18,31 +18,21 @@ namespace Zork_BR.Models.Commands
 
         public override string MyAction()
         {
-            //Create list with all available weapons the player has
-            List<Weapon> availableWeapons = new List<Weapon>();
+            
+            var availableWeapons = player.PlayerInventory.Get<Weapon>();
+            
             int howManyWeapons = 1;
-
-            foreach (Item item in player.PlayerInventory.Inventory)
-            {
-                if (item is Weapon)
-                {
-                    availableWeapons.Add((Weapon)item);
-                }
-            }
-
             if (!player.InEquipState)
             {
                 string appendToStory = string.Format("Which weapon would you like to equip:{0}",  Environment.NewLine);
                 
-                var sortedList = availableWeapons.OrderBy(x => x.Name);
-
                 foreach (Weapon i in availableWeapons)
                 {
                     appendToStory += Environment.NewLine + howManyWeapons + ". " + i.Name;
                     howManyWeapons++;
                 }
 
-                if(availableWeapons.Count <= 0)
+                if(availableWeapons.Count() <= 0)
                 {
                     return "You don't have any weapons" + MyStaticClass.WhiteLine();
                 }

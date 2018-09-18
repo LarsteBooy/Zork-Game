@@ -17,15 +17,11 @@ namespace Zork_BR.Models.Commands
 
         public override string MyAction()
         {
-            //Create list with all available weapons the player has
-            List<Item> allItemsInInventory = new List<Item>();
+            //Create list with all available items the player has
+            var allItemsInInventory = player.PlayerInventory.Get<Item>();
+
             int itemCounter = 1;
-
-            foreach (Item item in player.PlayerInventory.Inventory)
-            {
-                 allItemsInInventory.Add(item);
-            }
-
+            
             if (!player.InDropState)
             {
                 string appendToStory = string.Format("Which ítem would you like to drop:{0}", Environment.NewLine);

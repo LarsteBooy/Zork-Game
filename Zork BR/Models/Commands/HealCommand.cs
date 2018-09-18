@@ -15,17 +15,8 @@ namespace Zork_BR.Models.Commands
 
         public override string MyAction()
         {
-            List<HealthPotion> availableHealthPotions = new List<HealthPotion>();
+            var availableHealthPotions = player.PlayerInventory.Get<HealthPotion>();
             
-            foreach(Item item in player.PlayerInventory.Inventory)
-            {
-                if (item is HealthPotion)
-                {
-                    availableHealthPotions.Add((HealthPotion)item);
-                }
-                 
-            }
-
             bool containsBigHealthPotion = availableHealthPotions.Any(p => p is BigHealthPotion);
             bool containsNormalHealthPotion = availableHealthPotions.Any(p => p is NormalHealthPotion);
             bool containsSmallHealthPotion = availableHealthPotions.Any(p => p is SmallHealthPotion);
@@ -33,9 +24,9 @@ namespace Zork_BR.Models.Commands
             int hpToHeal = player.MaxHealth - player.CurrentHealth;
             string appendToStory = "Miljaar, you don't have any healing potions";
 
-            HealthPotion bigHealthPotion = availableHealthPotions.FirstOrDefault(p => p is BigHealthPotion);
-            HealthPotion normalHealthPotion = availableHealthPotions.FirstOrDefault(p => p is NormalHealthPotion);
-            HealthPotion smallHealthPotion = availableHealthPotions.FirstOrDefault(p => p is SmallHealthPotion);
+            HealthPotion bigHealthPotion = (BigHealthPotion)availableHealthPotions.FirstOrDefault(p => p is BigHealthPotion);
+            HealthPotion normalHealthPotion = (NormalHealthPotion)availableHealthPotions.FirstOrDefault(p => p is NormalHealthPotion);
+            HealthPotion smallHealthPotion = (SmallHealthPotion)availableHealthPotions.FirstOrDefault(p => p is SmallHealthPotion);
 
             void UseHealthPotion(HealthPotion potion)
             {
