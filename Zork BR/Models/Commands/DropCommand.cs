@@ -8,7 +8,7 @@ namespace Zork_BR.Models.Commands
     public class DropCommand : Command
     {
         Player player = null;
-        PlayerStats playerStats = null;
+        readonly PlayerStats playerStats = null;
         readonly string input;
         
 
@@ -52,38 +52,14 @@ namespace Zork_BR.Models.Commands
                 }
             }
 
-            string appendToStory2 = string.Format("{0} is not a item you can drop {1}", input.ToTitleCase(), MyStaticClass.WhiteLine());
+            string appendToStory2 = string.Format("{0} is not a item you can drop", input.ToTitleCase());
             bool foundItem = false;
 
             foreach (Item item in allItemsInInventory)
             {
                 if (item.Name.Equals(input) && !foundItem)
                 {
-                    player.PlayerInventorySystem.RemoveItem(item);
-
-                    //if there are no more binoculars in inventory 
-                    if (!inventorySystem.Inventory.Any(x => x is Binoculars))
-                    {
-                        playerStats.RenderMinimap = false;
-                    }
-
-                    //if there are no more backpacks in inventory
-                    if (!inventorySystem.Inventory.Any(x => x is Backpack))
-                    {
-                        playerStats.MaximumItemsInInventory = 8;
-
-                        //if item that was dropped is last backpack in inventory
-                        if (item is Backpack && inventorySystem.Inventory.Count() > playerStats.MaximumItemsInInventory)
-                        {
-                            inventorySystem.Inventory.Add(item);
-                            inventorySystem.NumberOfItems++;
-                            playerStats.MaximumItemsInInventory = 13;
-                            return string.Format("You can't drop the {0} right now {1} because you can't hold all your items otherwise{2}", item.Name, player.PlayerInventorySystem.WhyIsDropUnsuccesfull, MyStaticClass.WhiteLine());
-                        }
-                    }
-                    
-                    appendToStory2 = string.Format("You dropped the {0}", item.Name);
-                    
+                    appendToStory2 = player.PlayerInventorySystem.RemoveItem(item);
                     
                     foundItem = true;
                 }

@@ -17,7 +17,9 @@ namespace Zork_BR.Models
             string updatedInput = input.Trim().ToLower();
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(updatedInput);
         }
-        
+
+        public static int MaxItemsInInventoryDefault = 8;
+        public static int MaxItemsInInventoryWithBackpack = 13;
 
     }
 }

@@ -16,8 +16,6 @@ namespace Zork_BR.Models.Items
 
         public virtual ICollection<Item> Inventory { get; set; }
         public int NumberOfItems { get; set; }
-        
-        public string WhyIsDropUnsuccesfull { get; set; }
 
         public PlayerInventorySystem()
         {
@@ -26,26 +24,49 @@ namespace Zork_BR.Models.Items
 
         public void AddItem(Item item)
         {
+                Inventory.Add(item);
+                NumberOfItems++;
+
                 if(item is Binoculars)
                 {
                     PlayerStats.RenderMinimap = true;
                 } 
                 if(item is Backpack)
                 {
-                    PlayerStats.MaximumItemsInInventory = 13;
+                    PlayerStats.MaximumItemsInInventory = MyStaticClass.MaxItemsInInventoryWithBackpack;
                 }
-                
-                Inventory.Add(item);
-                NumberOfItems++;
-                
             }
             
-        public void RemoveItem(Item item)
+        public string RemoveItem(Item item)
         {
             Inventory.Remove(item);
-            
             NumberOfItems--;
+
+            //if there are no more binoculars in inventory 
+            if (!Inventory.Any(x => x is Binoculars))
+            {
+                PlayerStats.RenderMinimap = false;
+            }
+
+            //if there are no more backpacks in inventory
+            if (!Inventory.Any(x => x is Backpack))
+            {
+                PlayerStats.MaximumItemsInInventory = MyStaticClass.MaxItemsInInventoryDefault;
+
+                //if item that was removed is last backpack in inventory
+                if (item is Backpack && Inventory.Count() > PlayerStats.MaximumItemsInInventory)
+                {
+                    Inventory.Add(item);
+                    NumberOfItems++;
+                    PlayerStats.MaximumItemsInInventory = MyStaticClass.MaxItemsInInventoryWithBackpack;
+                    return string.Format("You can't drop the {0} right now because you can't hold all your items otherwise", item.Name);
+                }
+            }
+
+            return string.Format("You dropped the {0}", item.Name);
         }
+
+
         
         public IEnumerable<Item> Get<T>()
         {
