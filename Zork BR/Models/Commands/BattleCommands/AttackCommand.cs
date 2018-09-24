@@ -26,7 +26,7 @@ namespace Zork_BR.Models.Commands.BattleCommands
             int weaponDamage = weapon.Damage;
 
             enemy.Hp -= weaponDamage;
-            appendToStory += string.Format("You hit the {0} with {1} and did {2} damage. The {0} has {3} hp remaining" + Environment.NewLine, enemy.Name, weapon.Name, weaponDamage, enemy.Hp);
+            appendToStory += string.Format("You hit the {0} with a {1} and did {2} damage. The {0} has {3} hp remaining" + Environment.NewLine, enemy.Name, weapon.Name, weaponDamage, enemy.Hp);
             
             if (enemy.Hp > 0)
             {

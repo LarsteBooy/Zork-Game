@@ -220,6 +220,7 @@
     <Compile Include="Models\Items\Consumables\IHealthRegain.cs" />
     <Compile Include="Models\Items\ILocationInventory.cs" />
     <Compile Include="Models\Items\PlayerInventorySystem.cs" />
+    <Compile Include="Models\Items\Weapons\Pistol.cs" />
     <Compile Include="Models\LootTables.cs" />
     <Compile Include="Models\PlayerStats.cs" />
     <Compile Include="Models\Utility\MyStaticClass.cs" />

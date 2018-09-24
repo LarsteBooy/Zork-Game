@@ -1,5 +1,6 @@
 ﻿using Zork_BR.Models.Items;
 using Zork_BR.Models.Items.Consumables;
+using Zork_BR.Models.Items.Weapons;
 using Zork_BR.Models.Utility;
 
 namespace Zork_BR.Models
@@ -31,7 +32,7 @@ namespace Zork_BR.Models
         public static void RareItemTable(ILootList location)
         {
             int chanceForRareItemTable = Rng.Next(0, 100);
-            if(chanceForRareItemTable < 90) //10% chance for a item from RareItemTable
+            if(chanceForRareItemTable < 10) //10% chance for a item from RareItemTable
             {
                 int chanceForBinoculars = Rng.Next(0, 100);
                 if(chanceForBinoculars < 50) //50% chance for a Binoculars
@@ -43,7 +44,23 @@ namespace Zork_BR.Models
                     location.LootList.Add(new Backpack());
                 }
             }
+        }
 
+        public static void WeaponTable(ILootList location)
+        {
+            int chanceForWeaponTable = Rng.Next(0, 100);
+            if(chanceForWeaponTable < 50) //50% chance for a item from WeaponTable
+            {
+                int whichWeapon = Rng.Next(0, 100);
+                if(whichWeapon < 70) //70% chance for a Knife
+                {
+                    location.LootList.Add(new Knife());
+                }
+                else //30% chance for a Pistol
+                {
+                    location.LootList.Add(new Pistol());
+                }
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Zork_BR.Models
         public PlayerInventorySystem PlayerInventory { get; set; }
 
         //How many enemies are remaining
-        public int EnemiesRemaining { get; set; } = 2;
+        public int EnemiesRemaining { get; set; } = 99;
 
         //How much inventoryslots does the player have
         public int MaximumItemsInInventory { get; set; } = 8;

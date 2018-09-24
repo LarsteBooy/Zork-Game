@@ -27,6 +27,7 @@ namespace Zork_BR.Models.Locations
         {
             LootTables.HealthTable(this);
             LootTables.RareItemTable(this);
+            LootTables.WeaponTable(this);
         }
 
     }

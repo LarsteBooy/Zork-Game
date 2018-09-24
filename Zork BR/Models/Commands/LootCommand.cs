@@ -20,11 +20,7 @@ namespace Zork_BR.Models.Commands
         public override string MyAction()
         {
             string appendToStory = "";
-
-            //TODO the following 2 lines has to be removed when there is a loottable for weapons
-            player.PlayerInventorySystem.Inventory.Add(new Knife());
-            player.PlayerInventorySystem.NumberOfItems++;
-
+            
             if (!player.CurrentLocation.IsLootable)
             {
                 return "You can't loot here" + MyStaticClass.WhiteLine();
