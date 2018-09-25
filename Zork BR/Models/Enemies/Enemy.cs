@@ -10,6 +10,7 @@ namespace Zork_BR.Models.Enemies
         public abstract string Name { get;}
         public abstract int DamageToPlayer { get;}
         public abstract int Hp { get; set; }
+        public abstract int ChanceToRunAwayFromThisEnemy { get;}
 
 
         private bool isDead;

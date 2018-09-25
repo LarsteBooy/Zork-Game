@@ -12,9 +12,9 @@ namespace Zork_BR.Models.Commands
             {
                 switch (commandType)
                 {
-                    case BattleInputs.Run: result = new RunCommand(player);
+                    case BattleInputs.Run: result = new RunCommand(player, playerStats);
                         break;
-                    case BattleInputs.Attack: result = new AttackCommand(player, playerStats);
+                    case BattleInputs.Attack: result = new AttackCommand(player, playerStats, false);
                         break;
                     case BattleInputs.Status: result = new StatusCommand(player, playerStats);
                         break;

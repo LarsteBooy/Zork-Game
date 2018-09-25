@@ -10,11 +10,13 @@ namespace Zork_BR.Models.Commands.BattleCommands
         PlayerStats playerStats = null;
         Enemy enemy = null;
         Weapon weapon = null;
+        readonly bool onlyEnemyAttack = false;
 
-        public AttackCommand(Player player, PlayerStats playerStats)
+        public AttackCommand(Player player, PlayerStats playerStats, bool onlyEnemyAttack)
         {
             this.player = player;
             this.playerStats = playerStats;
+            this.onlyEnemyAttack = onlyEnemyAttack;
             enemy = player.CurrentLocation.Enemy;
             weapon = player.SelectedWeapon;
         }
@@ -23,11 +25,14 @@ namespace Zork_BR.Models.Commands.BattleCommands
         {
             string appendToStory = "";
 
-            int weaponDamage = weapon.Damage;
+            if (!onlyEnemyAttack)
+            {
+                int weaponDamage = weapon.Damage;
 
-            enemy.Hp -= weaponDamage;
-            appendToStory += string.Format("You hit the {0} with a {1} and did {2} damage. The {0} has {3} hp remaining" + Environment.NewLine, enemy.Name, weapon.Name, weaponDamage, enemy.Hp);
-            
+                enemy.Hp -= weaponDamage;
+                appendToStory += string.Format("You hit the {0} with a {1} and did {2} damage. The {0} has {3} hp remaining" + Environment.NewLine, enemy.Name, weapon.Name, weaponDamage, enemy.Hp);
+            }
+
             if (enemy.Hp > 0)
             {
                 int damageToPlayer = enemy.DamageToPlayer;

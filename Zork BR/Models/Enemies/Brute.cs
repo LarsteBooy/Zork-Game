@@ -7,7 +7,7 @@ namespace Zork_BR.Repositories
     {
         public override string Name => "Brute";
         public override int DamageToPlayer => Rng.Next(13, 20);
-
+        public override int ChanceToRunAwayFromThisEnemy { get => 50; } //on a scale from 0 to 100
 
         private int hp = 50;
 
