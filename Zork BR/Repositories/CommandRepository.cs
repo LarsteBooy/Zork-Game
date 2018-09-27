@@ -49,11 +49,13 @@ namespace Zork_BR.Controllers
         {
             string spawnStory = "";
 
-            //TODO voeg hier een begin story toe. eventueel met hoe het spel werkt.
-            spawnStory += String.Format("You get dropped at the coordinates [{0},{1}] which is a {2}" + Environment.NewLine, player.YCoord, player.XCoord, Map.map[player.YCoord, player.XCoord].LocationName);
-            spawnStory += "You take a good look arround to get your surroundings" + Environment.NewLine + Environment.NewLine;
+            spawnStory += "What? how did you get here? You are in a Plane of some sort with a bunch of people" + Environment.NewLine;
+            spawnStory += "Suddenly the hatch below you opens up and you and the others fall through" + Environment.NewLine;
+            spawnStory += "You see a island below you and think you are falling to your death but via mysterious ways you survived" + Environment.NewLine;
+            spawnStory += String.Format("You landed at a {0}{1}",  Map.map[player.YCoord, player.XCoord].LocationName, MyStaticClass.WhiteLine());
+            spawnStory += "Somehow you know the only way to survive is kill everyone else" + MyStaticClass.WhiteLine();
 
-            spawnStory += /*NearbyLocations() +*/ EndOfAction();
+            spawnStory += EndOfAction();
 
             return spawnStory;
         }
@@ -70,6 +72,10 @@ namespace Zork_BR.Controllers
             Commands.Add("east", "You went east");
             Commands.Add("south", "You went south");
             Commands.Add("west", "You went west");
+            Commands.Add("looknorth", "You look to your north");
+            Commands.Add("lookeast", "You look to your east");
+            Commands.Add("looksouth", "You look to your south");
+            Commands.Add("lookwest", "You look to your west");
             Commands.Add("help", "You need help? Here's a list of commands");
             Commands.Add("1337", "You probably think you're special now huh?");
             Commands.Add("secret", "You are meant to find the fun commands, not just type secret");
@@ -131,24 +137,6 @@ namespace Zork_BR.Controllers
             }
         }
 
-        /*
-        public string NearbyLocations()
-        {
-            var locationNorth = Map.map[(player.YCoord - 1), player.XCoord].LocationName;
-            var locationEast = Map.map[player.YCoord, (player.XCoord + 1)].LocationName;
-            var locationSouth = Map.map[(player.YCoord + 1), player.XCoord].LocationName;
-            var locationWest = Map.map[player.YCoord, (player.XCoord - 1)].LocationName;
-
-            var nearbyLocations = String.Format("To your north you see a {0}" + Environment.NewLine + 
-                                                "To your east you see a {1}" + Environment.NewLine + 
-                                                "To your south you see a {2}" + Environment.NewLine + 
-                                                "To your west you see a {3}" + MyStaticClass.WhiteLine(), 
-                                                locationNorth, locationEast, locationSouth, locationWest
-                                                );
-            return nearbyLocations;
-        }
-        */
-
         public string ExecuteCommand(string input)
         {
             EnemyRepository enemyRepository = new EnemyRepository(player, playerStats);
@@ -193,8 +181,7 @@ namespace Zork_BR.Controllers
             if (command != null)
             {
                 string actionString = command.MyAction();
-
-                //TODO dit zetten in de homecontroller voor cleaner code.
+                
                 if(command is DirectionCommand && playerStats.EnemiesRemaining > 0)
                 {
                     actionString += enemyRepository.SpawnEnemy();

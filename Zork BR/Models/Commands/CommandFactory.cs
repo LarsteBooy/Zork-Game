@@ -34,7 +34,13 @@ namespace Zork_BR.Models.Commands
                     case Inputs.East:
                     case Inputs.South:
                     case Inputs.West:
-                        result = new DirectionCommand(input, story, player);
+                        result = new DirectionCommand(input, player);
+                        break;
+                    case Inputs.Looknorth:
+                    case Inputs.Lookeast:
+                    case Inputs.Looksouth:
+                    case Inputs.Lookwest:
+                        result = new LookCommand(input, player);
                         break;
                 }
                 return result;
@@ -52,6 +58,10 @@ namespace Zork_BR.Models.Commands
         East,
         South,
         West,
+        Looknorth,
+        Lookeast,
+        Looksouth,
+        Lookwest,
         Help,
         Render,
         Loot,

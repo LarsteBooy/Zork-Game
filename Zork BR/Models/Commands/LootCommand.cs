@@ -39,7 +39,6 @@ namespace Zork_BR.Models.Commands
                 return "You searched the entire place, but everything you found was useless" + MyStaticClass.WhiteLine();
             }
 
-            //TODO Aparte methode voor looten 
             var pickedUp = new List<Item>();
             foreach (Item i in location.LootList)
             {

@@ -6,35 +6,33 @@ namespace Zork_BR.Models.Commands
     public class DirectionCommand : Command
     {
         private readonly string input;
-        private readonly Story story = null;
         private readonly Player player = null;
         
-        public DirectionCommand(string input, Story story, Player player)
+        public DirectionCommand(string input, Player player)
         {
             this.input = input;
-            this.story = story;
             this.player = player;
         }
 
         public override string MyAction() //TODO Haal de input == cijfer weg en zorg ervoor dat de speler dit niet kan invoegen als input (de cijfer staat voor de plek van de command in de enum van CommandFactory). Hetzelfde geldt voor de navigate method
         {
 
-            if (input == "north" || input == "0")
+            if (input.ToLowerInvariant() == "north" || input == "0")
             {
                 Location locationNorth = Map.map[player.YCoord - 1, player.XCoord];
                 return Navigate(locationNorth, input);
             }
-            else if (input == "east" || input == "1")
+            else if (input.ToLowerInvariant() == "east" || input == "1")
             {
                 Location locationEast = Map.map[player.YCoord, player.XCoord + 1];
                 return Navigate(locationEast, input);
             }
-            else if (input == "south" || input == "2")
+            else if (input.ToLowerInvariant() == "south" || input == "2")
             {
                 Location locationSouth = Map.map[player.YCoord + 1, player.XCoord];
                 return Navigate(locationSouth, input);
             }
-            else if (input == "west" || input == "3")
+            else if (input.ToLowerInvariant() == "west" || input == "3")
             {
                 Location locationWest = Map.map[player.YCoord, player.XCoord - 1];
                 return Navigate(locationWest, input);
